@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+                        <p:column  colspan="2">
+                            <p:tabMenu style="font-size: 18px" activeIndex="4" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterNomenclature.xhtml" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier" url="modifierNomenclature.xhtml" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister" url="listeNomenclature.xhtml" icon="ui-icon-document"/>  
+
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="background-color: #ffffff;border: hidden">
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Nomenclature" style="text-align: center;width: 42%; height: 50%; font-size: 15px;">  
+                                <p:panel header="" style=" font-size: 15px;color: #ff96c8;">
+
+                                    <p:panelGrid style="width:1000px; border: black;">  
+                                        <p:row>
+                                            <p:column> 
+                                                <p:spacer width="400" height="10"/>
+                                                <h:outputLabel style="color: yellow;font-size: 16px" value="Analyses   :"></h:outputLabel>
+
+                                                <p:autoComplete  size="45"  style="width: 50%" value="#{nomenclatureManagedbean.selectnomenclatureO}"   
+                                                                 id="basicPojo" completeMethod="#{nomenclatureManagedbean.completeNomenclature}"  
+                                                                 var="p" itemLabel="#{p.abreviation}" itemValue="#{p}" converter="nomenclature" forceSelection="true">  
+                                                    <f:facet name="itemtip">  
+                                                        <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
+                                                            <h:outputText style="color: black" value="Analyse " />                                                              
+                                                            <h:outputText style="color:  blue" value="#{p.analyse}"/>  
+
+                                                            <h:outputText style="color: black" value="Abréviation " />                                                       
+                                                            <h:outputText style="color:  blue" value="#{p.abreviation}"/>  
+
+                                                            <h:outputLabel style="color: black" value="Valeur B"/>                                                        
+                                                            <h:outputText style="color:  blue" value="#{p.valuerB}"/>
+
+                                                            <h:outputLabel style="color: black" value="Valeur APB"/>                                                          
+                                                            <h:outputText style="color:  blue" value="#{p.valeurAPB}"/>                                       
+
+                                                            <h:outputText style="color: black" value="Code "/> 
+                                                            <h:outputText style="color:  blue" value="#{p.code}"/>  
+
+                                                            <h:outputLabel style="color: black" value="Type De Prélèvement "/>
+                                                            <h:outputText style="color:  blue" value="#{p.typePre}"/>  
+
+                                                            <h:outputLabel style="color: black" value="Remise Résultat Après "/>
+                                                            <h:outputText style="color:  blue" value="#{p.remiseR} Jours"/>
+                                                        </h:panelGrid>  
+                                                    </f:facet>  
+
+                                                </p:autoComplete>
+
+
+                                            </p:column>
+
+
+                                        </p:row>  
+                                    </p:panelGrid>  
+
+                          
+
+                                </p:panel>  
+
+                            </p:fieldset>
+
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gN.png" height="390" width="242"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+
+        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+
+
+            <h:panelGrid columns="2" cellpadding="5">  
+
+                <h:outputLabel for="password" value="Mot De Passe :" />  
+                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                               id="password" required="true" label="password" />  
+
+                <f:facet name="footer">  
+                    <p:commandButton id="loginButton" value="Login" update="growl"   
+                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                </f:facet>  
+            </h:panelGrid>  
+            <p:blockUI block="gv" widgetVar="bui"/>    
+
+        </p:dialog>  
+
+        <script type="text/javascript" >
+            function handleLoginRequest(xhr, status, args) {  
+                if(args.validationFailed || !args.loggedIn) {  
+                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                } else {  
+                    dlg.hide(); 
+                    bui.hide();
+                }  
+            }  
+        </script>  
+
+ <p:poll interval="10"   
+         listener="#{nomenclatureManagedbean.nomenclatureCourante()}" update="basicPojo"/>
+
+    </h:form>
+
+</html>
+

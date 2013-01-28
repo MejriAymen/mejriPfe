@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+    <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+                        <p:column  colspan="2">
+                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter"  icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier" url="modifierNomenclature.xhtml" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser" url="visualiserNomenclature.xhtml"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister" url="listeNomenclature.xhtml" icon="ui-icon-document"/>  
+
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="background-color: #ffffff;border: hidden">
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Nomenclature" style="text-align: center;width: 42%; height: 50%; font-size: 15px;">  
+                                <p:panel header="" style=" font-size: 15px;color: #ff96c8;">
+
+                                    <p:panelGrid style="width:1000px; border: black;">  
+                                        <p:row>
+
+                                            <p:column>
+                                                <h:outputText style="color: #00ff00" value="Analyse " /> 
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{nomenclatureManagedbean.nomenclature.analyse}" />  
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputText value="Abréviation " />  
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{nomenclatureManagedbean.nomenclature.abreviation}" />  
+                                            </p:column>
+
+
+                                            <p:column>
+                                                <h:outputLabel value="Valeur "></h:outputLabel>
+                                                <h:outputLabel style="color: red" value="APB "></h:outputLabel>
+                                                <h:outputText style="color: #ff96c8;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{nomenclatureManagedbean.nomenclature.valeurAPB}"> </p:inputText>                                              
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputLabel value="Valeur "></h:outputLabel>   
+                                                <h:outputLabel style="color: red" value="B "></h:outputLabel>
+                                                <h:outputText style="color: #ffffff;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{nomenclatureManagedbean.nomenclature.valuerB}"></p:inputText>                                                
+                                            </p:column>
+
+                                        </p:row>
+
+
+                                        <p:row>
+
+
+                                            <p:column>
+                                                <h:outputText value="Code "/> 
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{nomenclatureManagedbean.nomenclature.code}"/>  
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputLabel value="Type De Prélèvement "></h:outputLabel>
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{nomenclatureManagedbean.nomenclature.typePre}"></p:inputText>  
+                                            </p:column>
+
+                                            <p:column>
+
+                                                <h:outputLabel  value="Remise Résultat Après "></h:outputLabel>  
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText style="width: 90px" value="#{nomenclatureManagedbean.nomenclature.remiseR}" ></p:inputText>  
+                                                <h:outputLabel style="color: pink" value="Jours"></h:outputLabel>
+                                            </p:column>  
+
+                                            <p:column>
+                                                <h:outputLabel value="Résultats Précédents "></h:outputLabel>
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#"></p:inputText>  
+                                            </p:column>    
+
+                                        </p:row>
+
+                                        <p:row>
+
+                                            <p:column colspan="4">
+                                                <p:spacer width="180" height="20" />
+                                                <h:outputLabel style="color: dodgerblue;font-size: 18px" value="Affichage Et Impression Sous Le Titre :"></h:outputLabel>
+                                                <p:inputText style="width: 470px" value="#"></p:inputText>
+                                            </p:column>
+
+                                        </p:row>
+
+                                    </p:panelGrid>  
+
+                                    <f:facet name="footer"> 
+                                        <p:spacer width="30" height="20" />
+                                        <p:commandButton style="color: yellow; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{nomenclatureManagedbean.doAjouterNomenclature()}" ajax="false" value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: #ff96c8; font-size:14px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                        <p:commandButton style="color: greenyellow; font-size:14px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                    </f:facet>
+
+                                </p:panel>  
+
+                            </p:fieldset>
+
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gN.png" height="390" width="242"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="Login" widgetVar="dlg">  
+
+
+                <h:panelGrid columns="2" cellpadding="5">  
+
+                    <h:outputLabel for="password" value="Mot De Passe :" />  
+                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                                   id="password" required="true" label="password" />  
+
+                    <f:facet name="footer">  
+                        <p:commandButton id="loginButton" value="Login" update="growl"   
+                                         actionListener="#{utulisateurManagedbean.login}"   
+                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                    </f:facet>  
+                </h:panelGrid>  
+                <p:blockUI block="gv" widgetVar="bui"/>    
+
+            </p:dialog>  
+
+            <script type="text/javascript" >
+                function handleLoginRequest(xhr, status, args) {  
+                    if(args.validationFailed || !args.loggedIn) {  
+                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                    } else {  
+                        dlg.hide(); 
+                        bui.hide();
+                    }  
+                }  
+            </script>  
+
+
+    </h:form>
+
+</html>
+

@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Modifier Ajouter Customer</title>
+
+    </h:head>
+    <h:body>
+
+        <h:form id="form">  
+            <p:growl id="growl" showDetail="true" life="3000" />  
+
+
+            <p:layout fullPage="true">  
+
+
+
+                <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+                </p:layoutUnit> 
+
+
+                <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+                </p:layoutUnit>  
+
+
+                <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                    <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                        <p:row>
+
+                            <p:column  colspan="2">
+
+                                <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                                    <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                    <p:menuitem   value="Ajouter" icon="ui-icon-circle-plus"/>  
+                                    <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
+                                    <p:menuitem  value="Détruire"  url="supprimerVisite.xhtml" icon="ui-icon-trash"/>  
+                                    <p:menuitem  value="Visualiser" url="visualiserVisite.xhtml" icon="ui-icon-search" />  
+                                    <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                                </p:tabMenu> 
+
+                            </p:column>
+
+
+                        </p:row>
+
+                        <p:row>
+
+                            <p:column style="width: 40%;background-color: #ffffff;border: hidden">
+                                <p:fieldset id="fie"  toggleSpeed="1500" widgetVar="f" collapsed="false" toggleable="true" legend="Gestion Visites" style="width: 42%; height: 50%; font-size: 15px;">  
+
+                                    <p:spacer width="20" height="2"/>
+                                    <h:outputLabel style="width: 100px;color: blue" value="Total B "/>
+                                    <h:outputText id="B" style=" width: 100px;color: red"  value="#{visiteManagedbean.sommeB}"/>
+                                    <p:spacer width="20" height="2"/>
+                                    <h:outputLabel value="Total APB "></h:outputLabel>
+                                    <h:outputText id="APB" style=" width: 100px"  value="#{visiteManagedbean.sommeAPB}"/>
+                                    <p:panel  header="Information Visite" style="width: 1000px; font-size: 15px; color: #ff96c8 ">
+
+                                        <h:panelGrid style="border: black;width: 100%"  columns="6">  
+
+                                            <h:outputText style="color: red"  value="N° Dossier "/>  
+                                            <p:autoComplete   value="#{visiteManagedbean.dossierMedicaleS}"   
+                                                              id="basicPojos" completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
+                                                              var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
+                                                <f:facet name="itemtip">  
+                                                    <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
+                                                        <h:outputText style="color: black" value="Nom &amp; Prénom " />                                                              
+                                                        <h:outputText style="color:  blue" value="#{p.nomPre}"/>  
+
+                                                        <h:outputText style="color: black" value="Sexe " />                                                       
+                                                        <h:outputText style="color:  blue" value="#{p.sexe}"/>  
+
+                                                        <h:outputLabel style="color: black" value="Age "/>                                                        
+                                                        <h:outputText style="color:  blue" value="#{p.age}"/>  
+
+
+                                                    </h:panelGrid>  
+                                                </f:facet>  
+
+                                            </p:autoComplete>
+
+                                            <h:outputText  style="color: red"  value="Nom&amp;Prénom"/>  
+                                            <h:outputText id="S" style="width: 100px;"   value="#{visiteManagedbean.dossierMedicaleS.nomPre}"/> 
+                                            <h:outputText value="N° Visite "/>  
+                                            <p:inputText  style="width: 100px;color: blue" value="#{visiteManagedbean.visite.numVis}"/>  
+                                            <h:outputLabel value="Service "></h:outputLabel>
+                                            <p:inputText style="width: 100px;color: blue"   value="#{visiteManagedbean.visite.service}"/>
+                                            <h:outputLabel value="Organisme "></h:outputLabel>
+                                            <p:inputText  style="width: 100px;color: blue"  value="#{visiteManagedbean.visite.organisme}"/>
+                                            <h:outputLabel value="Médecin Dr "/>
+                                            <p:autoComplete value="#{visiteManagedbean.seledtedMedecin}" id="basicPojose" completeMethod="#{medecinManagedbean.completerMedecin}"  
+                                                            var="p" itemLabel="#{p.nompre}" itemValue="#{p}" converter="medecin" forceSelection="true">  
+                                                <f:facet  name="itemtip">
+                                                    <h:panelGrid  columns="2" cellpadding="5">
+                                                        <h:outputText style="font-size: 18px;color: mediumblue"  value="Nom &amp; Prenom :"/> 
+                                                        <h:outputText value="#{p.nompre}"/>  
+                                                        <h:outputText style="font-size: 18px;color: mediumblue"  value="Code :"/> 
+                                                        <h:outputText value="#{p.codeMed}"/>  
+                                                        <h:outputText style="font-size: 18px;color: mediumblue"  value="CIN :"/> 
+                                                        <h:outputText  value=" #{p.cin}"/>  
+                                                        <h:outputText style="font-size: 18px;color: mediumblue"  value="Téléphone : "/> 
+                                                        <h:outputText  value="#{p.telephone}"/>  
+                                                        <h:outputText style="font-size: 18px;color: mediumblue"  value="Adresse : "/> 
+                                                        <h:outputText value="#{p.adresse}"/>  
+                                                    </h:panelGrid>
+                                                </f:facet>
+
+                                            </p:autoComplete>  
+
+                                            <h:outputLabel value="Prix B "/>
+                                            <p:spinner id="prefix" value="0" prefix="$" min="-0" />  
+  
+                                            <h:outputText style=" width: 100px"  value="#"/>
+                                            <h:outputLabel value="Prix APB "></h:outputLabel>
+                                            <h:outputText style=" width: 100px"  value="#"/>
+
+                                            <f:facet name="footer">  
+                                                <p:spacer width="200" height="1"/> 
+                                                    <p:commandButton process="@form" style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" 
+                                                                      actionListener="#{visiteManagedbean.doAjouterVisite()}" 
+                                                                      ajax="false" update="fie @parent"  value="Valider"/>
+                                                <p:spacer width="20" height="2"/>
+                                                <h:outputLabel value="Prix Total"></h:outputLabel>
+                                                <h:outputText style=" width: 100px"  value="#"/>
+                                                <p:spacer width="80" height="1"/>
+                                                <h:outputLabel value="Montant à Payer"></h:outputLabel>
+                                                <h:outputText style=" width: 100px"  value="#"/>
+                                            </f:facet>
+                                        </h:panelGrid>  
+                                    </p:panel> 
+
+                                    <h:outputLabel style="color: yellow;font-size: 16px" value="Analyses"></h:outputLabel>
+
+                                    <p:autoComplete  size="45"  style="width: 50%" value="#{visiteManagedbean.selectnomenclature}"   
+                                                     id="basicPojo" completeMethod="#{nomenclatureManagedbean.completeNomenclature}"  
+                                                     var="p" itemLabel="#{p.abreviation}" itemValue="#{p}" converter="nomenclature" multiple="true">  
+                                        <p:ajax disabled="true" event="itemUnselect" listener="#{nomenclatureManagedbean.handleUnselect}" update="growl"/>  
+                                        <f:facet name="itemtip">  
+                                            <h:panelGrid  style="font-size: 17px; volume:100 " columns="2">  
+
+
+                                                <h:outputText style=" font-size: 19px; color: blue" value="Analse :" />  
+                                                <h:outputText style=" font-size: 17px; color: black" value="#{p.analyse}" />  
+
+                                                <h:outputText style=" font-size: 19px; color: blue" value="Abréviation :" />  
+                                                <h:outputText style=" font-size: 17px; color: black" value="#{p.abreviation}" />  
+
+
+                                            </h:panelGrid>  
+                                        </f:facet>  
+
+                                    </p:autoComplete>
+
+                                </p:fieldset>
+                            </p:column>
+
+                            <p:column  style="background-color: #ffffff;border: hidden"> 
+                                <h:graphicImage value="/images/gV.png" height="370" width="250"/>
+                            </p:column>
+
+                        </p:row>
+
+
+
+                    </p:panelGrid>  
+                </p:layoutUnit>  
+
+            </p:layout>  
+
+
+  
+            <p:dialog id="dialog"  onShow="bui.show()" visible="true" header="Login" widgetVar="dlg">  
+             
+                    <h:panelGrid columns="2" cellpadding="5">  
+                        <h:outputLabel for="password" value="Password:" />  
+                        <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                                       id="password" required="true" label="password" />  
+                        <f:facet name="footer">  
+                            <p:commandButton id="loginButton" value="Login" update="growl" 
+                                             actionListener="#{utulisateurManagedbean.login}"   
+                                             oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                        </f:facet> 
+                    </h:panelGrid>  
+                 <p:blockUI block="gv" widgetVar="bui"/>    
+            </p:dialog>  
+            
+            <script type="text/javascript" >
+
+function handleLoginRequest(xhr, status, args) {  
+                    if(args.validationFailed || !args.loggedIn) {  
+                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                    } else {  
+                        dlg.hide(); 
+                        bui.hide();
+                    }  
+                }  
+            </script>  
+
+
+
+        </h:form>  
+
+
+
+    </h:body>
+</html>
+

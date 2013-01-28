@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+    <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="3" >  
+                                <p:menuitem  value="Accueil" url="accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                               
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Facture Conventions" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+
+                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
+
+                                    <p:panelGrid style="border: black"  id="matchGrid" >  
+
+
+
+                                        <p:row>
+                                            <p:column style="width: 10%;  border: hidden">
+
+                                              
+                                            </p:column>
+
+
+                                            <p:column  style=" border: hidden">
+                                                <p:fieldset legend="Information Organisme" style="text-align: center;height: 195px; font-size: 17px; ">  
+                                                    <h:panelGrid style="border: black" columns="4" > 
+                                                        <h:outputLabel style="color:  red"  value="Nom De l'organisme :" />
+                                                       
+                                                           <p:inputText value="#"/>    
+                                                        <h:outputLabel   value="Code :" />  
+                                                        <p:inputText value="#"/>  
+                                                        <h:outputLabel  value="Téléphone Et Fax :" />
+                                                           <p:inputText value="#"/>  
+                                                          
+                                                          <h:outputLabel  value="Adresse :" />
+                                                           <p:inputText value="#"/>  
+                                                         
+                                                           <f:facet name="footer">  
+                                                                <p:spacer width="150" height="20" />
+                                                           <h:outputLabel style=" color: orange"   value="Prix Du B :" />
+                                                           <p:inputText style="width: 70px; "  value="#"/>  
+                                                               <p:spacer width="155" height="20" />
+                                                               <h:outputLabel style=" color: orange"  value="Prix Du L'APB :" />
+                                                           <p:inputText style="width: 70px " value="#"/>  
+                                                                
+                                                           
+                                                        </f:facet>
+
+                                                    </h:panelGrid> 
+
+                                                </p:fieldset>
+
+                                            </p:column>
+                                            <p:column style="border-right-style: inset; border-color: #ffffff; border: hidden">
+                                            </p:column>
+
+                                        </p:row>
+
+                                    </p:panelGrid> 
+                                    <f:facet name="footer">  
+                                        <p:spacer width="270" height="20" />
+                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                        <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                    </f:facet>
+                                </p:panel>  
+
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/fC.png" height="340" width="260"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+    </h:form>
+
+</html>
+

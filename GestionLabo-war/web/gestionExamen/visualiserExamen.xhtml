@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="4" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="AjouterExamen.xhtml" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire" url="supprimerExamen.xhtml" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser" icon="ui-icon-search" />  
+                                <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 40%;background-color: #ffffff;border: hidden">
+                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Visites" style="width: 42%; height: 50%; font-size: 15px;">  
+
+                                <p:spacer width="20" height="2"/>
+                                <h:outputText  style="font-size: 16px;color: red" value="Médecin Dr  :" />  
+                                <h:outputText id="med" value="#{visiteManagedbean.visiteSup.medecin.nompre}" style="font-weight:bold"/>  
+
+                                <p:spacer width="20" height="2"/>
+                                <h:outputText style="font-size: 16px;color: red"  value="Type Malade  :" />  
+                                <h:outputText id="os" value="#{visiteManagedbean.visiteSup.dossierMedicale.malade.typeMalade}" style="font-weight:bold"/>  
+
+                                <p:spacer width="20" height="2"/>
+                                <h:outputText style="font-size: 16px;color: red"  value="Patient  :" />  
+                                <h:outputText id="dos" value="#{visiteManagedbean.visiteSup.dossierMedicale.malade.nompre}" style="font-weight:bold"/>  
+
+                                <p:panel  header="Information Visite" style="text-align: center;width: 1000px; font-size: 15px; color: #ff96c8 ">
+
+
+                                    <p:contextMenu for="visite">  
+                                        <p:menuitem value="Visualise" update="display" icon="ui-icon-search" oncomplete="carDialog.show()"/>  
+                                    </p:contextMenu>  
+
+                                    <p:dataTable id="visite" var="visite" value="#{visiteManagedbean.visites}" rowKey="#{visite.idVisite}"  
+                                                 selection="#{visiteManagedbean.visiteV}" selectionMode="single" 
+                                                 paginator="true" rows="5"  
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                                 rowsPerPageTemplate="5,7,9">  
+
+                                        <p:column headerText="Numéro" filterBy="#{visite.numVis}"   footerText="Numéro"  >  
+                                            #{visite.numVis}  
+
+                                        </p:column>  
+
+                                        <p:column headerText="Personnel" filterBy="#{visite.utilisateur.nomPre}"   footerText="Personnel"  >  
+                                            #{visite.utilisateur.nomPre}  
+
+                                        </p:column>  
+
+                                        <p:column headerText="Prix De B" filterBy="#{visite.prixB}"   footerText="Prix B">  
+                                            #{visite.prixB}  
+                                        </p:column>  
+
+
+
+                                        <p:column headerText="Prix De l'APB"  filterBy="#{visite.prixAPB}"   footerText="Total De l'APB">  
+                                            #{visite.prixAPB}  
+                                        </p:column>  
+
+
+                                        <p:column headerText="Prix Total"  filterBy="#{visite.prixTot}"   footerText="Prix Total">  
+                                            #{visite.prixTot}  
+                                        </p:column>  
+
+                                        <p:column headerText="Montant &Agrave; Payer" filterBy="#{visite.maPayer}"   footerText="Montant &Agrave; Payer">  
+                                            #{visite.maPayer}  
+                                        </p:column>  
+                                    </p:dataTable>   
+
+                                    <p:dialog position="985,0" style="font-size: 17px;" header="Liste Des Analyses Demandées" widgetVar="carDialog" resizable="false"  
+                                              showEffect="clip" hideEffect="fold" id="dialogo">  
+
+
+
+
+                                        <p:dataTable id="display" style="font-size: 16px" paginator="true" rows="10"   rowsPerPageTemplate="4,6,8"    value="#{visiteManagedbean.visiteSup.nomenclatures}"
+                                                     var="a"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                            <p:column>    
+
+                                                <f:facet name="header">  
+                                                    Analyse
+                                                </f:facet>  
+                                                <h:outputText value="#{a.analyse}"  />  
+
+
+                                            </p:column>  
+
+
+                                            <p:column>    
+
+                                                <f:facet name="header">  
+                                                    Abréviation
+                                                </f:facet>  
+                                                <h:outputText value="#{a.abreviation}"  />  
+
+
+                                            </p:column>  
+
+                                            <p:column>    
+
+                                                <f:facet name="header">  
+                                                    Code
+                                                </f:facet>  
+                                                <h:outputText value="#{a.code}"  />  
+
+
+                                            </p:column>  
+                                        </p:dataTable>
+                                        <p:effect type="shake" event="click" />   
+
+                                    </p:dialog>  
+                                </p:panel>
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gV.png" height="370" width="250"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+        <p:blockUI block="visite" trigger="visite">  
+
+            <p:graphicImage value="/images/ajax-loader.gif"/>  
+        </p:blockUI>  
+
+        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+
+
+            <h:panelGrid columns="2" cellpadding="5">  
+
+                <h:outputLabel for="password" value="Mot De Passe :" />  
+                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                               id="password" required="true" label="password" />  
+
+                <f:facet name="footer">  
+                    <p:commandButton id="loginButton" value="Login" update="growl"   
+                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                </f:facet>  
+            </h:panelGrid>  
+            <p:blockUI block="gv" widgetVar="bui"/>    
+
+        </p:dialog>  
+
+        <script type="text/javascript" >
+            function handleLoginRequest(xhr, status, args) {  
+                if(args.validationFailed || !args.loggedIn) {  
+                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                } else {  
+                    dlg.hide(); 
+                    bui.hide();
+                }  
+            }  
+        </script>  
+
+        <p:poll interval="15"   
+                listener="#{visiteManagedbean.visitesCourantes()}" update="visite"/>  
+
+        <p:poll interval="1"   
+                listener="#{visiteManagedbean.medecinCourant()}" update="med"/>  
+
+        <p:poll interval="1"   
+                listener="#{visiteManagedbean.dossierCourant()}" update="dos"/>  
+
+
+
+    </h:form>
+
+</html>
+

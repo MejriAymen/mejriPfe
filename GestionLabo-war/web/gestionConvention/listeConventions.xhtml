@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="5" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterConventions.xhtml"  icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  url="modifierConventions.xhtml"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire" url="supprimerConventions.xhtml" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser" url="visualiserConventions.xhtml"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Conventions" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+
+                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
+
+                                 
+
+
+
+                                              
+            <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{conventionManagedbean.conventions}"
+                         var="a"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                <p:column filterBy="#{a.organisme}">    
+
+                    <f:facet name="header">  
+                        Organisme
+                    </f:facet>  
+                    <h:outputText value="#{a.organisme}"  />  
+
+                    <f:facet name="footer">  
+                        Organisme                                               
+                    </f:facet>  
+                </p:column>  
+
+
+                <p:column filterBy="#{a.code}">    
+
+                    <f:facet name="header">  
+                        Code
+                    </f:facet>  
+                    <h:outputText value="#{a.code}"  />  
+
+                    <f:facet name="footer">  
+                        Code
+                    </f:facet>  
+                </p:column>  
+
+
+                <p:column filterBy="#{a.telFax}">    
+
+                    <f:facet name="header">  
+                        Téléphone &amp; Fax
+                    </f:facet>  
+                    <h:outputText value="#{a.telFax}"  />  
+
+                    <f:facet name="footer">  
+              Téléphone &amp; Fax
+                    </f:facet>  
+                </p:column>  
+
+
+
+
+                <p:column filterBy="#{a.adresse}">    
+
+                    <f:facet name="header">  
+                        Adresse
+                    </f:facet>  
+                    <h:outputText value="#{a.adresse}"  />  
+
+                    <f:facet name="footer">  
+                        Adresse
+                    </f:facet>  
+                </p:column>  
+                
+                <p:column filterBy="#{a.prixB}">    
+
+                    <f:facet name="header">  
+                        Prix De B
+                    </f:facet>  
+                    <h:outputText value="#{a.prixB}"  />  
+
+                    <f:facet name="footer">  
+                        Prix De B
+                    </f:facet>  
+                </p:column>  
+                
+                <p:column filterBy="#{a.prixAPB}">    
+
+                    <f:facet name="header">  
+                       Prix De L'APB
+                    </f:facet>  
+                    <h:outputText value="#{a.prixAPB}"  />  
+
+                    <f:facet name="footer">  
+                          Prix De L'APB
+                    </f:facet>  
+                </p:column>  
+            </p:dataTable>
+                                         
+                                 <p:blockUI block="basicPojo" trigger="basicPojo">  
+        
+        <p:graphicImage value="/images/ajax-loader.gif"/>  
+    </p:blockUI>  
+                                 
+                                    <f:facet name="footer">  
+                                    </f:facet>
+                                </p:panel>  
+                            </p:fieldset>
+                        </p:column>
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gC.png" height="340" width="260"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>  
+            </p:layoutUnit>  
+        </p:layout>  
+        
+        
+            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+
+
+                <h:panelGrid columns="2" cellpadding="5">  
+
+                    <h:outputLabel for="password" value="Mot De Passe :" />  
+                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                                   id="password" required="true" label="password" />  
+
+                    <f:facet name="footer">  
+                        <p:commandButton id="loginButton" value="Login" update="growl"   
+                                         actionListener="#{utulisateurManagedbean.login}"   
+                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                    </f:facet>  
+                </h:panelGrid>  
+                <p:blockUI block="gv" widgetVar="bui"/>    
+
+            </p:dialog>  
+
+            <script type="text/javascript" >
+                function handleLoginRequest(xhr, status, args) {  
+                    if(args.validationFailed || !args.loggedIn) {  
+                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                    } else {  
+                        dlg.hide(); 
+                        bui.hide();
+                    }  
+                }  
+            </script>  
+
+         <p:poll interval="10"   
+                 listener="#{conventionManagedbean.conventionCourant()}" update="basicPojo"/>  
+
+    </h:form>
+</html>
+

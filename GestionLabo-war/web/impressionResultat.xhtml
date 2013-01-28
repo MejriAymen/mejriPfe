@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+    <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="3" >  
+                                <p:menuitem  value="Accueil" url="accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser" icon="ui-icon-search" />  
+                                <p:menuitem  value="lister" icon="ui-icon-document"/>  
+
+
+
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="background-color: #ffffff;border: hidden">
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Impression Résultats" style="width: 42%; height: 50%; font-size: 15px;">  
+
+                                <p:spacer width="20" height="20" />
+
+                                <p:panel header="Information Visite" style=" font-size: 15px; color: #ff96c8 ">
+
+                                    <p:panelGrid >  
+
+
+                                        <p:row>
+                                            <p:column>
+
+                                                <h:outputText style="color: red"  value="Visite N° :" />  
+                                                <p:inputText  style="width: 100px;" value="#" />    
+
+                                            </p:column>
+
+                                            <p:column>
+
+                                                <h:outputText  style="color: red"  value="Dossier N° :" />  
+                                                <p:inputText style="width: 100px;"   value="#" />    
+
+                                            </p:column>
+
+
+                                            <p:column>
+
+                                                <h:outputLabel value="Nom Et Prénom :"></h:outputLabel>
+
+
+                                                <p:inputText   value="#"></p:inputText>
+
+                                            </p:column>
+
+                                            <p:column>
+
+                                                <h:outputLabel value="Date Prélèvement :"></h:outputLabel>
+
+                                                <p:calendar value="#{calendarBean.date1}" id="cal" showButtonPanel="true"/>      
+
+                                            </p:column>
+
+
+
+
+
+                                            <p:column colspan="2" >
+
+
+
+                                                <h:outputLabel style="color: #ff96c8" value="Analyses"></h:outputLabel>  
+
+                                            </p:column>
+
+                                            <p:column style="width: 50px" rowspan="2">
+
+
+
+
+                                                <p:dataList value="#{tableBean.carsSmall}" style="width: 50px;height: 50px"  type="ordered">  
+                                                    #{car.manufacturer}, #{car.year}  
+                                                </p:dataList>   
+                                            </p:column>
+
+
+                                        </p:row>
+
+
+                                        <p:row>
+                                            <p:column>
+
+                                                <h:outputLabel value="Organisme :"></h:outputLabel>
+
+                                                <p:inputText   value="#"></p:inputText>
+
+
+                                            </p:column>
+
+
+
+                                            <p:column>
+
+
+
+                                                <h:outputLabel value="Médecin Dr :"></h:outputLabel>
+
+                                                <p:inputText   value="#"></p:inputText>
+
+                                            </p:column>
+                                        </p:row>
+
+                                        <f:facet name="footer">  
+                                            <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
+                                            <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                            <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                        </f:facet>
+
+                                    </p:panelGrid>  
+
+                                </p:panel>  
+
+                        
+                                <h:outputLabel style="font-size: 16px;color: yellow" value="Date Remise Des Résultats :"></h:outputLabel>
+                                 <p:inputText   value="#"></p:inputText>
+
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/iR.png" height="390" width="250"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+    </h:form>
+
+</html>
+

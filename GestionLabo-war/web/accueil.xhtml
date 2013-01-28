@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" sticky="true" />  
+
+            <p:panelGrid id="gv" style=" width: 100%">
+                <p:row>
+                    <p:column   colspan="2">
+                        <p:menubar style="width: 100%" > 
+                            <p:submenu label="Accueil" icon="ui-icon-document">  
+                                <p:separator />  
+                                <p:menuitem value="Gestion Dossiers" url="gestionDossierMedical/ajouterDossiers.xhtml" icon="ui-icon-folder-open"/>  
+                                <p:separator />  
+                                <p:menuitem value="Gestion Examens" url="gestionExamen/AjouterExamen.xhtml"  icon="ui-icon-contact"/>
+                                <p:separator />  
+                                <p:submenu label="Feuille De Paillasse" icon="ui-icon-document-b">  
+                                    <p:separator /> 
+                                    <p:menuitem value="Par Analyse" url="#" /> 
+                                    <p:separator />  
+                                    <p:menuitem value="Par Discipline" url="#" />  
+                                    <p:separator />  
+                                    <p:menuitem value="Par Visite" url="#" />  
+                                    <p:separator />  
+                                    <p:menuitem value="Par Analyse / Periode" url="#" />  
+                                </p:submenu> 
+                            </p:submenu>  
+
+
+                            <p:submenu label="Résultas" icon="ui-icon-pencil">  
+                                <p:separator /> 
+                                <p:submenu label="Saisie" icon="ui-icon-search">  
+                                    <p:separator /> 
+                                    <p:menuitem value="Par Visite (Ordonnance)" url="#" />  
+                                    <p:separator />  
+                                    <p:menuitem value="Par Analyse (Paillaisse)" url="#" />  
+                                </p:submenu> 
+                                <p:separator /> 
+                                <p:menuitem value="Impression"  url="impressionResultat.xhtml" icon="ui-icon-print" /> 
+                                <p:separator />  
+                                <p:menuitem value="Suppression" url="suppressionResultat.xhtml"  icon="ui-icon-trash" /> 
+                                <p:separator />  
+                                <p:menuitem value="Visualisation" url="visualisationResultat.xhtml"  icon="ui-icon-lightbulb" />
+                                <p:separator />  
+                                <p:menuitem value="Date Remise" url="dateRemise.xhtml"  icon="ui-icon-clock" /> 
+                            </p:submenu>  
+
+
+
+                            <p:submenu label="Base De Données" icon="ui-icon-gear"> 
+                                <p:separator /> 
+                                <p:menuitem value="Gestion Services"  url="gestionService/ajouterServices.xhtml" ajax="false"/>  
+                                <p:separator />
+                                <p:menuitem value="Gestion Assuré"  url="gestionAssure/ajouterAssure.xhtml" ajax="false"/>  
+                                <p:separator />
+                                <p:menuitem value="Gestion Malades"  url="gestionMalade/ajouterMalades.xhtml" ajax="false"/>  
+                                <p:separator />
+                                <p:menuitem value="Gestion Médecins"  url="gestionMedecin/ajouterMedecin.xhtml" ajax="false"/>  
+                                <p:separator />  
+                                <p:menuitem value="Lexique Vocabulaire" url="lexiqueVocabulaire.xhtml" ajax="false"/>  
+                                <p:separator />  
+                                <p:menuitem value="Gestion Conventions" url="gestionConvention/ajouterConventions.xhtml" ajax="false"/>  
+                                <p:separator />  
+                                <p:menuitem value="Gestion Antibiotiques" url="gestionAntibiotique/ajouterAntiBiotique.xhtml" ajax="false"/>  
+                                <p:separator />  
+                                <p:menuitem value="Gestion Nomenclature" url="gestionNomenclature/ajouterNomenclature.xhtml"  ajax="false"/>  
+                                <p:separator />  
+                                <p:menuitem value="Gestion Valeurs Usuelles" url="gestionValeurUsuel/ajouterValeursUsuels.xhtml" ajax="false"/>  
+                                <p:separator />  
+                                <p:menuitem value="Gestion Personnalisation"  ajax="false"/>  
+                            </p:submenu>  
+
+                            <p:submenu label="Quit" icon="ui-icon-close">  
+                                <p:separator /> 
+                                <p:menuitem value="Fin De Travail"  ajax="false" icon="ui-icon-power"/>  
+                                <p:separator />  
+                                <p:menuitem value="Autre Menu" url="accueilS.xhtml" icon="ui-icon-extlink" ajax="false"/>  
+                            </p:submenu> 
+
+                        </p:menubar>  
+
+
+                    </p:column>
+
+                </p:row>
+
+                <p:row>
+
+                    <p:column colspan="2">
+                        <h:graphicImage value="/images/accueil.png" height="580" width="1330"/>
+
+                    </p:column>
+
+
+
+
+                </p:row>
+
+            </p:panelGrid>
+
+            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+
+
+                <h:panelGrid columns="2" cellpadding="5">  
+
+                    <h:outputLabel for="password" value="Mot De Passe :" />  
+                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                                   id="password" required="true" label="password" />  
+
+                    <f:facet name="footer">  
+                        <p:commandButton id="loginButton" value="Login" update="growl"   
+                                         actionListener="#{utulisateurManagedbean.login}"   
+                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                    </f:facet>  
+                </h:panelGrid>  
+                <p:blockUI block="gv" widgetVar="bui"/>    
+
+            </p:dialog>  
+
+            <script type="text/javascript" >
+                function handleLoginRequest(xhr, status, args) {  
+                    if(args.validationFailed || !args.loggedIn) {  
+                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                    } else {  
+                        dlg.hide(); 
+                        bui.hide();
+                    }  
+                }  
+            </script>  
+
+
+        </h:form>
+    </h:body>
+</html>
+
