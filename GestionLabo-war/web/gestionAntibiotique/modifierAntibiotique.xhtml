@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form>
-    <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:growl id="growl" showDetail="true" sticky="true" />  
         <p:layout fullPage="true">  
 
 
@@ -68,11 +68,11 @@
                                         </p:column>  
                                     </p:sheet>  
 
-                                         
-                                 <p:blockUI block="basicPojo" trigger="basicPojo">  
-        
-        <p:graphicImage value="/images/ajax-loader.gif"/>  
-    </p:blockUI>  
+
+                                    <p:blockUI block="basicPojo" trigger="basicPojo">  
+
+                                        <p:graphicImage value="/images/ajax-loader.gif"/>  
+                                    </p:blockUI>  
                                     <f:facet name="footer">
                                         <p:spacer width="150" height="10" /> 
                                         <p:commandButton style="color: yellow; font-size:15px "  action="#{antibiotiqueManagedbean.doModifierAntibiotique()}"  ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
@@ -90,7 +90,7 @@
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
                             <h:graphicImage value="/images/gab.png" height="390" width="300"/>
-                       </p:column>
+                        </p:column>
 
                     </p:row>
 
@@ -99,39 +99,10 @@
 
         </p:layout>  
 
-            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
-                <h:panelGrid columns="2" cellpadding="5">  
-
-                    <h:outputLabel for="password" value="Mot De Passe :" />  
-                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                                   id="password" required="true" label="password" />  
-
-                    <f:facet name="footer">  
-                        <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
-                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                    </f:facet>  
-                </h:panelGrid>  
-                <p:blockUI block="gv" widgetVar="bui"/>    
-
-            </p:dialog>  
-
-            <script type="text/javascript" >
-                function handleLoginRequest(xhr, status, args) {  
-                    if(args.validationFailed || !args.loggedIn) {  
-                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
-                    } else {  
-                        dlg.hide(); 
-                        bui.hide();
-                    }  
-                }  
-            </script>  
-
-
-  <p:poll interval="20"   
-          listener="#{antibiotiqueManagedbean.listeAntibiotiqueCourante()}" update="basicPojo"/>  
+        <p:poll interval="20"   
+                listener="#{antibiotiqueManagedbean.listeAntibiotiqueCourante()}" update="basicPojo"/>  
     </h:form>
 
 </html>
