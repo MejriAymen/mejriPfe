@@ -24,6 +24,7 @@ public class MaladeServices implements IMalde, Serializable {
     @Override
     public void ajouterMalade(Malade malade) {
         entityManager.persist(malade);
+       
     }
 
     @Override

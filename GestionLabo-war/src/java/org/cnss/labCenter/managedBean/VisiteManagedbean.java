@@ -357,4 +357,23 @@ public class VisiteManagedbean implements Serializable {
     public void setUtulisateurManagedbean(UtulisateurManagedbean utulisateurManagedbean) {
         this.utulisateurManagedbean = utulisateurManagedbean;
     }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

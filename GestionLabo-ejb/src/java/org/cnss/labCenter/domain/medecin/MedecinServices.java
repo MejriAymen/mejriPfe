@@ -24,6 +24,9 @@ public class MedecinServices implements IMedecin, Serializable {
     @Override
     public void ajouterMedecin(Medecin medecin) {
         entityManager.persist(medecin);
+        entityManager.flush();
+        medecin = entityManager.find(Medecin.class, medecin.getIdMed());
+        entityManager.refresh(medecin);
     }
 
     @Override
