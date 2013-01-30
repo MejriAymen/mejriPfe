@@ -7,9 +7,8 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Facelet Title</title>
-        <script src="/js/jquery-1.9.0.js" type="text/javascript"></script>
     </h:head>
-    <h:form id="fo" target="head">
+    <h:form id="fo">
         <p:growl id="growl" showDetail="true" sticky="true" life="3000"  />  
         <p:layout fullPage="true">  
 
@@ -94,7 +93,7 @@
                                     </p:panelGrid> 
                                     <f:facet name="footer">  
                                         <p:spacer width="270" height="20" />
-                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{conventionManagedbean.doAjouterConvention()}" ajax="false" value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{conventionManagedbean.doAjouterConvention()}" ajax="false" value="Valider"/>
                                         <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                         <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                     </f:facet>

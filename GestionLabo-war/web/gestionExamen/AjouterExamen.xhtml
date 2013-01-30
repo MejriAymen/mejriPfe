@@ -62,7 +62,7 @@
 
                                         <h:outputText style="color: red"  value="N° Dossier "/>  
                                         <p:autoComplete   value="#{visiteManagedbean.dossierMedicaleS}"   
-                                                          id="basicPojos" completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
+                                                          completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
                                                           var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
                                             <f:facet name="itemtip">  
                                                 <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
@@ -73,15 +73,17 @@
 
                                         </p:autoComplete>
 
-                                        <h:outputText  style="color: red"  value="Nom&amp;Prénom"/>  
+                                        <h:outputText  style="color: red"  value="Nom&amp;Prénom :"/>  
                                         <h:outputText id="S" style="width: 100px;"   value="#{visiteManagedbean.dossierMedicaleS.malade.nompre}"/> 
-                                        <h:outputText value="N° Visite "/>  
+                                        <h:outputText value="N° Visite : "/>  
                                         <p:inputText  style="width: 100px;color: blue" value="#{visiteManagedbean.visite.numVis}"/>  
+                                        <h:outputText value="N° Assuré : "/>  
+                                        <h:outputLabel id="ac" style="width: 100px;color: blue" value="#{visiteManagedbean.dossierMedicaleS.malade.assure.matriculeAssure}"/>  
                                         <h:outputLabel value="Service "></h:outputLabel>
                                         <p:inputText style="width: 100px;color: blue"   value="#"/>
-                                        <h:outputLabel value="Organisme "></h:outputLabel>
+                                        <h:outputLabel value="Organisme :"></h:outputLabel>
                                         <p:outputLabel id="c"  style="width: 100px;color: blue"  value="#{visiteManagedbean.dossierMedicaleS.malade.convention.organisme}"/>
-                                        <h:outputLabel value="Médecin Dr "/>
+                                        <h:outputLabel value="Médecin Dr :"/>
                                         <p:autoComplete value="#{visiteManagedbean.seledtedMedecin}" id="basicPojose" 
                                                         completeMethod="#{medecinManagedbean.completerMedecin}"  
                                                         var="p" itemLabel="#{p.nompre}" itemValue="#{p}" 
@@ -160,35 +162,35 @@
         </p:layout>  
 
 
-                <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
-                <h:panelGrid columns="2" cellpadding="5">  
+            <h:panelGrid columns="2" cellpadding="5">  
 
-                    <h:outputLabel for="password" value="Mot De Passe :" />  
-                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                                   id="password" required="true" label="password" />  
+                <h:outputLabel for="password" value="Mot De Passe :" />  
+                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                               id="password" required="true" label="password" />  
 
-                    <f:facet name="footer">  
-                        <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
-                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                    </f:facet>  
-                </h:panelGrid>  
-                <p:blockUI block="gv" widgetVar="bui"/>    
+                <f:facet name="footer">  
+                    <p:commandButton id="loginButton" value="Login" update="growl"   
+                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                </f:facet>  
+            </h:panelGrid>  
+            <p:blockUI block="gv" widgetVar="bui"/>    
 
-            </p:dialog>  
+        </p:dialog>  
 
-            <script type="text/javascript" >
-                function handleLoginRequest(xhr, status, args) {  
-                    if(args.validationFailed || !args.loggedIn) {  
-                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
-                    } else {  
-                        dlg.hide(); 
-                        bui.hide();
-                    }  
+        <script type="text/javascript" >
+            function handleLoginRequest(xhr, status, args) {  
+                if(args.validationFailed || !args.loggedIn) {  
+                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                } else {  
+                    dlg.hide(); 
+                    bui.hide();
                 }  
-            </script>  
+            }  
+        </script>  
 
 
         <p:poll interval="1"   
@@ -213,9 +215,12 @@
 
         <p:poll interval="1"   
                 listener="#{visiteManagedbean.totalPrix()}" update="totalprix"/> 
-        
+
+        <p:poll interval="1"   
+                listener="#{visiteManagedbean.maladeCourant()}" update="mc"/> 
+
           <p:poll interval="1"   
-                  listener="#{visiteManagedbean.maladeCourant()}" update="mc"/> 
+                listener="#{visiteManagedbean.AssureCourant()}" update="ac"/> 
 
     </h:form>
 

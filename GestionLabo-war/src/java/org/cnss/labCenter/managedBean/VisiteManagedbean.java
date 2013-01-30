@@ -198,6 +198,10 @@ public class VisiteManagedbean implements Serializable {
 
 
     }
+    
+    public void AssureCourant(){
+        dossierMedicaleS.getMalade().getAssure().setMatriculeAssure(this.dossierMedicaleS.getMalade().getAssure().getMatriculeAssure());
+        }
 
     public void medecinCourant() {
 
@@ -357,4 +361,23 @@ public class VisiteManagedbean implements Serializable {
     public void setUtulisateurManagedbean(UtulisateurManagedbean utulisateurManagedbean) {
         this.utulisateurManagedbean = utulisateurManagedbean;
     }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
