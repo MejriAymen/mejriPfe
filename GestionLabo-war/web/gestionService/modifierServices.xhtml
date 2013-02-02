@@ -72,7 +72,7 @@
 
 
 
-                                                <p:sheet id="basicPojo"  style=" font-size: 18px;font-family:serif;font-style: italic" value="#{serviceManagedbean.serviceMod}" var="l" scrollHeight="150">  
+                                                <p:sheet id="basicPojo"  style=" font-size: 18px;font-family:serif;font-style: italic" value="#{departementManagedbean.serviceMod}" var="l" scrollHeight="150">  
 
 
                                                     <p:column  
@@ -112,7 +112,7 @@
                                     </p:panelGrid> 
                                     <f:facet name="footer">  
                                         <p:spacer width="270" height="20" />
-                                        <p:commandButton style="color: yellow; font-size:15px " update="growl" actionListener="#{serviceManagedbean.doModifierService()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: yellow; font-size:15px " update="growl" actionListener="#{departementManagedbean.doModifierService()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
                                         <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                         <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                     </f:facet>
@@ -135,7 +135,7 @@
   
 
         <p:poll interval="15"   
-                listener="#{serviceManagedbean.listeServicesCourant()}" update="basicPojo"/>  
+                listener="#{departementManagedbean.listeServicesCourant()}" update="basicPojo"/>  
     </h:form>
 
 </html>

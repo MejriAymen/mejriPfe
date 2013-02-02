@@ -55,7 +55,7 @@
 
                                 <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
 
-                                    <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{serviceManagedbean.servicesL}"
+                                    <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{departementManagedbean.servicesL}"
                                                  var="a"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -162,7 +162,7 @@
         </script>  
 
         <p:poll interval="1"   
-                listener="#{serviceManagedbean.listeServicesCourant()}" update="basicPojo"/>  
+                listener="#{departementManagedbean.listeServicesCourant()}" update="basicPojo"/>  
     </h:form>
 
 </html>

@@ -13,8 +13,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.cnss.labCenter.domain.serviceLab.IServiceLab;
-import org.cnss.labCenter.entities.Service;
+import org.cnss.labCenter.domain.Departement.IDepartement;
+import org.cnss.labCenter.entities.Departement;
 
 /**
  *
@@ -22,25 +22,25 @@ import org.cnss.labCenter.entities.Service;
  */
 @ManagedBean
 @SessionScoped
-public class ServiceManagedbean implements Serializable {
+public class DepartementManagedbean implements Serializable {
 
-    private Service service;
-    private Service serviceS;
-    private Service seledtedservice;
-    private List<Service> serviceMod;
-    private List<Service> servicesL;
-    private List<Service> services;
+    private Departement service;
+    private Departement serviceS;
+    private Departement seledtedservice;
+    private List<Departement> serviceMod;
+    private List<Departement> servicesL;
+    private List<Departement> services;
     @EJB
-    IServiceLab iServiceLab;
+    IDepartement iServiceLab;
 
-    public ServiceManagedbean() {
-        service = new Service();
-        serviceS = new Service();
-        seledtedservice = new Service();
+    public DepartementManagedbean() {
+        service = new Departement();
+        serviceS = new Departement();
+        seledtedservice = new Departement();
 
-        serviceMod = new ArrayList<Service>();
-        services = new ArrayList<Service>();
-        servicesL = new ArrayList<Service>();
+        serviceMod = new ArrayList<Departement>();
+        services = new ArrayList<Departement>();
+        servicesL = new ArrayList<Departement>();
 
     }
 
@@ -55,7 +55,7 @@ public class ServiceManagedbean implements Serializable {
         if (service != null) {
             iServiceLab.ajouterService(service);
             ajouterMessageInfo(service.getNom());
-            service = new Service();
+            service = new Departement();
         }
     }
 
@@ -66,7 +66,7 @@ public class ServiceManagedbean implements Serializable {
 
     public void doModifierService() {
         if (serviceMod != null) {
-            for (Service a : serviceMod) {
+            for (Departement a : serviceMod) {
                 iServiceLab.modifierService(a);
             }
         }
@@ -76,7 +76,7 @@ public class ServiceManagedbean implements Serializable {
         iServiceLab.supprimerService(serviceS);
     }
 
-    public List<Service> doListerService() {
+    public List<Departement> doListerService() {
         return iServiceLab.listerService();
     }
 
@@ -86,10 +86,10 @@ public class ServiceManagedbean implements Serializable {
         services = this.doListerService();
     }
 
-    public List<Service> completerService(String query) {
-        List<Service> suggestions = new ArrayList<Service>();
+    public List<Departement> completerService(String query) {
+        List<Departement> suggestions = new ArrayList<Departement>();
 
-        for (Service p : services) {
+        for (Departement p : services) {
             if (p.getCode().startsWith(query)) {
                 suggestions.add(p);
             }
@@ -98,59 +98,59 @@ public class ServiceManagedbean implements Serializable {
         return suggestions;
     }
 
-    public IServiceLab getiServiceLab() {
+    public IDepartement getiServiceLab() {
         return iServiceLab;
     }
 
-    public void setiServiceLab(IServiceLab iServiceLab) {
+    public void setiServiceLab(IDepartement iServiceLab) {
         this.iServiceLab = iServiceLab;
     }
 
-    public Service getSeledtedservice() {
+    public Departement getSeledtedservice() {
         return seledtedservice;
     }
 
-    public void setSeledtedservice(Service seledtedservice) {
+    public void setSeledtedservice(Departement seledtedservice) {
         this.seledtedservice = seledtedservice;
     }
 
-    public Service getService() {
+    public Departement getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(Departement service) {
         this.service = service;
     }
 
-    public List<Service> getServiceMod() {
+    public List<Departement> getServiceMod() {
         return serviceMod;
     }
 
-    public void setServiceMod(List<Service> serviceMod) {
+    public void setServiceMod(List<Departement> serviceMod) {
         this.serviceMod = serviceMod;
     }
 
-    public Service getServiceS() {
+    public Departement getServiceS() {
         return serviceS;
     }
 
-    public void setServiceS(Service serviceS) {
+    public void setServiceS(Departement serviceS) {
         this.serviceS = serviceS;
     }
 
-    public List<Service> getServices() {
+    public List<Departement> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<Departement> services) {
         this.services = services;
     }
 
-    public List<Service> getServicesL() {
+    public List<Departement> getServicesL() {
         return servicesL;
     }
 
-    public void setServicesL(List<Service> servicesL) {
+    public void setServicesL(List<Departement> servicesL) {
         this.servicesL = servicesL;
     }
 }

@@ -13,18 +13,18 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.cnss.labCenter.domain.serviceLab.IServiceLab;
-import org.cnss.labCenter.entities.Service;
+import org.cnss.labCenter.domain.Departement.IDepartement;
+import org.cnss.labCenter.entities.Departement;
 
 /**
  *
  * @author Mejri Aymen
  */
 @FacesConverter(value = "service")
-public class ServicesConverter implements Converter {
+public class DepartementConverter implements Converter {
 
-    private Service service = null;
-    private List<Service> services;
+    private Departement service = null;
+    private List<Departement> services;
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String submittedValue) {
@@ -38,10 +38,10 @@ public class ServicesConverter implements Converter {
                 int number = Integer.parseInt(submittedValue);
                 initialContext = new InitialContext();
 
-                IServiceLab iServiceLab = (IServiceLab) initialContext.lookup("java:global/GestionLabo/GestionLabo-ejb/ServicesLabServices");
+                IDepartement iServiceLab = (IDepartement) initialContext.lookup("java:global/GestionLabo/GestionLabo-ejb/DepartementServices");
                 service = iServiceLab.serviceConverter(number);
                 services = iServiceLab.listerService();
-                for (Service a : services) {
+                for (Departement a : services) {
                     if (a.getIdService() == number) {
                         return a;
                     }
@@ -59,24 +59,24 @@ public class ServicesConverter implements Converter {
         if (value == null || value.equals("")) {
             return "";
         } else {
-            return String.valueOf(((Service) value).getIdService());
+            return String.valueOf(((Departement) value).getIdService());
         }
 
     }
 
-    public Service getService() {
+    public Departement getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(Departement service) {
         this.service = service;
     }
 
-    public List<Service> getServices() {
+    public List<Departement> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<Departement> services) {
         this.services = services;
     }
 }

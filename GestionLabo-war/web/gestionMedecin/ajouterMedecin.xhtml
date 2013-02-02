@@ -74,14 +74,17 @@
 
                                                         <h:outputLabel style="color:  red"  value="Nom &amp; Prénom :" />
                                                         <p:inputText value="#{medecinManagedbean.medecin.nompre}"/> 
-                                                        <h:outputLabel style="color:  blue"  value="CIN :" />
-                                                        <p:inputMask value="#{medecinManagedbean.medecin.cin}" mask="99-99-99-99"/>
+                                                        <h:outputLabel style="color:  blue"  value="Spécialité :" />
+                                                        <p:inputText value="#{medecinManagedbean.medecin.specialite}" />
                                                         <h:outputLabel   value="Code :" />  
                                                         <p:inputText value="#{medecinManagedbean.medecin.codeMed}"/>  
                                                         <h:outputLabel  value="Téléphone :" />
                                                         <p:inputMask value="#{medecinManagedbean.medecin.telephone}" mask="99-999-999"/>  
-                                                        <h:outputLabel  value="Adresse :" />
-                                                        <p:inputText value="#{medecinManagedbean.medecin.adresse}"/>  
+                                                        <h:outputLabel  value="Valable :" />
+                                                        <p:selectBooleanButton value="#{medecinManagedbean.medecin.valable}" onLabel="OUI" offLabel="Non" onIcon="ui-icon-check" offIcon="ui-icon-close">  
+                                                        </p:selectBooleanButton>  
+
+                                                       
 
                                                         <f:facet name="footer">  
 
@@ -122,7 +125,7 @@
 
         </p:layout>  
 
-  
+
 
     </h:form>
 </html>

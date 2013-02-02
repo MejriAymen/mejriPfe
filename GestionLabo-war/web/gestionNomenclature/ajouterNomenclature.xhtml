@@ -115,8 +115,22 @@
 
                                             <p:column colspan="4">
                                                 <p:spacer width="180" height="20" />
-                                                <h:outputLabel style="color: dodgerblue;font-size: 18px" value="Affichage Et Impression Sous Le Titre :"></h:outputLabel>
-                                                <p:inputText style="width: 470px" value="#"></p:inputText>
+                                                <h:outputLabel style="color: dodgerblue;font-size: 18px" value="Département :"></h:outputLabel>
+                                                <p:autoComplete style="width: 300px" value="#{nomenclatureManagedbean.selectedDept}" id="basicPojose" completeMethod="#{departementManagedbean.completerService}"  
+                                                                    var="p" itemLabel="#{p.nom}" itemValue="#{p}" converter="service" forceSelection="true">  
+                                                        <f:facet  name="itemtip">
+                                                            <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
+                                                                <h:outputText style="color: black"  value="Nom :"/>  
+                                                                <h:outputText style="color:  blue" value=" #{p.nom}"/>  
+                                                                <h:outputText style="color: black"  value="Code :"/> 
+                                                                <h:outputText style="color:  blue" value="#{p.code}"/>  
+                                                                <h:outputText style="color: black"  value="Résposablen : "/> 
+                                                                <h:outputText style="color:  blue" value="#{p.responsable}"/>  
+                                                                <h:outputText style="color: black"  value="Téléphone : "/> 
+                                                                <h:outputText style="color:  blue" value="#{p.telephone}"/>  
+                                                            </h:panelGrid>
+                                                        </f:facet>
+                                                    </p:autoComplete> 
                                             </p:column>
 
                                         </p:row>

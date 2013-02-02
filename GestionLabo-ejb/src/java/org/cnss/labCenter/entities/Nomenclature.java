@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -36,18 +38,31 @@ public class Nomenclature implements Serializable {
     private String typePre;
     private Date remiseR;
     private List<Visite> visites;
+    private ValeursUsuelles valeursUsuelles;
+    private Departement departement;
 
     public Nomenclature() {
         visites = new ArrayList<Visite>();
+
     }
 
-    @ManyToMany(mappedBy = "nomenclatures",cascade = CascadeType.REMOVE,fetch= FetchType.EAGER)
-     @JoinTable(name="Nomenclature_Visite",
-            joinColumns=@JoinColumn(name="NomenclatureId"),
-            inverseJoinColumns=@JoinColumn(name="VisiteId")
-        )
+    @ManyToMany(mappedBy = "nomenclatures", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @JoinTable(name = "Nomenclature_Visite",
+    joinColumns =
+    @JoinColumn(name = "NomenclatureId"),
+    inverseJoinColumns =
+    @JoinColumn(name = "VisiteId"))
     public List<Visite> getVisites() {
         return visites;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    public ValeursUsuelles getValeursUsuelles() {
+        return valeursUsuelles;
+    }
+
+    public void setValeursUsuelles(ValeursUsuelles valeursUsuelles) {
+        this.valeursUsuelles = valeursUsuelles;
     }
 
     public void setVisites(List<Visite> visites) {
@@ -121,10 +136,12 @@ public class Nomenclature implements Serializable {
         this.valuerB = valuerB;
     }
 
-    @Override
-    public String toString() {
-        return "Nomenclature{" + "idNomenc=" + idNomenc + ", analyse=" + analyse + ", abreviation=" + abreviation + ", valuerB=" + valuerB + ", valeurAPB=" + valeurAPB + ", code=" + code + ", typePre=" + typePre + ", remiseR=" + remiseR + ", visites=" + visites + '}';
+    @ManyToOne
+    public Departement getDepartement() {
+        return departement;
     }
-    
-    
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
 }

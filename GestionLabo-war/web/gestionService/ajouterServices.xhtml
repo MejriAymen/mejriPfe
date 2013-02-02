@@ -69,13 +69,13 @@
                                                 <p:fieldset legend="Information Service" style="text-align: center;height: 195px; font-size: 17px; ">  
                                                     <h:panelGrid style="border: black" columns="4"> 
                                                         <h:outputLabel style="color:  red"  value="Nom Du Service :" />
-                                                        <p:inputText value="#{serviceManagedbean.service.nom}"/>    
+                                                        <p:inputText value="#{departementManagedbean.service.nom}"/>    
                                                         <h:outputLabel   value="Code :" />  
-                                                        <p:inputText value="#{serviceManagedbean.service.code}"/>  
+                                                        <p:inputText value="#{departementManagedbean.service.code}"/>  
                                                         <h:outputLabel  value="Résponsable :" />
-                                                        <p:inputText value="#{serviceManagedbean.service.responsable}"/>  
+                                                        <p:inputText value="#{departementManagedbean.service.responsable}"/>  
                                                         <h:outputLabel  value="Téléphone :" />
-                                                        <p:inputMask value="#{serviceManagedbean.service.telephone}" mask="99-999-999"/>  
+                                                        <p:inputMask value="#{departementManagedbean.service.telephone}" mask="99-999-999"/>  
                                                         <f:facet name="footer">  
                                                         </f:facet>
                                                     </h:panelGrid> 
@@ -89,7 +89,7 @@
                                     </p:panelGrid> 
                                     <f:facet name="footer">  
                                         <p:spacer width="270" height="20" />
-                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{serviceManagedbean.doAjouterService()}" ajax="false" update="growl" value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{departementManagedbean.doAjouterService()}" ajax="false" update="growl" value="Valider"></p:commandButton>
                                         <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                         <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                     </f:facet>

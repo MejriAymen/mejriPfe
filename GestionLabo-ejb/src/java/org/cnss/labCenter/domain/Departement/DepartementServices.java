@@ -2,51 +2,51 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.cnss.labCenter.domain.serviceLab;
+package org.cnss.labCenter.domain.Departement;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.cnss.labCenter.entities.Service;
+import org.cnss.labCenter.entities.Departement;
 
 /**
  *
  * @author Administrateur
  */
 @Stateless
-public class ServicesLabServices implements IServiceLab, Serializable {
+public class DepartementServices implements IDepartement, Serializable {
 
     @PersistenceContext(unitName = "lab")
     EntityManager entityManager;
 
     @Override
-    public void ajouterService(Service service) {
+    public void ajouterService(Departement service) {
         entityManager.persist(service);
     }
 
     @Override
-    public void modifierService(Service service) {
+    public void modifierService(Departement service) {
         entityManager.merge(service);
 
     }
 
     @Override
-    public void supprimerService(Service service) {
+    public void supprimerService(Departement service) {
         entityManager.remove(service);
     }
 
     @Override
-    public List<Service> listerService() {
-        List<Service> services;
-        services = entityManager.createQuery("select c from Service c").getResultList();
+    public List<Departement> listerService() {
+        List<Departement> services;
+        services = entityManager.createQuery("select c from Departement c").getResultList();
         return services;
 
     }
 
     @Override
-    public Service serviceConverter(int i) {
-        return entityManager.find(Service.class, i);
+    public Departement serviceConverter(int i) {
+        return entityManager.find(Departement.class, i);
     }
 }

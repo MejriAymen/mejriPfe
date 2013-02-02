@@ -23,8 +23,8 @@ public class Medecin implements Serializable {
     private int idMed;
     private String codeMed;
     private String nompre;
-    private String adresse;
-    private String cin;
+    private String specialite;
+    private boolean valable;
     private String telephone;
     private List<Visite> visites;
 
@@ -43,21 +43,23 @@ public class Medecin implements Serializable {
         this.idMed = idMed;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getSpecialite() {
+        return specialite;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
     }
 
-    public String getCin() {
-        return cin;
+    public boolean isValable() {
+        return valable;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public void setValable(boolean valable) {
+        this.valable = valable;
     }
+
+  
 
     public String getCodeMed() {
         return codeMed;

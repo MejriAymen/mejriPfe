@@ -5,27 +5,45 @@
 package org.cnss.labCenter.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Mejri Aymen
  */
 @Entity
-public class Service implements Serializable {
+public class Departement implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
     private int idService;
     private String nom;
     private String code;
     private String responsable;
     private String telephone;
+    private List<Nomenclature> nomenclatures;
 
-    public Service() {
+    public Departement() {
+
+        nomenclatures = new ArrayList<Nomenclature>();
+    }
+
+
+   
+    
+    @OneToMany(mappedBy = "departement")
+    public List<Nomenclature> getNomenclatures() {
+        return nomenclatures;
+    }
+
+    public void setNomenclatures(List<Nomenclature> nomenclatures) {
+        this.nomenclatures = nomenclatures;
     }
 
     public String getCode() {
@@ -69,7 +87,4 @@ public class Service implements Serializable {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
-    
-    
-    
 }

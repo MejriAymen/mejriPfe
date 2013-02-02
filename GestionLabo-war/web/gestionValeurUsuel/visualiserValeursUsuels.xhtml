@@ -36,12 +36,12 @@
 
                             <p:column  colspan="2">
 
-                                <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                                <p:tabMenu style="font-size: 18px" activeIndex="4" >  
                                     <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
-                                    <p:menuitem   value="Ajouter"  icon="ui-icon-circle-plus"/>  
+                                    <p:menuitem   value="Ajouter" url="ajouterValeursUsuels.xhtml" icon="ui-icon-circle-plus"/>  
                                     <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
                                     <p:menuitem  value="Détruire"   icon="ui-icon-trash"/>  
-                                    <p:menuitem  value="Visualiser" url="visualiserValeursUsuels.xhtml" icon="ui-icon-search" />  
+                                    <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
                                     <p:menuitem  value="lister"  icon="ui-icon-document"/>  
                                 </p:tabMenu> 
 
@@ -65,7 +65,7 @@
                                                 <h:outputText style="color:  deepskyblue" value="Analyze " /> 
                                                 <h:outputText style="color: #00ff00;font-size: 22px" value=": " />  
                                                 <p:spacer width="10" height="2"/>
-                                                <p:autoComplete  size="45"  style="width: 30%" value="#{nomenclatureManagedbean.nomenclatureSM}"   
+                                                <p:autoComplete  size="45"  style="width: 30%" value="#{nomenclatureManagedbean.nomenclatureSV}"   
                                                                  id="basicPojo" completeMethod="#{nomenclatureManagedbean.completeNomenclature}"  
                                                                  var="p" itemLabel="#{p.abreviation}" itemValue="#{p}" converter="nomenclature" forceSelection="true">  
                                                     <f:facet name="itemtip">  
@@ -96,7 +96,7 @@
                                                 </p:autoComplete>
                                                 <h:outputLabel style="color: tan" value="Coefficient"/> 
                                                 <h:outputLabel style="color: springgreen;font-size: 20px" value=" :"/>   
-                                                <p:inputText size="5" value="#{nomenclatureManagedbean.valeursUsuelle.coefficient}"/>
+                                                <h:outputLabel id="h" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.coefficient}"/>
                                             </p:column>
 
 
@@ -108,13 +108,13 @@
                                                 <h:outputLabel style="color: tan" value="Unité"/> 
                                                 <h:outputLabel style="color: red;font-size: 16px" value=" 1"/>   
                                                 <h:outputLabel style="color: springgreen;font-size: 20px" value=" :"/>   
-                                                <p:inputText size="15" value="#{nomenclatureManagedbean.valeursUsuelle.unite1}"/>
+                                                <h:outputLabel id="j" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.unite1}"/>
                                             </p:column>
                                             <p:column colspan="3">
                                                 <h:outputLabel style="color: tan" value="Unité"/> 
                                                 <h:outputLabel style="color: red;font-size: 16px" value=" 2"/>   
                                                 <h:outputLabel style="color: springgreen;font-size: 20px" value=" :"/>   
-                                                <p:inputText size="15" value="#{nomenclatureManagedbean.valeursUsuelle.unite2}"/>
+                                                <h:outputLabel id="k" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.unite2}"/>
                                             </p:column>
 
                                         </p:row>
@@ -128,7 +128,7 @@
                                                             <p:column>
                                                                 <h:outputLabel style="color: tan" value="Homme"/> 
                                                                 <h:outputLabel style="color: springgreen;font-size: 20px" value=" :"/>   
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vHUsuelle}"/>
+                                                                <h:outputLabel id="l"  value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vHUsuelle}"/>
                                                             </p:column>
                                                         </p:row>
 
@@ -136,21 +136,21 @@
                                                             <p:column>
                                                                 <h:outputLabel style="color: tan" value="Femme"/> 
                                                                 <h:outputLabel style="color: springgreen;font-size: 22px" value=" :"/>   
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vFUsuelle}"/>
+                                                                <h:outputLabel id="m" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vFUsuelle}"/>
                                                             </p:column>
                                                         </p:row>
                                                         <p:row>
                                                             <p:column>
                                                                 <h:outputLabel style="color: turquoise" value="Enfant"/> 
                                                                 <h:outputLabel style="color: turquoise;font-size: 22px" value=" :"/>   
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vEUsuelle}"/>
+                                                                <h:outputLabel id="w"  value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vEUsuelle}"/>
                                                             </p:column>
                                                         </p:row>
                                                         <p:row>
                                                             <p:column>
                                                                 <h:outputLabel style="color: turquoise;" value="Bébé"/> 
                                                                 <h:outputLabel style="color: springgreen;font-size: 22px" value=" :"/>   
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vBUsuelle}"/>
+                                                                <h:outputLabel id="x" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vBUsuelle}"/>
                                                             </p:column>
                                                         </p:row>
                                                         <p:row>
@@ -158,7 +158,7 @@
                                                                 <h:outputLabel style="color: orangered;" value="Nou."/> 
                                                                 <h:outputLabel style="color: fuchsia;" value="né"/> 
                                                                 <h:outputLabel style="color: springgreen;font-size: 22px" value=" :"/>   
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vNUsuelle}"/>
+                                                                <h:outputLabel id="c" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vNUsuelle}"/>
                                                             </p:column>
                                                         </p:row>
                                                     </h:panelGrid>
@@ -171,34 +171,34 @@
 
                                                         <p:row>
                                                             <p:column>
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vHMin}"/>
+                                                                <p:spacer width="1" height="23"/>
+                                                                <h:outputLabel id="v" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vHMin}"/>
                                                             </p:column>
                                                         </p:row>
 
                                                         <p:row>
                                                             <p:column>
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vFMin}"/>
+                                                                <p:spacer width="1" height="25"/>
+                                                                <h:outputLabel id="b" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vFMin}"/>
+                                                            </p:column>
+                                                        </p:row>
+                                                        <p:row>
+                                                            <p:column>
+                                                                <p:spacer width="1" height="27"/>
+                                                                <h:outputLabel id="n" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vEMin}"/>
+                                                            </p:column>
+                                                        </p:row>
+                                                        <p:row>
+                                                            <p:column>
+                                                                <p:spacer width="1" height="25"/>
+                                                                <h:outputLabel id="az" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vBMin}"/>
                                                             </p:column>
                                                         </p:row>
                                                         <p:row>
                                                             <p:column>
 
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vEMin}"/>
-                                                            </p:column>
-                                                        </p:row>
-                                                        <p:row>
-                                                            <p:column>
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vBMin}"/>
-                                                            </p:column>
-                                                        </p:row>
-                                                        <p:row>
-                                                            <p:column>
-
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vNMin}"/>
+                                                                <p:spacer width="1" height="27"/>
+                                                                <h:outputLabel id="ae" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vNMin}"/>
                                                             </p:column>
                                                         </p:row>
                                                     </h:panelGrid>
@@ -212,34 +212,34 @@
 
                                                         <p:row>
                                                             <p:column>
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vHMax}"/>
+                                                                <p:spacer width="1" height="23"/>
+                                                                <h:outputLabel id="ar" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vHMax}"/>
                                                             </p:column>
                                                         </p:row>
 
                                                         <p:row>
                                                             <p:column>
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vFMax}"/>
+                                                                <p:spacer width="1" height="25"/>
+                                                                <h:outputLabel id="at" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vFMax}"/>
+                                                            </p:column>
+                                                        </p:row>
+                                                        <p:row>
+                                                            <p:column>
+                                                                <p:spacer width="1" height="27"/>
+                                                                <h:outputLabel id="ay" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vEMax}"/>
+                                                            </p:column>
+                                                        </p:row>
+                                                        <p:row>
+                                                            <p:column>
+                                                                <p:spacer width="1" height="25"/>
+                                                                <h:outputLabel id="au" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vBMax}"/>
                                                             </p:column>
                                                         </p:row>
                                                         <p:row>
                                                             <p:column>
 
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vEMax}"/>
-                                                            </p:column>
-                                                        </p:row>
-                                                        <p:row>
-                                                            <p:column>
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vBMax}"/>
-                                                            </p:column>
-                                                        </p:row>
-                                                        <p:row>
-                                                            <p:column>
-
-
-                                                                <p:inputText size="3" value="#{nomenclatureManagedbean.valeursUsuelle.vNMax}"/>
+                                                                <p:spacer width="1" height="27"/>
+                                                                <h:outputLabel  id="ai" value="#{nomenclatureManagedbean.nomenclatureSV.valeursUsuelles.vNMax}"/>
                                                             </p:column>
                                                         </p:row>
                                                     </h:panelGrid>
@@ -375,18 +375,18 @@
                                             </p:column>
 
                                         </p:row>
-                                     
+
 
                                     </p:panelGrid>
-       
-                                    
-                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{nomenclatureManagedbean.update()}" ajax="false" value="Valider"/>
-                                        <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                        <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
-                                    
+
+
+                                    <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{nomenclatureManagedbean.update()}" ajax="false" value="Valider"/>
+                                    <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                    <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+
                                 </p:fieldset>
 
-                              
+
 
 
                             </p:column>
@@ -407,9 +407,11 @@
 
 
             <p:poll interval="1"   
-                    listener="#{nomenclatureManagedbean.converstion()}" update="a,z,e,r,t,y,u,i,o,p,q,s,d,f,g"/>
+                    listener="#{nomenclatureManagedbean.converstionVisualisation()}" update="a,z,e,r,t,y,u,i,o,p,q,s,d,f,g"/>
             <p:poll interval="1"   
                     listener="#{nomenclatureManagedbean.coefficientCourant()}" />
+            <p:poll interval="1"   
+                    listener="#{nomenclatureManagedbean.nomenclatureCourante()}" update="h,j,k,l,m,w,x,c,v,b,n,az,ae,ar,at,ay,au,ai" />
 
         </h:form>  
 
