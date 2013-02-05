@@ -28,5 +28,7 @@ public interface IVisite {
 
     public void removeVisteNomenclature(Visite v, Nomenclature n);
 
+    public List<Visite> doListerVisite();
+
   
 }

@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"   icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row >
+
+                        <p:column  style="width: 40%;background-color: #ffffff;border: hidden">
+                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Résultat" style="text-align: left;width: 75%; height: 50%; font-size: 15px;">  
+
+
+                                <h:outputText style="color: red"  value="N° Visite "/>  
+                                <p:autoComplete   value="#{resultatManagedbean.selectedVisite}"   
+                                                  completeMethod="#{visiteManagedbean.completeVisite}"  
+                                                  var="p" itemLabel="#{p.numVis}" itemValue="#{p}" converter="visite" forceSelection="true">  
+                                    <f:facet name="itemtip">  
+                                        <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
+                                            <h:outputText style="color: black" value="Nom &amp; Prénom " />                                                              
+                                            <h:outputText style="color:  blue" value="#{p.dossierMedicale.malade.nompre}"/>  
+                                        </h:panelGrid>  
+                                    </f:facet>  
+
+                                </p:autoComplete>
+                                <p:spacer width="20" height="2"/>
+                                <h:outputText  style="color: turquoise"  value="Nom&amp;Prénom :"/>  
+                                <h:outputLabel id="a" style="width: 100px;"   value="#{resultatManagedbean.selectedVisite.dossierMedicale.malade.nompre}"/> 
+
+                                <p:spacer width="20" height="2"/>
+                                <h:outputText value="N° Dossier : "/>  
+                                <h:outputLabel id="b" style="width: 100px;color: blue" value="#{resultatManagedbean.selectedVisite.dossierMedicale.numDoss}"/>  
+                                <p:spacer width="20" height="2"/>
+
+                                <h:outputText value="Date Prélèvement : "/>  
+                                <h:outputLabel id="ac" style="width: 100px;color: blue" value="#"/>  
+                                <p:panel  header="Information Visite" style="width: 1000px; font-size: 15px; color: #ff96c8 ">
+
+                                    <h:panelGrid style="border: black;width: 100%"  columns="6">  
+
+
+                                        <p:sheet id="basicPojo"  style=" font-size: 16px;font-family:serif;font-style: italic" value="#{resultatManagedbean.visites}" var="l" scrollHeight="150">  
+
+
+                                            <p:column  
+                                                style="width:170px; color: deepskyblue"  headerText="Examen"  sortBy="#{l.nomenclature.analyse}">  
+
+                                                <h:inputText style="width:170px;" value="#{l.nomenclature.analyse}" />  
+                                            </p:column>  
+
+                                            <p:column   
+                                                style="width:120px;"   headerText="Résultat"  sortBy="#{l.resultat.res}">  
+
+                                                <p:inputText style="width:120px;" value="#{l.resultat.res}" />  
+                                            </p:column>  
+
+                                            <p:column   
+                                                style="width:120px;"   headerText="Valeur Usuelle"  sortBy="#">  
+
+                                                <h:inputText style="width:120px;" value="#" />  
+                                            </p:column>  
+
+                                            <p:column   
+                                                style="width:120px;"   headerText="V.Maximale"  sortBy="#">  
+
+                                                <h:inputText style="width:120px;" value="#" />  
+                                            </p:column>  
+
+                                            <p:column   
+                                                style="width:120px;"   headerText="V.Minimale"  sortBy="#">  
+
+                                                <h:inputText style="width:120px;" value="#" />  
+                                            </p:column>  
+
+
+
+
+
+
+                                        </p:sheet>  
+
+                                        <f:facet name="footer">  
+                                            <p:spacer width="275" height="1"/>                       
+                                            <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisite()}" ajax="false"  value="Valider"></p:commandButton>
+                                            <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                            <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+
+                                        </f:facet>
+                                    </h:panelGrid>  
+                                </p:panel> 
+
+
+
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gV.png" height="370" width="250"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+
+
+        <p:poll interval="1"   
+                listener="#{resultatManagedbean.retournerNompreCourant()}" update="a"/>
+
+
+        <p:poll interval="1"   
+                listener="#{resultatManagedbean.retournerDossierCourant()}" update="b"/>
+
+
+
+        <p:poll interval="15"  
+                listener="#{resultatManagedbean.visiteCourant()}" update="basicPojo"/>
+
+
+      
+
+
+    </h:form>
+
+</html>
+

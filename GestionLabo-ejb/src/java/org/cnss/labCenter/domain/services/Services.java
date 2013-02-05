@@ -23,8 +23,8 @@ public class Services implements IServices, Serializable {
 
     @Override
     public void affectationVisteNomenclature(Visite v, Nomenclature n) {
-        //v.getNomenclatures().add(n);
         n.getVisites().add(v);
+        n = entityManager.find(Nomenclature.class, n.getIdNomenc());
         v.setNomenclature(n);
-            }
+    }
 }

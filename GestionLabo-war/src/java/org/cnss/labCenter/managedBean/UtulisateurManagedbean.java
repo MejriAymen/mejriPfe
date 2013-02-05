@@ -70,8 +70,9 @@ public class UtulisateurManagedbean implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;
         boolean loggedIn = false;
+     
         cs = iProgramme.rechercherUtilisateur(pass);
-        if ( cs!= null) {
+        if (cs != null) {
             loggedIn = true;
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Authentification Réussie", cs.getNomPre());
         } else {
@@ -82,7 +83,7 @@ public class UtulisateurManagedbean implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("loggedIn", loggedIn);
-       
+
     }
 
     public IUtilisateur getiProgramme() {

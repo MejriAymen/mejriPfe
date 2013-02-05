@@ -5,6 +5,7 @@
 package org.cnss.labCenter.domain.visite;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -40,10 +41,30 @@ public class VisiteServices implements IVisite, Serializable {
     @Override
     public List<Visite> listeVisite() {
         List<Visite> visites;
-        visites = entityManager.createQuery("select DISTINCT c from Visite c GROUP BY c.numVis").getResultList();
+        visites = entityManager.createQuery("select c from Visite c ").getResultList();
         return visites;
     }
-
+    @Override
+  public List<Visite> doListerVisite() {
+        
+        int i;
+        
+        List<Visite> vs = listeVisite();
+        List<Visite> vs1 = new ArrayList<Visite>();
+        if (!vs.isEmpty()) {
+            String trouve = vs.get(0).getNumVis();
+            vs1.add(vs.get(0));
+            i = 0;
+            for (Visite visto : vs) {
+                i++;
+                if (!visto.getNumVis().equals(trouve)) {
+                    vs1.add(visto);
+                    trouve = visto.getNumVis();
+                }
+            }
+        }
+        return vs1;
+    }
      
 
     @Override

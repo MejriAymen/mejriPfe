@@ -5,6 +5,7 @@
 package org.cnss.labCenter.domain.nomenclature;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -41,5 +42,17 @@ public class NomenclatureServices implements INomenclature, Serializable {
         List<Nomenclature> nomenclatures;
         nomenclatures = entityManager.createQuery("select c from Nomenclature c").getResultList();
         return nomenclatures;
+    }
+
+    @Override
+    public List<Nomenclature> listeNomenclatureSansValeurUsuelle() {
+        List<Nomenclature> nomenclatures = listeNomenclature();
+          List<Nomenclature> nos= new ArrayList<Nomenclature>();
+        for (Nomenclature nomenclature : nomenclatures) {
+            if (nomenclature.getValeursUsuelles() == null) {
+                nos.add(nomenclature);
+            }
+        }
+        return nos;
     }
 }

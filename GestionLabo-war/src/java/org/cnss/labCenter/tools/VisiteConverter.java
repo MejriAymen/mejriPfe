@@ -5,9 +5,11 @@ package org.cnss.labCenter.tools;
  * and open the template in the editor.
  */
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -36,15 +38,16 @@ public class VisiteConverter implements Converter {
                 int number = Integer.parseInt(submittedValue);
                 initialContext = new InitialContext();
 
-                IVisite iVisite = (IVisite) initialContext.lookup("java:global/LocationVoiture/LocationVoiture-ejb/VisiteServices");
+                IVisite iVisite = (IVisite) initialContext.lookup("java:global/GestionLabo/GestionLabo-ejb/VisiteServices");
                 visite = iVisite.VisiteConverter(number);
-                visites = iVisite.listeVisite();
+                visites = iVisite.doListerVisite();
                 for (Visite a : visites) {
                     if (a.getIdVisite() == number) {
                         return a;
                     }
                 }
             } catch (NamingException ex) {
+                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "nomenclature pas valide"));
 
             }
         }
@@ -76,4 +79,6 @@ public class VisiteConverter implements Converter {
     public void setVisites(List<Visite> visites) {
         this.visites = visites;
     }
+    
+    
 }

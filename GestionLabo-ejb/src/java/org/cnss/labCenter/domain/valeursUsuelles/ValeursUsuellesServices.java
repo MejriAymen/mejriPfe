@@ -34,6 +34,7 @@ public class ValeursUsuellesServices implements IValeursUsuelles, Serializable {
 
     @Override
     public void supprimerValeursUsuelles(ValeursUsuelles valeursUsuelles) {
+        valeursUsuelles= entityManager.find(ValeursUsuelles.class, valeursUsuelles.getIdValeurUsuelle());
         entityManager.remove(valeursUsuelles);
     }
 

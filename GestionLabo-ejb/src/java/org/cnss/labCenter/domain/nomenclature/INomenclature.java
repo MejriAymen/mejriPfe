@@ -23,4 +23,6 @@ public interface INomenclature {
     public Nomenclature NomenclatureConverter(int number);
 
     public List<Nomenclature> listeNomenclature();
+
+    public List<Nomenclature> listeNomenclatureSansValeurUsuelle();
 }

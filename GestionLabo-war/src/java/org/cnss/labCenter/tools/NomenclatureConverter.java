@@ -38,7 +38,7 @@ public class NomenclatureConverter implements Converter {
                 int number = Integer.parseInt(submittedValue);
                 initialContext = new InitialContext();
 
-                INomenclature  iNomenclature = (INomenclature) initialContext.lookup("java:global/GestionLabo/GestionLabo-ejb/NomenclatureServices");
+                INomenclature iNomenclature = (INomenclature) initialContext.lookup("java:global/GestionLabo/GestionLabo-ejb/NomenclatureServices");
                 nomenclature = iNomenclature.NomenclatureConverter(number);
                 nomenclatures = iNomenclature.listeNomenclature();
                 for (Nomenclature a : nomenclatures) {
@@ -54,7 +54,6 @@ public class NomenclatureConverter implements Converter {
         return nomenclature;
     }
 
-    
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value == null || value.equals("")) {
@@ -80,6 +79,4 @@ public class NomenclatureConverter implements Converter {
     public void setNomenclatures(List<Nomenclature> nomenclatures) {
         this.nomenclatures = nomenclatures;
     }
-    
-    
 }

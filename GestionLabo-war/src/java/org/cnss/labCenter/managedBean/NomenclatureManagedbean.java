@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.cnss.labCenter.domain.nomenclature.INomenclature;
+import org.cnss.labCenter.domain.valeursUsuelles.IValeursUsuelles;
 import org.cnss.labCenter.entities.Departement;
 import org.cnss.labCenter.entities.Nomenclature;
 import org.cnss.labCenter.entities.ValeursUsuelles;
@@ -55,6 +56,8 @@ public class NomenclatureManagedbean implements Serializable {
     private float vNMax;
     @EJB
     INomenclature iNomenclature;
+    @EJB
+    IValeursUsuelles iValeursUsuelles;
 
     public NomenclatureManagedbean() {
 
@@ -99,6 +102,10 @@ public class NomenclatureManagedbean implements Serializable {
 
     public void update() {
         if (nomenclatureSM != null) {
+
+            if (nomenclatureSM.getValeursUsuelles() != null) {
+                ajouterMessageError("Ilcontient des valuer", null);
+            }
             nomenclatureSM.setValeursUsuelles(valeursUsuelle);
             iNomenclature.modifierNomenclature(nomenclatureSM);
             ajouterMessageInfo("Valeur Usulle Ajouté: ", "Analyse :" + nomenclatureSM.getAnalyse());
@@ -110,6 +117,15 @@ public class NomenclatureManagedbean implements Serializable {
     public void ajouterMessageInfo(String msg, String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, summary);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public void ajouterMessageError(String msg, String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, summary);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public List<Nomenclature> doListerNomenclatureSansValeurUsuelle() {
+        return iNomenclature.listeNomenclatureSansValeurUsuelle();
     }
 
     public List<Nomenclature> doListerNomenclature() {
@@ -170,6 +186,19 @@ public class NomenclatureManagedbean implements Serializable {
         List<Nomenclature> suggestions = new ArrayList<Nomenclature>();
 
         for (Nomenclature p : nomenclatures) {
+            if (p.getAnalyse().startsWith(query)) {
+
+                suggestions.add(p);
+            }
+        }
+
+        return suggestions;
+    }
+    
+     public List<Nomenclature> completeNomenclatureSansValeurUsuelle(String query) {
+        List<Nomenclature> suggestions = new ArrayList<Nomenclature>();
+
+        for (Nomenclature p : doListerNomenclatureSansValeurUsuelle()) {
             if (p.getAnalyse().startsWith(query)) {
 
                 suggestions.add(p);
@@ -250,7 +279,8 @@ public class NomenclatureManagedbean implements Serializable {
     }
 
     public Nomenclature getNomenclatureSM() {
-        return nomenclatureSM;
+
+        return new Nomenclature();
     }
 
     public void setNomenclatureSM(Nomenclature nomenclatureSM) {

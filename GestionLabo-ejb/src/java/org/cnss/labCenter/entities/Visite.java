@@ -5,6 +5,7 @@
 package org.cnss.labCenter.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,10 +38,8 @@ public class Visite implements Serializable {
     private Resultat resultat;
 
     public Visite() {
-        
     }
 
-   
     @ManyToOne
     public Utilisateurs getUtilisateur() {
         return utilisateur;
@@ -79,7 +78,7 @@ public class Visite implements Serializable {
     }
 
     @ManyToOne(fetch= FetchType.EAGER)
-     @JoinTable(name = "Visite_Nomenclature",
+    @JoinTable(name = "Visite_Nomenclature",
     joinColumns =
     @JoinColumn(name = "VisiteId"),
     inverseJoinColumns =
@@ -92,7 +91,12 @@ public class Visite implements Serializable {
         this.nomenclature = nomenclature;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch= FetchType.EAGER,cascade= CascadeType.ALL)
+     @JoinTable(name = "Visite_Resultat",
+    joinColumns =
+    @JoinColumn(name = "VisiteId"),
+    inverseJoinColumns =
+    @JoinColumn(name = "ResultatId"))
     public Resultat getResultat() {
         return resultat;
     }
@@ -100,8 +104,6 @@ public class Visite implements Serializable {
     public void setResultat(Resultat resultat) {
         this.resultat = resultat;
     }
-
-    
 
     public String getNumVis() {
         return numVis;
