@@ -52,16 +52,16 @@
 
                                 <p:spacer width="20" height="2"/>
                                 <h:outputLabel style="width: 100px;color: blue" value="Total B "/>
-                                <h:outputText id="B" style=" width: 100px;color: red"  value="#{visiteManagedbean.sommeB}"/>
+                                <h:outputText id="B" style=" width: 100px;color: red"  value="#{visitesMana.sommeB}"/>
                                 <p:spacer width="20" height="2"/>
                                 <h:outputLabel value="Total APB "></h:outputLabel>
-                                <h:outputText id="APB" style=" width: 100px"  value="#{visiteManagedbean.sommeAPB}"/>
+                                <h:outputText id="APB" style=" width: 100px"  value="#{visitesMana.sommeAPB}"/>
                                 <p:panel  header="Information Visite" style="width: 1000px; font-size: 15px; color: #ff96c8 ">
 
                                     <h:panelGrid style="border: black;width: 100%"  columns="6">  
 
                                         <h:outputText style="color: red"  value="N° Dossier "/>  
-                                        <p:autoComplete   value="#{visiteManagedbean.dossierMedicaleS}"   
+                                        <p:autoComplete   value="#{visitesMana.dossierMedicaleS}"   
                                                           id="basicPojos" completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
                                                           var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
                                             <f:facet name="itemtip">  
@@ -74,15 +74,15 @@
                                         </p:autoComplete>
 
                                         <h:outputText  style="color: red"  value="Nom&amp;Prénom"/>  
-                                        <h:outputText id="S" style="width: 100px;"   value="#{visiteManagedbean.dossierMedicaleS.malade.nompre}"/> 
+                                        <h:outputText id="S" style="width: 100px;"   value="#{visitesMana.dossierMedicaleS.malade.nompre}"/> 
                                         <h:outputText value="N° Visite "/>  
-                                        <p:inputText  style="width: 100px;color: blue" value="#{visiteManagedbean.visite.numVis}"/>  
+                                        <p:inputText  style="width: 100px;color: blue" value="#{visitesMana.visite.numVis}"/>  
                                         <h:outputLabel value="Service "></h:outputLabel>
-                                        <p:inputText style="width: 100px;color: blue"   value="#{visiteManagedbean.visite.service}"/>
+                                        <p:inputText style="width: 100px;color: blue"   value="#{visitesMana.visite.service}"/>
                                         <h:outputLabel value="Organisme "></h:outputLabel>
-                                        <p:inputText  style="width: 100px;color: blue"  value="#{visiteManagedbean.visite.organisme}"/>
+                                        <p:inputText  style="width: 100px;color: blue"  value="#{visitesMana.visite.organisme}"/>
                                         <h:outputLabel value="Médecin Dr "/>
-                                        <p:autoComplete value="#{visiteManagedbean.seledtedMedecin}" id="basicPojose" completeMethod="#{medecinManagedbean.completerMedecin}"  
+                                        <p:autoComplete value="#{visitesMana.seledtedMedecin}" id="basicPojose" completeMethod="#{medecinManagedbean.completerMedecin}"  
                                                         var="p" itemLabel="#{p.nompre}" itemValue="#{p}" converter="medecin" forceSelection="true">  
                                             <f:facet  name="itemtip">
                                                 <h:panelGrid  columns="2" cellpadding="5">
@@ -108,7 +108,7 @@
 
                                         <f:facet name="footer">  
                                             <p:spacer width="200" height="1"/>                       
-                                            <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{visiteManagedbean.doAjouterVisite()}" ajax="false" value="Valider"></p:commandButton>
+                                            <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{visitesMana.doAjouterVisite()}" ajax="false" value="Valider"></p:commandButton>
                                             <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                             <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                             <p:spacer width="20" height="2"/>
@@ -123,7 +123,7 @@
 
                                 <h:outputLabel style="color: yellow;font-size: 16px" value="Analyses"></h:outputLabel>
 
-                                <p:autoComplete  size="45"  style="width: 50%" value="#{visiteManagedbean.selectnomenclature}"   
+                                <p:autoComplete  size="45"  style="width: 50%" value="#{visitesMana.selectnomenclature}"   
                                                  id="basicPojo" completeMethod="#{nomenclatureManagedbean.completeNomenclature}"  
                                                  var="p" itemLabel="#{p.abreviation}" itemValue="#{p}" converter="nomenclature" multiple="true">  
                                     <p:ajax disabled="true" event="itemUnselect" listener="#{nomenclatureManagedbean.handleUnselect}" update="growl"/>  
@@ -191,13 +191,13 @@
 
 
         <p:poll interval="1"   
-                listener="#{visiteManagedbean.totalB}" update="B"/>  
+                listener="#{visitesMana.totalB}" update="B"/>  
         <p:poll interval="1"   
-                listener="#{visiteManagedbean.totalAPB()}" update="APB"/>  
+                listener="#{visitesMana.totalAPB()}" update="APB"/>  
         <p:poll interval="1"   
-                listener="#{visiteManagedbean.retournerDossierCourant()}" update="S"/>  
+                listener="#{visitesMana.retournerDossierCourant()}" update="S"/>  
         <p:poll interval="1"   
-                listener="#{visiteManagedbean.retournerAnalyseqCourant()}" update="B,APB"/>  
+                listener="#{visitesMana.retournerAnalyseqCourant()}" update="B,APB"/>  
 
 
     </h:form>

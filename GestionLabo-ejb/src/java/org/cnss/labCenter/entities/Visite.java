@@ -5,8 +5,6 @@
 package org.cnss.labCenter.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -36,10 +33,11 @@ public class Visite implements Serializable {
     private Medecin medecin;
     private Utilisateurs utilisateur;
     private DossierMedicale dossierMedicale;
-    private List<Nomenclature> nomenclatures;
+    private Nomenclature nomenclature;
+    private Resultat resultat;
 
     public Visite() {
-        nomenclatures = new ArrayList<Nomenclature>();
+        
     }
 
    
@@ -80,19 +78,30 @@ public class Visite implements Serializable {
         this.medecin = medecin;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Visite_Nomenclature",
+    @ManyToOne(fetch= FetchType.EAGER)
+     @JoinTable(name = "Visite_Nomenclature",
     joinColumns =
     @JoinColumn(name = "VisiteId"),
     inverseJoinColumns =
     @JoinColumn(name = "NomenclatureId"))
-    public List<Nomenclature> getNomenclatures() {
-        return nomenclatures;
+    public Nomenclature getNomenclature() {
+        return nomenclature;
     }
 
-    public void setNomenclatures(List<Nomenclature> nomenclatures) {
-        this.nomenclatures = nomenclatures;
+    public void setNomenclature(Nomenclature nomenclature) {
+        this.nomenclature = nomenclature;
     }
+
+    @ManyToOne
+    public Resultat getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(Resultat resultat) {
+        this.resultat = resultat;
+    }
+
+    
 
     public String getNumVis() {
         return numVis;

@@ -40,31 +40,28 @@ public class VisiteServices implements IVisite, Serializable {
     @Override
     public List<Visite> listeVisite() {
         List<Visite> visites;
-        visites = entityManager.createQuery("select c from Visite c").getResultList();
+        visites = entityManager.createQuery("select DISTINCT c from Visite c GROUP BY c.numVis").getResultList();
         return visites;
     }
+
+     
 
     @Override
     public void removeVisteNomenclature(Visite v, Nomenclature n) {
 
         n = entityManager.find(Nomenclature.class, n.getIdNomenc());
         v = entityManager.find(Visite.class, v.getIdVisite());
-        System.out.println("lol\n" + v.getNomenclatures());
-        v.getNomenclatures().remove(n);
         n.getVisites().remove(v);
         entityManager.merge(n);
         entityManager.merge(v);
-
-
     }
 
     @Override
     public void supprimerVisite(int nls) {
-        Visite v = entityManager.find(Visite.class,nls);
-     
-     
+        Visite v = entityManager.find(Visite.class, nls);
+
+
         entityManager.remove(v);
 
     }
 }
-

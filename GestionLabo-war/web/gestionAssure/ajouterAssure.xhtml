@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form>
-      <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:growl id="growl" showDetail="true" sticky="true" />  
         <p:layout fullPage="true">  
 
 
@@ -34,11 +34,11 @@
                             <p:tabMenu style="font-size: 18px" activeIndex="1" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter"  icon="ui-icon-circle-plus"/>  
-                                <p:menuitem  value="Modifier"  url="modifierAntibiotique.xhtml" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Modifier"   icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="VisualiserAntibiotique.xhtml" icon="ui-icon-search" />  
-                                <p:menuitem  value="lister" url="listerAntiBiotique.xhtml"  icon="ui-icon-document"/>  
-                             
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister"   icon="ui-icon-document"/>  
+
 
 
                             </p:tabMenu> 
@@ -53,14 +53,14 @@
                         <p:column style="width: 60%;background-color: #ffffff;border: hidden">
                             <p:fieldset id="lo" toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Assuré" style="width: 42%; height: 50%; font-size: 15px;">  
                                 <p:panel header="" style="width: 900px; font-size: 15px;color: #ff96c8;">
-                                        <h:outputLabel style="color: red;font-size: 19px" value="Assuré :"></h:outputLabel>
-                                        <p:inputText style="width: 390px;" value="#{assureManagedbean.assure.matriculeAssure}"></p:inputText>
-                                        <f:facet name="footer">
-                                            <p:spacer width="280" height="10"/>
-                                            <p:commandButton style="color: yellow; font-size:15px " actionListener="#{assureManagedbean.doAjouterAssure()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
-                                            <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                            <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
-                                        </f:facet>
+                                    <h:outputLabel style="color: red;font-size: 19px" value="Assuré :"></h:outputLabel>
+                                    <p:inputText style="width: 390px;" value="#{assureManagedbean.assure.matriculeAssure}"></p:inputText>
+                                    <f:facet name="footer">
+                                        <p:spacer width="280" height="10"/>
+                                        <p:commandButton style="color: yellow; font-size:15px " actionListener="#{assureManagedbean.doAjouterAssure()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                        <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                    </f:facet>
                                 </p:panel>  
                             </p:fieldset>
                         </p:column>
@@ -76,35 +76,35 @@
 
         </p:layout>  
 
-            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
-                <h:panelGrid columns="2" cellpadding="5">  
+            <h:panelGrid columns="2" cellpadding="5">  
 
-                    <h:outputLabel for="password" value="Mot De Passe :" />  
-                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                                   id="password" required="true" label="password" />  
+                <h:outputLabel for="password" value="Mot De Passe :" />  
+                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                               id="password" required="true" label="password" />  
 
-                    <f:facet name="footer">  
-                        <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
-                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                    </f:facet>  
-                </h:panelGrid>  
-                <p:blockUI block="gv" widgetVar="bui"/>    
+                <f:facet name="footer">  
+                    <p:commandButton id="loginButton" value="Login" update="growl"   
+                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                </f:facet>  
+            </h:panelGrid>  
+            <p:blockUI block="gv" widgetVar="bui"/>    
 
-            </p:dialog>  
+        </p:dialog>  
 
-            <script type="text/javascript" >
-                function handleLoginRequest(xhr, status, args) {  
-                    if(args.validationFailed || !args.loggedIn) {  
-                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
-                    } else {  
-                        dlg.hide(); 
-                        bui.hide();
-                    }  
+        <script type="text/javascript" >
+            function handleLoginRequest(xhr, status, args) {  
+                if(args.validationFailed || !args.loggedIn) {  
+                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                } else {  
+                    dlg.hide(); 
+                    bui.hide();
                 }  
-            </script>  
+            }  
+        </script>  
 
 
     </h:form>

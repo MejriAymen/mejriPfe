@@ -27,4 +27,6 @@ public interface IVisite {
     public void supprimerVisite(int n);
 
     public void removeVisteNomenclature(Visite v, Nomenclature n);
+
+  
 }

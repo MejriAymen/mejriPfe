@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -46,7 +47,7 @@ public class Nomenclature implements Serializable {
 
     }
 
-    @ManyToMany(mappedBy = "nomenclatures", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "nomenclature", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinTable(name = "Nomenclature_Visite",
     joinColumns =
     @JoinColumn(name = "NomenclatureId"),

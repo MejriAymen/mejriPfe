@@ -65,7 +65,7 @@
                                         <p:menuitem value="Visualise" update="display" icon="ui-icon-search" oncomplete="carDialog.show()"/>  
                                         <p:menuitem value="Détruire" update="visite" icon="ui-icon-close" actionListener="#{visiteManagedbean.doSupVisite()}"/>  
                                     </p:contextMenu>  
-                                    <p:dataTable rowStyleClass="#{visite.maPayer le 1.0 ? 'old' : null}" id="visite" var="visite" value="#{visiteManagedbean.visites}" rowKey="#{visite.idVisite}"  
+                                    <p:dataTable rowStyleClass="#{visite.maPayer}" id="visite" var="visite" value="#{visiteManagedbean.visites}" rowKey="#{visite.idVisite}"  
                                                  selection="#{visiteManagedbean.visiteSup}" selectionMode="single" 
                                                  paginator="true" rows="5"  
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
@@ -100,10 +100,10 @@
 
 
 
-                                    <p:dialog  position="970,0" style="font-size: 17px;" header="Liste Des Analyses Demandées" widgetVar="carDialog" resizable="false"                                            showEffect="shake" hideEffect="fold" id="dialogo">  
-                                        <p:dataTable  rowStyleClass="#{a.code le 1000 ? 'old' : null}" id="display" style="font-size: 16px" paginator="true" rows="12"   rowsPerPageTemplate="4,6,8"    value="#{visiteManagedbean.visiteSup.nomenclatures}"
-                                                     var="a"
-                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                                    <p:dialog  position="970,0" style="font-size: 17px;" header="Liste Des Analyses Demandées" widgetVar="carDialog" resizable="false" showEffect="shake" hideEffect="fold" id="dialogo">  
+                                        <p:dataTable  rowStyleClass="#{a.code}" id="display" style="font-size: 16px" paginator="true" rows="12"   rowsPerPageTemplate="4,6,8"    value="#{visiteManagedbean.doListerNomenclature()}"
+                                                      var="a"
+                                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                                             <p:column>    
                                                 <f:facet name="header">  
                                                     Analyse
@@ -143,9 +143,9 @@
             </p:layoutUnit>  
         </p:layout>  
 
-    
 
-        <p:poll interval="15"   
+
+        <p:poll interval="3"   
                 listener="#{visiteManagedbean.visitesCourantes()}" update="visite"/>  
 
         <p:poll interval="1"   
