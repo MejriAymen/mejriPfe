@@ -7,7 +7,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Facelet Title</title>
-          <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
     </h:head>
     <h:form>
         <p:growl id="growl" showDetail="true" sticky="true" />  
@@ -162,21 +162,21 @@
 
         </p:layout>  
 
-      <script type="text/javascript" >
-            function handleLoginRequest(xhr, status, args) {  
-                if(args.validationFailed || !args.loggedIn) { 
-                        $ = jQuery;
-                      $('body').append('<embed src="Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+        <script type="text/javascript" >
+              function handleLoginRequest(xhr, status, args) {  
+                  if(args.validationFailed || !args.loggedIn) { 
+                          $ = jQuery;
+                        $('body').append('<embed src="Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
                         
                     
                      
-                } else {  
+                  } else {  
                    
-                     $('body').append('<embed src="COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                       $('body').append('<embed src="COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
                         
                      
-                }  
-            }  
+                  }  
+              }  
         </script>  
 
         <p:poll interval="1"   
