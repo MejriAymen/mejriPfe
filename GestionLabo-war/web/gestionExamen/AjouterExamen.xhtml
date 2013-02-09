@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
     </h:head>
-    <h:form>
+    <h:form id="fo">
         <p:growl id="growl" showDetail="true" sticky="true" />  
         <p:layout fullPage="true">  
 
@@ -39,6 +39,7 @@
                                 <p:menuitem  value="Détruire"  url="supprimerExamen.xhtml" icon="ui-icon-trash"/>  
                                 <p:menuitem  value="Visualiser" url="visualiserExamen.xhtml" icon="ui-icon-search" />  
                                 <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                                  <p:menuitem  value="Gestion Malade" url="/gestionResultat/authentificationRresultat.xhtml"   icon="ui-icon-document"/>  
                             </p:tabMenu> 
 
                         </p:column>
@@ -61,8 +62,8 @@
 
                                     <h:panelGrid style="border: black;width: 100%"  columns="6">  
 
-                                        <h:outputText style="color: red"  value="N° Dossier "/>  
-                                        <p:autoComplete   value="#{visiteManagedbean.dossierMedicaleS}"   
+                                        <h:outputText style="color: red"   value="N° Dossier "/>  
+                                        <p:autoComplete id="bang"   value="#{visiteManagedbean.dossierMedicaleS}"   
                                                           completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
                                                           var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
                                             <f:facet name="itemtip">  
@@ -77,7 +78,7 @@
                                         <h:outputText  style="color: red"  value="Nom&amp;Prénom :"/>  
                                         <h:outputText id="S" style="width: 100px;"   value="#{visiteManagedbean.dossierMedicaleS.malade.nompre}"/> 
                                         <h:outputText value="N° Visite : "/>  
-                                        <p:inputText  style="width: 100px;color: blue" value="#{visiteManagedbean.visite.numVis}"  required="true"/>  
+                                        <p:inputText id="lio" style="width: 100px;color: blue" value="#{visiteManagedbean.visite.numVis}"  required="true"/>  
                                         <h:outputText value="N° Assuré : "/>  
                                         <h:outputLabel id="ac" style="width: 100px;color: blue" value="#{visiteManagedbean.dossierMedicaleS.malade.assure.matriculeAssure}"/>  
                                         <h:outputLabel value="Service "></h:outputLabel>
@@ -85,7 +86,7 @@
                                         <h:outputLabel value="Organisme :"></h:outputLabel>
                                         <p:outputLabel id="c"  style="width: 100px;color: blue"  value="#{visiteManagedbean.dossierMedicaleS.malade.convention.organisme}"/>
                                         <h:outputLabel value="Médecin Dr :"/>
-                                        <p:autoComplete value="#{visiteManagedbean.seledtedMedecin}" id="basicPojose" 
+                                        <p:autoComplete  value="#{visiteManagedbean.seledtedMedecin}" id="basicPojose" 
                                                         completeMethod="#{medecinManagedbean.completerMedecin}"  
                                                         var="p" itemLabel="#{p.nompre}" itemValue="#{p}" 
                                                         converter="medecin" forceSelection="true">  
@@ -113,7 +114,7 @@
 
                                         <f:facet name="footer">  
                                             <p:spacer width="200" height="1"/>                       
-                                            <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{visiteManagedbean.doAjouterVisite}" ajax="false" update="growl"   oncomplete="handleLoginRequest(xhr, status, args)" value="Valider"></p:commandButton>
+                                            <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{visiteManagedbean.doAjouterVisite}" ajax="true" update="growl"   oncomplete="handleLoginRequest(xhr, status, args)" value="Valider"/>
                                             <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                             <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                             <p:spacer width="20" height="2"/>
@@ -131,7 +132,7 @@
                                 <p:autoComplete  size="45"  style="width: 50%" value="#{visiteManagedbean.selectnomenclature}"   
                                                  id="basicPojo" completeMethod="#{nomenclatureManagedbean.completeNomenclature}"  
                                                  var="p" itemLabel="#{p.analyse}" itemValue="#{p}" converter="nomenclature" multiple="true">  
-                                    <p:ajax disabled="true" event="itemUnselect" listener="#{nomenclatureManagedbean.handleUnselect}" update="growl"/>  
+                                    <p:ajax disabled="true" event="itemUnselect" listener="#{nomenclatureManagedbean.handleUnselect}"  update="growl"/>  
                                     <f:facet name="itemtip">  
                                         <h:panelGrid  style="font-size: 17px; volume:100 " columns="2">  
 
@@ -166,13 +167,13 @@
               function handleLoginRequest(xhr, status, args) {  
                   if(args.validationFailed || !args.loggedIn) { 
                           $ = jQuery;
-                        $('body').append('<embed src="Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
-                        
+                        $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
                     
                      
                   } else {  
                    
-                       $('body').append('<embed src="COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                       $('body').append('<embed src="../sounds/COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
                         
                      
                   }  

@@ -8,11 +8,11 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Facelet Title</title>
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"/>
     </h:head>
     <h:body>
 
-        <h:form>
+        <h:form id="form">
             <p:growl id="growl" showDetail="true" sticky="true" />  
 
             <p:panelGrid id="gv" style=" width: 100%">
@@ -21,7 +21,7 @@
                         <p:menubar style="width: 100%" > 
                             <p:submenu label="Accueil" icon="ui-icon-document">  
                                 <p:separator />  
-                                <p:menuitem value="Gestion Dossiers" url="gestionDossierMedical/ajouterDossiers.xhtml" icon="ui-icon-folder-open"/>  
+                                <p:menuitem value="Gestion Dossiers" url="gestionDossierMedical/authentificationDossiers.xhtml" icon="ui-icon-folder-open"/>  
                                 <p:separator />  
                                 <p:menuitem value="Gestion Examens" url="gestionExamen/authentificationExamen.xhtml"  icon="ui-icon-contact"/>
                                 <p:separator />  
@@ -42,7 +42,7 @@
                                 <p:separator /> 
                                 <p:submenu label="Saisie" icon="ui-icon-search">  
                                     <p:separator /> 
-                                    <p:menuitem value="Par Visite (Ordonnance)" url="gestionResultat/AjouterResultat.xhtml" />  
+                                    <p:menuitem value="Par Visite (Ordonnance)" url="gestionResultat/authentificationRresultat.xhtml" />  
                                     <p:separator />  
                                     <p:menuitem value="Par Analyse (Paillaisse)" url="#" />  
                                 </p:submenu> 
@@ -60,23 +60,23 @@
 
                             <p:submenu label="Base De Données" icon="ui-icon-gear"> 
                                 <p:separator /> 
-                                <p:menuitem value="Gestion Services"  url="gestionService/listerServices.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Services"  url="gestionService/authentificationServices.xhtml" ajax="false"/>  
                                 <p:separator />
-                                <p:menuitem value="Gestion Assuré"  url="gestionAssure/ajouterAssure.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Assuré"  url="gestionAssure/authentificationrAssure.xhtml" ajax="false"/>  
                                 <p:separator />
-                                <p:menuitem value="Gestion Malades"  url="gestionMalade/ajouterMalades.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Malades"  url="gestionMalade/authentificationMalades.xhtml" ajax="false"/>  
                                 <p:separator />
-                                <p:menuitem value="Gestion Médecins"  url="gestionMedecin/listeMedecin.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Médecins"  url="gestionMedecin/authentificationMedecin.xhtml" ajax="false"/>  
                                 <p:separator />  
                                 <p:menuitem value="Lexique Vocabulaire" url="lexiqueVocabulaire.xhtml" ajax="false"/>  
                                 <p:separator />  
-                                <p:menuitem value="Gestion Conventions" url="gestionConvention/listeConventions.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Conventions" url="gestionConvention/authentficationrConventions.xhtml" ajax="false"/>  
                                 <p:separator />  
-                                <p:menuitem value="Gestion Antibiotiques" url="gestionAntibiotique/listerAntiBiotique.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Antibiotiques" url="gestionAntibiotique/authentificationAntiBiotique.xhtml" ajax="false"/>  
                                 <p:separator />  
-                                <p:menuitem value="Gestion Nomenclature" url="gestionNomenclature/listeNomenclature.xhtml"  ajax="false"/>  
+                                <p:menuitem value="Gestion Nomenclature" url="gestionNomenclature/authentificationNomenclature.xhtml"  ajax="false"/>  
                                 <p:separator />  
-                                <p:menuitem value="Gestion Valeurs Usuelles" url="gestionValeurUsuel/ajouterValeursUsuels.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Valeurs Usuelles" url="gestionValeurUsuel/autentificationValeursUsuels.xhtml" ajax="false"/>  
                                 <p:separator />  
                                 <p:menuitem value="Gestion Personnalisation"  ajax="false"/>  
                             </p:submenu>  
@@ -128,12 +128,27 @@
 
             </p:dialog>  
 
+
             <script type="text/javascript" >
                 function handleLoginRequest(xhr, status, args) {  
-                    if(args.validationFailed || !args.loggedIn) {  
-                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                    if(args.validationFailed){
+                           $ = jQuery;
+                          $('body').append('<embed src="sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                    }
+                    else if(!args.loggedIn) { 
+                            $ = jQuery;
+                          $('body').append('<embed src="sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                             $('body').append('<embed src="sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
+                         $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                          $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                      $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                     
+                     
                     } else {  
-                        dlg.hide(); 
+                   
+                         $('body').append('<embed src="sounds/COMPUTER-Authorization Acknowledged.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                        
+                              dlg.hide(); 
                         bui.hide();
                     }  
                 }  

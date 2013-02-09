@@ -7,9 +7,8 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Facelet Title</title>
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
     </h:head>
-    <h:form id="form">
+    <h:form>
         <p:growl id="growl" showDetail="true" sticky="true" />  
         <p:layout fullPage="true">  
 
@@ -34,11 +33,14 @@
 
                             <p:tabMenu style="font-size: 18px" activeIndex="1" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
-                                <p:menuitem   value="Ajouter" url="AjouterExamen.xhtml" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterDossiers.xhtml" icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
-                                <p:menuitem  value="Détruire"  url="supprimerExamen.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserExamen.xhtml" icon="ui-icon-search" />  
-                                <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister" icon="ui-icon-document"/>  
+                            
+
+
                             </p:tabMenu> 
 
                         </p:column>
@@ -46,17 +48,17 @@
 
                     </p:row>
 
-                    <p:row >
+                    <p:row>
 
-                        <p:column  style="width: 40%;background-color: #ffffff;border: hidden">
-                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Management Reviews" style="width: 55%; height: 50%; font-size: 17px;">  
-
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Dossiers" style="width: 55%; height: 50%; font-size: 18;">  
+                  
 
                             </p:fieldset>
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/gV.png" height="370" width="250"/>
+                            <h:graphicImage value="/images/aD.png" height="390" width="300"/>
                         </p:column>
 
                     </p:row>
@@ -66,28 +68,28 @@
 
         </p:layout>  
 
+                 <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
-        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
+                <h:panelGrid columns="2" cellpadding="5">  
 
-            <h:panelGrid columns="2" cellpadding="5">  
+                    <h:outputLabel for="password" value="Mot De Passe :" />  
+                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                                   id="password" required="true" label="password" />  
 
-                <h:outputLabel for="password" value="Mot De Passe :" />  
-                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                               id="password" required="true" label="password" />  
+                    <f:facet name="footer">  
+                        <p:commandButton id="loginButton" value="Login" update="growl"   
+                                         actionListener="#{utulisateurManagedbean.login}"   
+                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                    </f:facet>  
+                </h:panelGrid>  
+                <p:blockUI block="gv" widgetVar="bui"/>    
 
-                <f:facet name="footer">  
-                    <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
-                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                </f:facet>  
-            </h:panelGrid>  
-            <p:blockUI block="gv" widgetVar="bui"/>    
+            </p:dialog>  
 
-        </p:dialog>  
-
+    
         <script type="text/javascript" >
-            function handleLoginRequest(xhr, status, args) {
+            function handleLoginRequest(xhr, status, args) {  
                 if(args.validationFailed){
                        $ = jQuery;
                       $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
@@ -103,7 +105,7 @@
                      
                 } else {  
                    
-                        $('body').append('<embed src="../sounds/Computer - Identification confirmed.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                     $('body').append('<embed src="../sounds/COMPUTER-Authorization Acknowledged.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
                         
                           dlg.hide(); 
                     bui.hide();
@@ -111,8 +113,6 @@
             }  
         </script>  
 
-
- 
     </h:form>
 
 </html>

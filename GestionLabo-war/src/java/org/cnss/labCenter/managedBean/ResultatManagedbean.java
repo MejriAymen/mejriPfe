@@ -32,6 +32,8 @@ public class ResultatManagedbean implements Serializable {
     List<Visite> visites;
     Resultat result;
     List<Resultat> resultats;
+    private float vHMin;
+    private float vHMax;
     @EJB
     IVisite iVisite;
     @EJB
@@ -55,12 +57,18 @@ public class ResultatManagedbean implements Serializable {
     }
 
     public void doModifierVisite() {
-        for (Visite visite : visites) {
-       
-            iVisite.modifierVisite(visite);      
-        }
+
+
+        converstionVisualisation();
         
+        for (Visite visite : visites) {
+
+            iVisite.modifierVisite(visite);
+            
+        }
+
         visites = new ArrayList<Visite>();
+       
     }
 
     public List<Visite> doListerVisite() {
@@ -72,6 +80,7 @@ public class ResultatManagedbean implements Serializable {
             for (Visite visite : l) {
                 visite = iVisite.VisiteConverter(visite.getIdVisite());
                 if (visite.getNumVis().equals(selectedVisite.getNumVis())) {
+
                     vs.add(visite);
                 }
             }
@@ -83,6 +92,16 @@ public class ResultatManagedbean implements Serializable {
     public void ajouterMessageInfo(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Antibiotique Ajouter", summary);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public void converstionVisualisation() {
+
+        for (Visite visite : visites) {
+            visite.getResultat().setResCoi(visite.getResultat().getRes() * visite.getNomenclature().getValeursUsuelles().getCoefficient());
+            visite.getNomenclature().getValeursUsuelles().setV1Max(visite.getNomenclature().getValeursUsuelles().getvHMax() * visite.getNomenclature().getValeursUsuelles().getCoefficient());
+            visite.getNomenclature().getValeursUsuelles().setV2Min(visite.getNomenclature().getValeursUsuelles().getvHMin() * visite.getNomenclature().getValeursUsuelles().getCoefficient());
+        }
+
     }
 
     public IVisite getiVisite() {
@@ -147,5 +166,29 @@ public class ResultatManagedbean implements Serializable {
 
     public void setiResultat(IResultat iResultat) {
         this.iResultat = iResultat;
+    }
+
+    public float getvHMax() {
+        return vHMax;
+    }
+
+    public void setvHMax(float vHMax) {
+        this.vHMax = vHMax;
+    }
+
+    public float getvHMin() {
+        return vHMin;
+    }
+
+    public void setvHMin(float vHMin) {
+        this.vHMin = vHMin;
+    }
+
+    public static int getY() {
+        return y;
+    }
+
+    public static void setY(int y) {
+        ResultatManagedbean.y = y;
     }
 }

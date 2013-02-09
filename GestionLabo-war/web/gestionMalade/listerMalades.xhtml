@@ -50,12 +50,12 @@
 
                     <p:row>
 
-                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+                        <p:column style="width: 50%;background-color: #ffffff;border: hidden">
 
                             <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Malade" style="text-align:center;width: 30%; height: 50%; font-size: 15px;">  
 
 
-                                <p:dataTable id="basicPojo" style="font-size: 14px;width: 100%" paginator="true" rows="2"   rowsPerPageTemplate="4,6,8"    value="#{maladeManagedbean.malades}"
+                                <p:dataTable id="basicPojo" style="font-size: 14px;width: 1050px" paginator="true" rows="2"   rowsPerPageTemplate="4,6,8"    value="#{maladeManagedbean.malades}"
                                              var="a"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -75,24 +75,24 @@
                                     <p:column filterBy="#{a.typeMalade}">    
 
                                         <f:facet name="header">  
-                                            Type &amp; Rang Malade
+                                            Type &amp; Rang
                                         </f:facet>  
                                         <h:outputText value="#{a.typeMalade}"  />  
 
                                         <f:facet name="footer">  
-                                            Type &amp; Rang Malade
+                                            Type &amp; Rang
                                         </f:facet>  
                                     </p:column>  
 
                                     <p:column filterBy="#{a.dossierMedicale.numDoss}">    
 
                                         <f:facet name="header">  
-                                     Numéro Dossier
+                                            Numéro Dossier
                                         </f:facet>  
-                                          <h:outputText value="#{a.dossierMedicale.numDoss}"  />  
+                                        <h:outputText value="#{a.dossierMedicale.numDoss}"  />  
 
                                         <f:facet name="footer">  
-                                           Numéro Dossier
+                                            Numéro Dossier
                                         </f:facet>  
                                     </p:column>  
 
@@ -125,24 +125,24 @@
                                     <p:column>    
 
                                         <f:facet name="header">  
-                                            Date De Naissance
+                                            Naissance
                                         </f:facet>  
                                         <h:outputText value="#{a.dateNaissance}"  />  
 
                                         <f:facet name="footer">  
-                                            Date De Naissance
+                                            Naissance
                                         </f:facet>  
                                     </p:column>  
 
                                     <p:column>    
 
                                         <f:facet name="header">  
-                                            Sexe Malade
+                                            Sexe
                                         </f:facet>  
                                         <h:outputText value="#{a.sexeMalade}"  />  
 
                                         <f:facet name="footer">  
-                                            Sexe Malade
+                                            Sexe
                                         </f:facet>  
                                     </p:column>  
 
@@ -193,7 +193,7 @@
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/patinet.jpg" height="360" width="240"/>
+                            <h:graphicImage value="/images/lM.jpg" height="330" width="230"/>
                         </p:column>
 
                     </p:row>
@@ -203,37 +203,8 @@
 
         </p:layout>  
 
-        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
-
-
-            <h:panelGrid columns="2" cellpadding="5">  
-
-                <h:outputLabel for="password" value="Mot De Passe :" />  
-                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                               id="password" required="true" label="password" />  
-
-                <f:facet name="footer">  
-                    <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
-                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                </f:facet>  
-            </h:panelGrid>  
-            <p:blockUI block="gv" widgetVar="bui"/>    
-
-        </p:dialog>  
-
-        <script type="text/javascript" >
-            function handleLoginRequest(xhr, status, args) {  
-                if(args.validationFailed || !args.loggedIn) {  
-                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
-                } else {  
-                    dlg.hide(); 
-                    bui.hide();
-                }  
-            }  
-        </script>  
- <p:poll interval="10"   
-         listener="#{maladeManagedbean.listeMaladeCourant()}" update="basicPojo"/>  
+        <p:poll interval="10"   
+                listener="#{maladeManagedbean.listeMaladeCourant()}" update="basicPojo"/>  
 
     </h:form>
 

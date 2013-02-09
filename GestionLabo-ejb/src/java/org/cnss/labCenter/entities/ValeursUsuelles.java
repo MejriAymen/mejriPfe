@@ -38,6 +38,8 @@ public class ValeursUsuelles implements Serializable {
     private float coefficient;
     private String unite1;
     private String unite2;
+    private float v1Max;
+    private float v2Min;
     private Nomenclature nomenclature;
 
     public ValeursUsuelles() {
@@ -204,5 +206,21 @@ public class ValeursUsuelles implements Serializable {
 
     public void setvNUsuelle(float vNUsuelle) {
         this.vNUsuelle = vNUsuelle;
+    }
+
+    public float getV1Max() {
+        return v1Max;
+    }
+
+    public void setV1Max(float v1Max) {
+        this.v1Max = v1Max;
+    }
+
+    public float getV2Min() {
+        return v2Min;
+    }
+
+    public void setV2Min(float v2Min) {
+        this.v2Min = v2Min;
     }
 }

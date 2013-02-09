@@ -8,7 +8,7 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:form>
+    <h:form id="form">
         <p:growl id="growl" showDetail="true" sticky="true" />  
         <p:layout fullPage="true">  
 
@@ -44,7 +44,7 @@
                     <p:row>
 
                         <p:column style="background-color: #ffffff;border: hidden">
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Nomenclature" style="text-align: center;width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset id="lo" toggleSpeed="1500" collapsed="true" toggleable="true" legend="Gestion Nomenclature" style="text-align: center;width: 42%; height: 50%; font-size: 15px;">  
                                 <p:panel header="" style=" font-size: 15px;color: #ff96c8;">
 
                                     <p:dataTable id="basicPojo" style="font-size: 16px" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{nomenclatureManagedbean.nomenclatureL}"
@@ -149,14 +149,14 @@
                                             </f:facet>  
                                         </p:column>  
                                     </p:dataTable>
-                                      <p:blockUI block="basicPojo" trigger="basicPojo">  
-        
-        <p:graphicImage value="/images/ajax-loader.gif"/>  
-    </p:blockUI>      
+                                    <p:blockUI block="basicPojo" trigger="basicPojo">  
+
+                                        <p:graphicImage value="/images/ajax-loader.gif"/>  
+                                    </p:blockUI>      
                                 </p:panel>  
 
                             </p:fieldset>
-               
+
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
@@ -169,11 +169,55 @@
             </p:layoutUnit>  
 
         </p:layout>  
+        
+            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
-      
 
- <p:poll interval="10"   
-         listener="#{nomenclatureManagedbean.nomenclatureCourante()}" update="basicPojo"/>
+            <h:panelGrid columns="2" cellpadding="5">  
+
+                <h:outputLabel for="password" value="Mot De Passe :" />  
+                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                               id="password" required="true" label="password" />  
+
+                <f:facet name="footer">  
+                    <p:commandButton id="loginButton" value="Login" update="growl"   
+                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                </f:facet>  
+            </h:panelGrid>  
+            <p:blockUI block="gv" widgetVar="bui"/>    
+
+        </p:dialog>  
+
+        <script type="text/javascript" >
+            function handleLoginRequest(xhr, status, args) {
+                if(args.validationFailed){
+                       $ = jQuery;
+                      $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                }
+                else if(!args.loggedIn) { 
+                        $ = jQuery;
+                      $('body').append('<embed src="../sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                         $('body').append('<embed src="../sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
+                     $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                      $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                  $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                     
+                     
+                } else {  
+                   
+                        $('body').append('<embed src="../sounds/Computer - Identification confirmed.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                            dlg.hide(); 
+                    bui.hide();
+          
+                }  
+            }  
+        </script>  
+
+
+
+        <p:poll interval="10"   
+                listener="#{nomenclatureManagedbean.nomenclatureCourante()}" update="basicPojo"/>
     </h:form>
 
 </html>

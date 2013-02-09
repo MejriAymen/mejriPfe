@@ -67,18 +67,19 @@
                                         </f:facet>  
                                     </p:column>  
 
-                                    <p:column filterBy="#{a.nompre}">    
+                                    
+                                    <p:column filterBy="#{a.specialite}">    
 
                                         <f:facet name="header">  
-                                            CIN
+                                            Adresse
                                         </f:facet>  
-                                        <h:outputText value="#{a.cin}"  />  
+                                            <h:outputText value="#{a.specialite}"  />  
 
                                         <f:facet name="footer">  
-                                            CIN
+                                            Adresse
                                         </f:facet>  
                                     </p:column>  
-
+                             
 
                                     <p:column filterBy="#{a.codeMed}">    
 
@@ -106,14 +107,16 @@
                                     </p:column>  
 
 
+                                    
+                                  
 
 
-                                    <p:column filterBy="#{a.adresse}">    
+                                    <p:column filterBy="#{a.valable}">    
 
                                         <f:facet name="header">  
                                             Adresse
                                         </f:facet>  
-                                        <h:outputText value="#{a.adresse}"  />  
+                                        <h:outputText value="#{a.valable}"  />  
 
                                         <f:facet name="footer">  
                                             Adresse
@@ -139,39 +142,6 @@
             </p:layoutUnit>  
 
         </p:layout>  
-
-
-
-        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
-
-
-            <h:panelGrid columns="2" cellpadding="5">  
-
-                <h:outputLabel for="password" value="Mot De Passe :" />  
-                <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                               id="password" required="true" label="password" />  
-
-                <f:facet name="footer">  
-                    <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
-                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                </f:facet>  
-            </h:panelGrid>  
-            <p:blockUI block="gv" widgetVar="bui"/>    
-
-        </p:dialog>  
-
-        <script type="text/javascript" >
-            function handleLoginRequest(xhr, status, args) {  
-                if(args.validationFailed || !args.loggedIn) {  
-                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
-                } else {  
-                    dlg.hide(); 
-                    bui.hide();
-                }  
-            }  
-        </script>  
-
            
   <p:poll interval="10"   
                 listener="#{medecinManagedbean.listeMedecinCourant()}" update="basicPojo"/>  

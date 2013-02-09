@@ -153,6 +153,7 @@ public class visiteManagedbean implements Serializable {
 
     public void maladeCourant() {
         this.dossierMedicaleS.getMalade().getNompre();
+        
     }
 
     public void visitesCourantes() {

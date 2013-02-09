@@ -38,7 +38,7 @@
                                 <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
                                 <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
                                 <p:menuitem  value="lister" icon="ui-icon-document"/>  
-                                <p:menuitem  value="Gestion visite" url="gestionVisites.xhtml" icon="ui-icon-newwin"/>  
+                                   <p:menuitem  value="Gestion visite" url="/gestionExamen/authentificationExamen.xhtml" icon="ui-icon-newwin"/>  
 
 
                             </p:tabMenu> 
@@ -58,26 +58,7 @@
 
                                         <h:outputText value="N° Dossier :" />  
                                         <p:inputMask value="#{dossierMedicalManagedbean.dossierMedicale.numDoss}" mask="9999-/-999"/>  
-                                        <h:outputText value="N° Assuré :" />  
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.numAss}" />  
-                                        <h:outputText value="Qualité :"/>  
-                                        <p:inputText value="#"/>  
-                                        <h:outputLabel value="Nom et Prénom :"></h:outputLabel>
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.nomPre}"></p:inputText>
-                                        <h:outputLabel value="Sexe :"></h:outputLabel>
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.sexe}"></p:inputText>
-                                        <h:outputLabel value="Age :"></h:outputLabel>
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.age}"></p:inputText>
-                                        <h:outputLabel value="Adresse :"></h:outputLabel>
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.adresse}"></p:inputText>
-                                        <h:outputLabel value="Ville :"></h:outputLabel>
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.ville}"></p:inputText>
-                                        <h:outputLabel value="Téléphone :"></h:outputLabel>
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.tel}"></p:inputText>
-                                        <h:outputLabel value="Rensrignement Clinique :"></h:outputLabel>
-                                        <p:inputText value="#{dossierMedicalManagedbean.dossierMedicale.qualite}"></p:inputText>
-
-
+                                   
 
                                         <f:facet name="footer">  
                                             <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{dossierMedicalManagedbean.doAjouterDossierMedicale()}" ajax="false" value="Valider"></p:commandButton>
@@ -94,7 +75,7 @@
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/patinet.jpg" height="390" width="300"/>
+                            <h:graphicImage value="/images/aD.png" height="390" width="300"/>
                         </p:column>
 
                     </p:row>
@@ -103,36 +84,7 @@
             </p:layoutUnit>  
 
         </p:layout>  
-
-            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
-
-
-                <h:panelGrid columns="2" cellpadding="5">  
-
-                    <h:outputLabel for="password" value="Mot De Passe :" />  
-                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                                   id="password" required="true" label="password" />  
-
-                    <f:facet name="footer">  
-                        <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
-                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                    </f:facet>  
-                </h:panelGrid>  
-                <p:blockUI block="gv" widgetVar="bui"/>    
-
-            </p:dialog>  
-
-            <script type="text/javascript" >
-                function handleLoginRequest(xhr, status, args) {  
-                    if(args.validationFailed || !args.loggedIn) {  
-                        jQuery('#dialog').effect("shake", { times:3 }, 100);  
-                    } else {  
-                        dlg.hide(); 
-                        bui.hide();
-                    }  
-                }  
-            </script>  
+  
 
 
     </h:form>

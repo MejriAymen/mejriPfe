@@ -10,7 +10,7 @@
         <title>Facelet Title</title>
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
     </h:head>
-    <h:form>
+    <h:form id="form">
         <p:growl id="growl" showDetail="true" sticky="true" />  
 
         <p:panelGrid id="gv" style=" width: 100%">
@@ -47,7 +47,7 @@
                         </p:submenu>  
 
                         <p:submenu label="Mot De Passe"  icon="ui-icon-locked">  
-                            <p:menuitem value="Gestion Mots De Passe" url="gestionMotPasse/listeMotPasse.xhtml" icon="ui-icon-unlocked"/>  
+                            <p:menuitem value="Gestion Mots De Passe" url="gestionMotPasse/authentificationMotPasse.xhtml" icon="ui-icon-unlocked"/>  
                             <p:separator /> 
 
                         </p:submenu>  
@@ -90,16 +90,32 @@
 
         </p:dialog>  
 
-        <script type="text/javascript" >
+  
+        <script type="text/javascript"  >
             function handleLoginRequest(xhr, status, args) {  
-                if(args.validationFailed || !args.loggedIn) {  
-                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
+              if(args.validationFailed){
+                       $ = jQuery;
+                      $('body').append('<embed src="sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                }
+                else if(!args.loggedIn) { 
+                        $ = jQuery;
+                      $('body').append('<embed src="sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                         $('body').append('<embed src="sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
+                     $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                      $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                  $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                     
+                     
                 } else {  
-                    dlg.hide(); 
+                   
+                     $('body').append('<embed src="sounds/COMPUTER-Authorization Acknowledged.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                        
+                          dlg.hide(); 
                     bui.hide();
                 }  
             }  
         </script>  
+
 
     </h:form>
 
