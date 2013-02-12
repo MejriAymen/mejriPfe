@@ -28,12 +28,10 @@ public class ResultatManagedbean implements Serializable {
 
     Visite selectedVisite;
     int i = 0;
-    public static int y = 0;
+    int y = 0;
     List<Visite> visites;
     Resultat result;
     List<Resultat> resultats;
-    private float vHMin;
-    private float vHMax;
     @EJB
     IVisite iVisite;
     @EJB
@@ -58,23 +56,31 @@ public class ResultatManagedbean implements Serializable {
 
     public void doModifierVisite() {
 
-
+        i++;
         converstionVisualisation();
-        
+
         for (Visite visite : visites) {
 
             iVisite.modifierVisite(visite);
-            
+
+        }
+
+        if (i == y) {
+            i = 0;
+            selectedVisite = new Visite();
         }
 
         visites = new ArrayList<Visite>();
-       
+
+
     }
 
     public List<Visite> doListerVisite() {
 
         List<Visite> l = iVisite.listeVisite();
+
         List<Visite> vs = new ArrayList<Visite>();
+        List<Visite> vsl = new ArrayList<Visite>();
 
         if (selectedVisite != null) {
             for (Visite visite : l) {
@@ -84,9 +90,13 @@ public class ResultatManagedbean implements Serializable {
                     vs.add(visite);
                 }
             }
-        }
+            y = vs.size();
+            if (!vs.isEmpty()) {
+                vsl.add(vs.get(i));
+            }
 
-        return vs;
+        }
+        return vsl;
     }
 
     public void ajouterMessageInfo(String summary) {
@@ -121,6 +131,7 @@ public class ResultatManagedbean implements Serializable {
     }
 
     public void retournerNompreCourant() {
+        this.setSelectedVisite(this.getSelectedVisite());
         this.selectedVisite.getDossierMedicale().getMalade().setNompre(selectedVisite.getDossierMedicale().getMalade().getNompre());
     }
 
@@ -168,27 +179,11 @@ public class ResultatManagedbean implements Serializable {
         this.iResultat = iResultat;
     }
 
-    public float getvHMax() {
-        return vHMax;
-    }
-
-    public void setvHMax(float vHMax) {
-        this.vHMax = vHMax;
-    }
-
-    public float getvHMin() {
-        return vHMin;
-    }
-
-    public void setvHMin(float vHMin) {
-        this.vHMin = vHMin;
-    }
-
-    public static int getY() {
+    public int getY() {
         return y;
     }
 
-    public static void setY(int y) {
-        ResultatManagedbean.y = y;
+    public void setY(int y) {
+        this.y = y;
     }
 }

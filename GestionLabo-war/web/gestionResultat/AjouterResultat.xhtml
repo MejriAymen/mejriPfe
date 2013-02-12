@@ -52,7 +52,7 @@
 
 
                                 <h:outputText style="color: red"  value="N° Visite "/>  
-                                <p:autoComplete   value="#{resultatManagedbean.selectedVisite}"   
+                                <p:autoComplete  id="rio"  value="#{resultatManagedbean.selectedVisite}"   
                                                   completeMethod="#{visiteManagedbean.completeVisite}"  
                                                   var="p" itemLabel="#{p.numVis}" itemValue="#{p}" converter="visite" forceSelection="true">  
                                     <f:facet name="itemtip">  
@@ -170,11 +170,11 @@
 
 
 
-        <p:poll interval="8"  
+        <p:poll interval="5"  
                 listener="#{resultatManagedbean.visiteCourant()}" update="basicPojo"/>
 
 
-        <p:poll interval="8"  
+        <p:poll interval="5"  
                 listener="#{resultatManagedbean.converstionVisualisation()}" update="basicPojo"/>
 
 
