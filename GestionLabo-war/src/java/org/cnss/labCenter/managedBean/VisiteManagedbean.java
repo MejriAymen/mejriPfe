@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +16,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.persistence.PrePersist;
 import org.cnss.labCenter.domain.nomenclature.INomenclature;
 import org.cnss.labCenter.domain.resultat.IResultat;
 import org.cnss.labCenter.domain.services.IServices;
@@ -86,6 +88,15 @@ public class visiteManagedbean implements Serializable {
         visites = this.doListerVisite();
     }
 
+    @PreDestroy
+    public void initP() {
+        dossierMedicaleS = new DossierMedicale();
+        Selectnomenclature = new ArrayList<Nomenclature>();
+        seledtedMedecin = new Medecin();
+        visite = new Visite();
+
+    }
+
     public void returnConvention() {
         this.dossierMedicaleS.getMalade().getConvention().getOrganisme();
     }
@@ -153,7 +164,7 @@ public class visiteManagedbean implements Serializable {
 
     public void maladeCourant() {
         this.dossierMedicaleS.getMalade().getNompre();
-        
+
     }
 
     public void visitesCourantes() {
@@ -162,7 +173,7 @@ public class visiteManagedbean implements Serializable {
 
     }
 
-    public void doAjouterVisite(ActionEvent actionEvent) {
+    public void  doAjouterVisite(ActionEvent actionEvent) {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;
         boolean loggedIn = false;
@@ -188,7 +199,7 @@ public class visiteManagedbean implements Serializable {
 
             }
 
-  msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Visite Added", visite.getDossierMedicale().getNumDoss());
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Visite Added", visite.getDossierMedicale().getNumDoss());
             loggedIn = true;
             prixAPB = 0;
             prixB = 0;
@@ -197,10 +208,12 @@ public class visiteManagedbean implements Serializable {
             Selectnomenclature = new ArrayList<Nomenclature>();
             seledtedMedecin = new Medecin();
             visite = new Visite();
-          
+         
+
         } else {
             loggedIn = false;
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Action Failed", "");
+           
         }
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("loggedIn", loggedIn);

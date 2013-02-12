@@ -61,36 +61,23 @@
                                         <h:outputLabel style="color: red" value="Abréviation :"></h:outputLabel>
                                         <p:inputText  value="#{antibiotiqueManagedbean.antibiotique.abreviation}"></p:inputText>
 
-
-
-                                        <f:facet name="footer">
-                                                
-                                            <p:commandButton style="color: yellow; font-size:15px " actionListener="#{antibiotiqueManagedbean.doAjouterAntibiotique()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
+                                        <f:facet name="footer">                                              
+                                            <p:commandButton style="color: yellow; font-size:15px " actionListener="#{antibiotiqueManagedbean.doAjouterAntibiotique()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"/>
                                             <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                            <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                            <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
                                         </f:facet>
-
-
-
                                     </h:panelGrid>  
                                 </p:panel>  
 
                             </p:fieldset>
                         </p:column>
-
                         <p:column  style="background-color: #ffffff;border: hidden"> 
                             <h:graphicImage value="/images/gab.png" height="390" width="300"/>
                         </p:column>
-
                     </p:row>
-
                 </p:panelGrid>  
             </p:layoutUnit>  
-
         </p:layout>  
-
-
     </h:form>
-
 </html>
 

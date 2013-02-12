@@ -7,9 +7,10 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Facelet Title</title>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
     </h:head>
-    <h:form>
-        <p:growl id="growl" showDetail="true" sticky="true" />  
+    <h:form id="fo">
+        <p:growl id="growl" showDetail="true" sticky="true"/>  
         <p:layout fullPage="true">  
 
 
@@ -52,9 +53,9 @@
 
 
                                 <h:outputText style="color: red"  value="N° Visite "/>  
-                                <p:autoComplete   value="#{resultatManagedbean.selectedVisite}"   
-                                                  completeMethod="#{visiteManagedbean.completeVisite}"  
-                                                  var="p" itemLabel="#{p.numVis}" itemValue="#{p}" converter="visite" forceSelection="true">  
+                                <p:autoComplete  id="rio"  value="#{resultatManagedbean.selectedVisite}"   
+                                                 completeMethod="#{visiteManagedbean.completeVisite}"  
+                                                 var="p" itemLabel="#{p.numVis}" itemValue="#{p}" converter="visite" forceSelection="true">  
                                     <f:facet name="itemtip">  
                                         <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
                                             <h:outputText style="color: black" value="Nom &amp; Prénom " />                                                              
@@ -86,7 +87,7 @@
                                             </p:column>  
 
                                             <p:column   
-                                                style="width:120px;"   headerText="Unit 1"  sortBy="#{l.nomenclature.valeursUsuelles.unite1}">  
+                                                style="width:120px;"   headerText="Unit 1">  
 
                                                 <h:outputText style="width:120px;" value="#{l.nomenclature.valeursUsuelles.unite1}" />  
                                             </p:column>  
@@ -99,23 +100,23 @@
                                             </p:column>  
 
 
-                                              <p:column   id="w"
-                                                  style="width:120px;"   headerText="Résultat"  sortBy="#{l.resultat.resCoi}">  
+                                            <p:column   id="w"
+                                                        style="width:120px;"   headerText="Résultat"  sortBy="#{l.resultat.resCoi}">  
 
-                                                  <h:outputLabel  style="width:120px;" value="#{l.resultat.resCoi}"/>  
+                                                <h:outputLabel  style="width:120px;" value="#{l.resultat.resCoi}"/>  
                                             </p:column>
 
                                             <p:column   id="x"
-                                                style="width:120px;"   headerText="Unit 2">  
+                                                        style="width:120px;"   headerText="Unit 2">  
 
                                                 <h:outputLabel  style="width:120px;" value="#{l.nomenclature.valeursUsuelles.unite2}"/>  
                                             </p:column>  
 
 
-                                             <p:column   
+                                            <p:column   
                                                 style="width:120px;" id="y"  headerText="Usual Value">  
 
-                                                 <h:outputLabel  style="width:120px;" value="#{l.nomenclature.valeursUsuelles.v2Min} à #{l.nomenclature.valeursUsuelles.v1Max}"/>  
+                                                <h:outputLabel  style="width:120px;" value="#{l.nomenclature.valeursUsuelles.v2Min} à #{l.nomenclature.valeursUsuelles.v1Max}"/>  
                                             </p:column>  
 
 
@@ -129,13 +130,9 @@
                                     </h:panelGrid>  
 
                                 </p:panel> 
-
-
-
-                                <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisite()}" ajax="false"  value="Valider"></p:commandButton>
-
+                                <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisite}"  ajax="false"  update="growl"  value="Valider"/>
                                 <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
 
                                 <p:spacer width="20" height="2"/>
                                 <h:outputText value="N° Dossier : "/>  
@@ -159,7 +156,22 @@
 
         </p:layout>  
 
-
+        <script type="text/javascript" >
+        function handleLoginRequest(xhr, status, args) {  
+            if(!args.loggedIn) { 
+                    $ = jQuery;
+                  $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                    
+                     
+            } else {  
+                   
+                 $('body').append('<embed src="../sounds/COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                        
+                     
+            }  
+        }  
+        </script>  
 
         <p:poll interval="1"   
                 listener="#{resultatManagedbean.retournerNompreCourant()}" update="a"/>
@@ -170,14 +182,12 @@
 
 
 
-        <p:poll interval="8"  
+        <p:poll interval="5"  
                 listener="#{resultatManagedbean.visiteCourant()}" update="basicPojo"/>
 
 
-        <p:poll interval="8"  
+        <p:poll interval="5"  
                 listener="#{resultatManagedbean.converstionVisualisation()}" update="basicPojo"/>
-
-
 
 
     </h:form>

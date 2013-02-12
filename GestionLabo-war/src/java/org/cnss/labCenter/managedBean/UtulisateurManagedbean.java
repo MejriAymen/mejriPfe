@@ -78,6 +78,7 @@ public class UtulisateurManagedbean implements Serializable {
         } else {
 
             loggedIn = false;
+            
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec D'Authentification", "Mot De Passe Invalide");
         }
 
