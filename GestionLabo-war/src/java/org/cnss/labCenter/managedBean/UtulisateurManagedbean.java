@@ -74,12 +74,12 @@ public class UtulisateurManagedbean implements Serializable {
         cs = iProgramme.rechercherUtilisateur(pass);
         if (cs != null) {
             loggedIn = true;
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Authentification Réussie", cs.getNomPre());
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Successful Authentication", cs.getNomPre());
         } else {
 
             loggedIn = false;
             
-            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Echec D'Authentification", "Mot De Passe Invalide");
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Failed To Authenticate", "Invalid Password");
         }
 
         FacesContext.getCurrentInstance().addMessage(null, msg);

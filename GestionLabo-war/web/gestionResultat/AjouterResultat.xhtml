@@ -7,10 +7,9 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Facelet Title</title>
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
     </h:head>
-    <h:form id="fo">
-        <p:growl id="growl" showDetail="true" sticky="true"/>  
+    <h:form id="form">
+        <p:growl id="growl" showDetail="true"  life="500"/>  
         <p:layout fullPage="true">  
 
 
@@ -130,7 +129,7 @@
                                     </h:panelGrid>  
 
                                 </p:panel> 
-                                <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisite}"  ajax="false"  update="growl"  value="Valider"/>
+                                <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisite()}" ajax="false"   value="Valider"/>
                                 <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                 <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
 
@@ -156,22 +155,7 @@
 
         </p:layout>  
 
-        <script type="text/javascript" >
-        function handleLoginRequest(xhr, status, args) {  
-            if(!args.loggedIn) { 
-                    $ = jQuery;
-                  $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
-                  
-                    
-                     
-            } else {  
-                   
-                 $('body').append('<embed src="../sounds/COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
-                        
-                     
-            }  
-        }  
-        </script>  
+      
 
         <p:poll interval="1"   
                 listener="#{resultatManagedbean.retournerNompreCourant()}" update="a"/>

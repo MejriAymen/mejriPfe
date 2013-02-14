@@ -13,7 +13,7 @@
     <h:body>
 
         <h:form id="form">
-            <p:growl id="growl" showDetail="true" sticky="true" />  
+            <p:growl id="growl" showDetail="true" life="5000"/>  
 
             <p:panelGrid id="gv" style=" width: 100%">
                 <p:row>
@@ -116,7 +116,7 @@
 
                     <h:outputLabel for="password" value="Mot De Passe :" />  
                     <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                                   id="password" required="true" label="password" />  
+                                   id="password" required="true" requiredMessage="Please Enter Your Password" label="password" />  
 
                     <f:facet name="footer">  
                         <p:commandButton id="loginButton" value="Login" update="growl"   

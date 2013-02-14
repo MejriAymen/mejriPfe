@@ -4,7 +4,6 @@ package org.cnss.labCenter.managedBean;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ import org.cnss.labCenter.domain.resultat.IResultat;
 import org.cnss.labCenter.domain.visite.IVisite;
 import org.cnss.labCenter.entities.Resultat;
 import org.cnss.labCenter.entities.Visite;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -63,14 +61,10 @@ public class ResultatManagedbean implements Serializable {
         visites = doListerVisite();
     }
 
-    public void doModifierVisite(ActionEvent actionEvent) {
+    public void doModifierVisite() {
 
-        RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage msg = null;
-        boolean loggedIn = false;
         i++;
         converstionVisualisation();
-        if (visites.get(0).getResultat().getRes() >= visites.get(0).getNomenclature().getValeursUsuelles().getvHMin() && visites.get(0).getResultat().getRes() <= visites.get(0).getNomenclature().getValeursUsuelles().getvHMax()) {
 
             for (Visite visite : visites) {
                 iVisite.modifierVisite(visite);
@@ -83,21 +77,6 @@ public class ResultatManagedbean implements Serializable {
 
             visites = new ArrayList<Visite>();
 
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Result Added", "");
-            loggedIn = true;
-
-        } else {
-
-
-            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Result out of range", "");
-            loggedIn = false;
-
-
-        }
-
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam("loggedIn", loggedIn);
 
     }
 

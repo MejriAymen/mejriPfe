@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form>
-        <p:growl id="growl" showDetail="true" sticky="true" life="1000" />  
+        <p:growl id="growl" showDetail="true"  life="5000" />  
         <p:layout fullPage="true">  
 
 
@@ -62,8 +62,8 @@
 
                                 <p:panel  header="" style="text-align: center;width: 1000px; font-size: 15px; color: #ff96c8 ">
                                     <p:contextMenu for="visite">  
-                                        <p:menuitem value="Visualise" update="display" icon="ui-icon-search" oncomplete="carDialog.show()"/>  
-                                        <p:menuitem value="Détruire" update="visite" icon="ui-icon-close" actionListener="#{visiteManagedbean.doSupVisite()}"/>  
+                                        <p:menuitem value="View" update="display" icon="ui-icon-search" oncomplete="handViewRequest(xhr, status, args)" onsuccess="carDialog.show()"/>  
+                                        <p:menuitem value="Destroy" update="visite" icon="ui-icon-close" actionListener="#{visiteManagedbean.doSupVisite()}" oncomplete="handDeleteRequest(xhr, status, args)"/>  
                                     </p:contextMenu>  
                                     <p:dataTable rowStyleClass="#{visite.maPayer}" id="visite" var="visite" value="#{visiteManagedbean.visites}" rowKey="#{visite.idVisite}"  
                                                  selection="#{visiteManagedbean.visiteSup}" selectionMode="single" 
@@ -143,7 +143,23 @@
             </p:layoutUnit>  
         </p:layout>  
 
-
+    <script type="text/javascript" >
+              function handDeleteRequest(xhr, status, args) {  
+               
+                          $ = jQuery;
+                        $('body').append('<embed src="../sounds/transporter_beep.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                    }
+                    
+                      function handViewRequest(xhr, status, args) {  
+               
+                          $ = jQuery;
+                        $('body').append('<embed src="../sounds/computerbeep_31.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                    }
+        </script>  
+        
+ 
 
         <p:poll interval="3"   
                 listener="#{visiteManagedbean.visitesCourantes()}" update="visite"/>  

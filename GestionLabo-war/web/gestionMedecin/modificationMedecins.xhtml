@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form>
-        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:growl id="growl" showDetail="true"  life="5000" />  
         <p:layout fullPage="true">  
 
 
@@ -75,22 +75,22 @@
                                                                 </p:column>  
 
                                                                 <p:column    
-                                                                    style="width:150px;"  headerText="CIN"  sortBy="#{l.cin}">  
+                                                                    style="width:150px;"  headerText="Specialite"  sortBy="#{l.specialite}">  
 
-                                                                    <p:inputMask style="width:150px;" value="#{l.cin}" mask="99-99-99-99" />  
+                                                                    <p:inputText style="width:150px;" value="#{l.specialite}" />  
                                                                 </p:column>  
 
 
                                                                 <p:column style="width:150px;" 
-                                                                          headerText="Téléphone"  sortBy="#{l.telephone}">  
+                                                                          headerText="Phone"  sortBy="#{l.telephone}">  
 
                                                                     <p:inputMask style="width:150px;" value="#{l.telephone}"  mask="99-999-999"/>  
                                                                 </p:column>  
 
                                                                 <p:column          style="width:200px;" 
-                                                                                   headerText="Adresse"  sortBy="#{l.adresse}">  
+                                                                                   headerText="Available"  sortBy="#{l.valable}">  
 
-                                                                    <h:inputText  style="width:200px;" value="#{l.adresse}" />  
+                                                                    <h:inputText  style="width:200px;" value="#{l.valable}" />  
                                                                 </p:column>  
 
 
@@ -105,7 +105,7 @@
                      
                                     <f:facet name="footer">  
                                         <p:spacer width="270" height="20" />
-                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{medecinManagedbean.doModifierMedecin()}" ajax="false" value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{medecinManagedbean.doModifierMedecin()}"  oncomplete="handleUpdateRequest(xhr, status, args)" value="Valider"></p:commandButton>
                                         <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                         <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                     </f:facet>
@@ -125,6 +125,12 @@
 
         </p:layout>  
       
+             <script type="text/javascript" >
+              function handleUpdateRequest(xhr, status, args) {  
+                                     $ = jQuery;
+                        $('body').append('<embed src="../sounds/transferofdatacomplete.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+              }  
+        </script>  
         
      
 
