@@ -13,11 +13,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.persistence.PreUpdate;
 import org.cnss.labCenter.domain.resultat.IResultat;
 import org.cnss.labCenter.domain.visite.IVisite;
 import org.cnss.labCenter.entities.Resultat;
 import org.cnss.labCenter.entities.Visite;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -61,23 +63,52 @@ public class ResultatManagedbean implements Serializable {
         visites = doListerVisite();
     }
 
+    public void doModifierVisiteVerification(ActionEvent actionEvent) {
+
+        RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage msg = null;
+        boolean loggedIn = false;
+        boolean logo = false;
+
+
+        if (visites.get(0).getResultat().getRes() > visites.get(0).getNomenclature().getValeursUsuelles().getvHMax() || visites.get(0).getResultat().getRes() < visites.get(0).getNomenclature().getValeursUsuelles().getvHMin()) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Result Must be Between", visites.get(0).getNomenclature().getValeursUsuelles().getvHMin() + " and " + visites.get(0).getNomenclature().getValeursUsuelles().getvHMax());
+            loggedIn = false;
+
+        } else {
+
+            this.doModifierVisite();
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Result Added", "");
+
+            loggedIn = true;
+            if (i == 0) {
+                logo = false;
+            } else {
+                logo = true;
+            }
+        }
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        context.addCallbackParam("loggedIn", loggedIn);
+        context.addCallbackParam("logo", logo);
+    }
+
     public void doModifierVisite() {
 
         i++;
         converstionVisualisation();
 
-            for (Visite visite : visites) {
-                iVisite.modifierVisite(visite);
-            }
+        for (Visite visite : visites) {
+            iVisite.modifierVisite(visite);
+        }
 
-            if (i == y) {
-                i = 0;
-                selectedVisite = new Visite();
-            }
+        if (i == y) {
+            i = 0;
+            selectedVisite = new Visite();
+        }
 
-            visites = new ArrayList<Visite>();
-
-
+        visites = new ArrayList<Visite>();
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Result Added", "");
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
     }
 
     public List<Visite> doListerVisite() {

@@ -16,7 +16,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.persistence.PrePersist;
 import org.cnss.labCenter.domain.nomenclature.INomenclature;
 import org.cnss.labCenter.domain.resultat.IResultat;
 import org.cnss.labCenter.domain.services.IServices;

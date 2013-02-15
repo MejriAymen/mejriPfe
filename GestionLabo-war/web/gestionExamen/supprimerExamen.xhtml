@@ -63,7 +63,7 @@
                                 <p:panel  header="" style="text-align: center;width: 1000px; font-size: 15px; color: #ff96c8 ">
                                     <p:contextMenu for="visite">  
                                         <p:menuitem value="View" update="display" icon="ui-icon-search" oncomplete="handViewRequest(xhr, status, args)" onsuccess="carDialog.show()"/>  
-                                        <p:menuitem value="Destroy" update="visite" icon="ui-icon-close" actionListener="#{visiteManagedbean.doSupVisite()}" oncomplete="handDeleteRequest(xhr, status, args)"/>  
+                                        <p:menuitem id="showDialogButton" value="Destroy" update="visite" icon="ui-icon-close"  onclick="confirmation.show()" oncomplete="handDeleteConfirmDialogRequest(xhr, status, args)"/>  
                                     </p:contextMenu>  
                                     <p:dataTable rowStyleClass="#{visite.maPayer}" id="visite" var="visite" value="#{visiteManagedbean.visites}" rowKey="#{visite.idVisite}"  
                                                  selection="#{visiteManagedbean.visiteSup}" selectionMode="single" 
@@ -143,14 +143,32 @@
             </p:layoutUnit>  
         </p:layout>  
 
+        <p:confirmDialog  id="confirmDialog" message="Are you sure about destroying this Exam?"  
+                header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+                  
+            <p:spacer height="1" width="50"/>  <p:commandButton id="confirm" value="Yes Sure" update="growl" oncomplete="handDeleteRequest(xhr, status, args)" onclick="confirmation.hide()"  
+                    actionListener="#{visiteManagedbean.doSupVisite()}" />  
+       <p:spacer height="1" width="50"/> <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+                  
+    </p:confirmDialog>  
+        
     <script type="text/javascript" >
-              function handDeleteRequest(xhr, status, args) {  
+              function handDeleteConfirmDialogRequest(xhr, status, args) {  
                
                           $ = jQuery;
                         $('body').append('<embed src="../sounds/transporter_beep.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                          $('body').append('<embed src="../sounds/authorisationrequired_ep.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
                   
                     }
                     
+                    
+                     function handDeleteRequest(xhr, status, args) {  
+               
+                          $ = jQuery;
+                        $('body').append('<embed src="../sounds/COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                          $('body').append('<embed src="../sounds/delete.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                    }
                       function handViewRequest(xhr, status, args) {  
                
                           $ = jQuery;

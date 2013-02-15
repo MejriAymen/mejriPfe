@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form id="form">
-        <p:growl id="growl" showDetail="true"  life="500"/>  
+        <p:growl id="growl" showDetail="true"  life="5000"/>  
         <p:layout fullPage="true">  
 
 
@@ -51,7 +51,8 @@
                             <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Result Management" style="text-align: left;width: 60%; height: 50%; font-size: 15px;">  
 
 
-                                <h:outputText style="color: red"  value="N° Visite "/>  
+                                <h:outputText style="color: red"  value="N° Visite "/>
+
                                 <p:autoComplete  id="rio"  value="#{resultatManagedbean.selectedVisite}"   
                                                  completeMethod="#{visiteManagedbean.completeVisite}"  
                                                  var="p" itemLabel="#{p.numVis}" itemValue="#{p}" converter="visite" forceSelection="true">  
@@ -129,7 +130,7 @@
                                     </h:panelGrid>  
 
                                 </p:panel> 
-                                <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisite()}" ajax="false"   value="Valider"/>
+                                <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisiteVerification}" oncomplete="handAddResultConfirmDialogRequest(xhr, status, args)"  update="growl"  value="Valider"/>
                                 <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                 <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
 
@@ -155,7 +156,40 @@
 
         </p:layout>  
 
-      
+
+        <p:confirmDialog  id="confirmDialog" message="Are you sure about this Exam Value?"  
+                          header="Initiating update process" severity="alert" widgetVar="confirmation">  
+
+            <p:spacer height="1" width="50"/> 
+            <p:commandButton id="confirm" value="Yes Sure" update="growl" ajax="false" onclick="confirmation.hide()"  
+                             actionListener="#{resultatManagedbean.doModifierVisite()}" />  
+            <p:spacer height="1" width="50"/> 
+            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+        </p:confirmDialog>  
+
+        <script type="text/javascript">
+        function handAddResultConfirmDialogRequest(xhr, status, args) {
+                        
+                    if(!args.logo) { 
+                         $('#form\\:rio').empty();  
+                       $('#form\\:basicPojo').empty();
+                         
+                }         
+                        
+            if(!args.loggedIn) {   
+            $ = jQuery;
+            confirmation.show();
+            
+            $('body').append('<embed src="../sounds/warning.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+            }
+            else{
+             $('#form\\:basicPojo').fadeOut();
+        }
+    }
+        </script>  
+
+
 
         <p:poll interval="1"   
                 listener="#{resultatManagedbean.retournerNompreCourant()}" update="a"/>
