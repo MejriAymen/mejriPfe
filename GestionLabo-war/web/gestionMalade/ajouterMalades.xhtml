@@ -59,12 +59,12 @@
                                             <p:column colspan="2">
                                                 <h:outputText style="color: #00ff00" value="Nom &amp; Prénom :"/>  
 
-                                                <p:inputText size="15" value="#{maladeManagedbean.malade.nompre}"/> 
+                                                <p:inputText required="true" requiredMessage="Define Patinet First and Last name" size="15" value="#{maladeManagedbean.malade.nompre}"/> 
                                             </p:column>
 
                                             <p:column colspan="4">
                                                 <h:outputText value="Type &amp; Rang Malade :" />  
-                                                <p:autoComplete id="acSimple" value="#{maladeManagedbean.malade.typeMalade}"   
+                                                <p:autoComplete required="true" requiredMessage="Define Patient Type &amp; rank :" id="acSimple" value="#{maladeManagedbean.malade.typeMalade}"   
                                                                 completeMethod="#{maladeManagedbean.complete}"/>  
 
                                             </p:column>
@@ -75,12 +75,12 @@
                                         <p:row>
                                             <p:column colspan="2">
                                                 <h:outputLabel value="Date Naissance :"/>
-                                                <p:inputText size="15" value="#{maladeManagedbean.malade.dateNaissance}"/>
+                                                <p:inputText required="true" requiredMessage="" size="15" value="#{maladeManagedbean.malade.dateNaissance}"/>
                                             </p:column>
 
                                             <p:column colspan="2">
-                                                 <h:outputLabel value="Sexe :"/>
-                                                 <p:selectOneMenu  value="#{maladeManagedbean.malade.sexeMalade}">  
+                                                <h:outputLabel value="Sexe :"/>
+                                                <p:selectOneMenu  value="#{maladeManagedbean.malade.sexeMalade}">  
                                                     <f:selectItem itemLabel="sélectionner un" itemValue="" />  
                                                     <f:selectItem itemLabel="Homme" itemValue="H" />  
                                                     <f:selectItem itemLabel="Femme" itemValue="F" />  
@@ -126,7 +126,7 @@
                                             </p:column>
                                         </p:row>
 
-                                    
+
                                     </p:panelGrid>
                                     <f:facet name="footer">
                                         <h:outputLabel value="N° Dossier Médicale :"></h:outputLabel>
