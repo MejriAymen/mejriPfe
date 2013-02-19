@@ -40,6 +40,9 @@ public class Visite implements Serializable {
     public Visite() {
     }
 
+
+
+    
     @ManyToOne
     public Utilisateurs getUtilisateur() {
         return utilisateur;
@@ -160,4 +163,5 @@ public class Visite implements Serializable {
     public void setMaPayer(float MaPayer) {
         this.MaPayer = MaPayer;
     }
+    
 }

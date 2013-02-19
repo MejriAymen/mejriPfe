@@ -132,7 +132,7 @@
                                 </p:panel> 
                                 <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisiteVerification}" oncomplete="handAddResultConfirmDialogRequest(xhr, status, args)"  update="growl"  value="Valider"/>
                                 <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
+                                <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus" onclick="carDialog.show()" actionListener="#{resultatManagedbean}"  value="Abondonner"/>
 
                                 <p:spacer width="20" height="2"/>
                                 <h:outputText value="N° Dossier : "/>  
@@ -157,6 +157,84 @@
         </p:layout>  
 
 
+        <p:dialog  position="970,0" style="font-size: 17px;" header="EXAMEN BACTERIOLOGIQUE DES URINES" widgetVar="carDialog" resizable="false" showEffect="shake" hideEffect="fold" id="carDialog">  
+
+        <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Nomenclature" style="text-align: center;width: 42%; height: 50%; font-size: 15px;">  
+                                <p:panel header="" style=" font-size: 15px;color: #ff96c8;">
+
+                                    <p:panelGrid style="width:1000px; border: black;">  
+                                        <p:row>
+
+                                            <p:column>
+                                                <h:outputText style="color: #00ff00" value="Analyse " /> 
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{resultatManagedbean.resultatECBU.leucocytes}" />  
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputText value="Abréviation " />  
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{resultatManagedbean.resultatECBU.hematies}" />  
+                                            </p:column>
+
+
+                                            <p:column>
+                                                <h:outputLabel value="Valeur "></h:outputLabel>
+                                                <h:outputLabel style="color: red" value="APB "></h:outputLabel>
+                                                <h:outputText style="color: #ff96c8;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{resultatManagedbean.resultatECBU.cellieH}"> </p:inputText>                                              
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputLabel value="Valeur "></h:outputLabel>   
+                                                <h:outputLabel style="color: red" value="B "></h:outputLabel>
+                                                <h:outputText style="color: #ffffff;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{resultatManagedbean.resultatECBU.culture}"></p:inputText>                                                
+                                            </p:column>
+
+                                        </p:row>
+
+
+                                        <p:row>
+
+
+                                            <p:column>
+                                                <h:outputText value="Code "/> 
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{resultatManagedbean.resultatECBU.gerIsole}"/>  
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputLabel value="Type De Prélèvement "></h:outputLabel>
+                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                                                <p:inputText value="#{resultatManagedbean.resultatECBU.denombrement}"></p:inputText>  
+                                            </p:column>
+
+                                              
+
+                                        </p:row>
+
+                                  
+
+                                    </p:panelGrid>  
+
+                                    <f:facet name="footer"> 
+                                        <p:spacer width="30" height="20" />
+                                        <p:commandButton style="color: yellow; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.showPartie()}" ajax="false" value="Valider"/>
+                                        <p:commandButton style="color: #ff96c8; font-size:14px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                        <p:commandButton style="color: greenyellow; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.showPartie()}" value="Abondonner"/>
+                                    </f:facet>
+
+                                </p:panel>  
+
+                            </p:fieldset>
+
+            <p:effect type="shake" event="click" />  
+
+        </p:dialog>  
+
+
+
         <p:confirmDialog  id="confirmDialog" message="Are you sure about this Exam Value?"  
                           header="Initiating update process" severity="alert" widgetVar="confirmation">  
 
@@ -175,7 +253,9 @@
                          $('#form\\:rio').empty();  
                        $('#form\\:basicPojo').empty();
                          
-                }         
+                }  
+                
+                  
                         
             if(!args.loggedIn) {   
             $ = jQuery;

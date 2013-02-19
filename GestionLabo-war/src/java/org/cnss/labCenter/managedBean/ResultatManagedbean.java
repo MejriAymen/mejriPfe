@@ -16,8 +16,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.PreUpdate;
 import org.cnss.labCenter.domain.resultat.IResultat;
+import org.cnss.labCenter.domain.resultatECBU.IResultatECBU;
 import org.cnss.labCenter.domain.visite.IVisite;
 import org.cnss.labCenter.entities.Resultat;
+import org.cnss.labCenter.entities.ResultatECBU;
 import org.cnss.labCenter.entities.Visite;
 import org.primefaces.context.RequestContext;
 
@@ -34,17 +36,21 @@ public class ResultatManagedbean implements Serializable {
     int y = 0;
     List<Visite> visites;
     Resultat result;
+    ResultatECBU resultatECBU;
     List<Resultat> resultats;
     @EJB
     IVisite iVisite;
     @EJB
     IResultat iResultat;
+    @EJB
+    IResultatECBU iResultatECBU;
 
     public ResultatManagedbean() {
         selectedVisite = new Visite();
         visites = new ArrayList<Visite>();
         result = new Resultat();
         resultats = new ArrayList<Resultat>();
+        resultatECBU = new ResultatECBU();
 
     }
 
@@ -90,6 +96,18 @@ public class ResultatManagedbean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("loggedIn", loggedIn);
         context.addCallbackParam("logo", logo);
+    }
+
+    public void showPartie() {
+
+        if ("ECBU".equals(visites.get(0).getNomenclature().getAbreviation())) {
+            iVisite.VisiteConverter(visites.get(0).getIdVisite());
+            visites.get(0).getResultat().setResultatECBU(resultatECBU);
+            resultatECBU.setResultat(iVisite.VisiteConverter(visites.get(0).getIdVisite()).getResultat());
+            iResultatECBU.ajouterResultat(resultatECBU);
+
+        }
+
     }
 
     public void doModifierVisite() {
@@ -221,5 +239,21 @@ public class ResultatManagedbean implements Serializable {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public IResultatECBU getiResultatECBU() {
+        return iResultatECBU;
+    }
+
+    public void setiResultatECBU(IResultatECBU iResultatECBU) {
+        this.iResultatECBU = iResultatECBU;
+    }
+
+    public ResultatECBU getResultatECBU() {
+        return resultatECBU;
+    }
+
+    public void setResultatECBU(ResultatECBU resultatECBU) {
+        this.resultatECBU = resultatECBU;
     }
 }

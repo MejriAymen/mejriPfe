@@ -6,7 +6,7 @@ package org.cnss.labCenter.domain.Utilisateur;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.cnss.labCenter.entities.Utilisateurs;
@@ -15,7 +15,7 @@ import org.cnss.labCenter.entities.Utilisateurs;
  *
  * @author Administrateur
  */
-@Stateless
+@Stateful
 public class UtilisateurServices implements IUtilisateur, Serializable {
 
     @PersistenceContext(unitName = "lab")
