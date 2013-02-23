@@ -48,7 +48,7 @@
                     <p:row >
 
                         <p:column  style="width: 40%;background-color: #ffffff;border: hidden">
-                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Result Management" style="text-align: left;width: 60%; height: 50%; font-size: 15px;">  
+                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Result Management" style="text-align: left;width: 100%; height: 50%; font-size: 15px;">  
 
 
                                 <h:outputText style="color: red"  value="N° Visite "/>
@@ -64,16 +64,24 @@
                                     </f:facet>  
 
                                 </p:autoComplete>
-                                <p:spacer width="20" height="2"/>
-                                <h:outputText  style="color: turquoise"  value="Nom&amp;Prénom :"/>  
-                                <h:outputLabel id="a" style="width: 100px;"   value="#{resultatManagedbean.selectedVisite.dossierMedicale.malade.nompre}"/> 
+                                <p:spacer width="25" height="2"/>
+                                <h:outputText  style="color: #00ff00"  value="Nom&amp;Prénom :"/>  
+                                <h:outputLabel id="a" style="width: 100px; color: cornflowerblue"   value="#{resultatManagedbean.selectedVisite.dossierMedicale.malade.nompre}"/> 
+
+                                <p:spacer width="25" height="2"/>
+                                <h:outputText style="color: #00ff00" value="N° Dossier : "/>  
+                                <h:outputLabel id="b" style="width: 100px;color: cornflowerblue" value="#{resultatManagedbean.selectedVisite.dossierMedicale.numDoss}"/>  
+                                <p:spacer width="25" height="2"/>
+
+                                <h:outputText value="Date Prélèvement : "/>  
+                                <h:outputLabel id="ac" style="width: 100px;color: blue" value="#"/>  
 
 
-                                <p:panel  header="Analyses Demandées" style="width: 1100px; font-size: 15px; color: #ff96c8 ">
+                                <p:panel  header="Analyses Demandées" style="width: 1050px; font-size: 15px; color: #ff96c8 ">
 
                                     <h:panelGrid style="border: black;width: 100%"  columns="6">  
 
-                                        <p:sheet id="basicPojo"  style=" font-size: 16px;font-family:serif;font-style: italic" value="#{resultatManagedbean.visites}" var="l" scrollHeight="150">  
+                                        <p:sheet id="basicPojo"  style=" font-size: 16px;font-family:serif;font-style: italic" value="#{resultatManagedbean.visites}" var="l" scrollHeight="100">  
                                             <p:column  
                                                 style="width:170px; color: deepskyblue"  headerText="Examen"  sortBy="#{l.nomenclature.analyse}">  
 
@@ -122,31 +130,20 @@
 
                                         </p:sheet>  
 
-                                        <f:facet name="footer">  
 
-
-
-                                        </f:facet>
                                     </h:panelGrid>  
 
                                 </p:panel> 
+
+                                <p:spacer width="320" height="1"/>
                                 <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisiteVerification}" oncomplete="handAddResultConfirmDialogRequest(xhr, status, args)"  update="growl"  value="Valider"/>
                                 <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus" onclick="carDialog.show()" actionListener="#{resultatManagedbean}"  value="Abondonner"/>
-
-                                <p:spacer width="20" height="2"/>
-                                <h:outputText value="N° Dossier : "/>  
-                                <h:outputLabel id="b" style="width: 100px;color: blue" value="#{resultatManagedbean.selectedVisite.dossierMedicale.numDoss}"/>  
-                                <p:spacer width="20" height="2"/>
-
-                                <h:outputText value="Date Prélèvement : "/>  
-                                <h:outputLabel id="ac" style="width: 100px;color: blue" value="#"/>  
-
+                                <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus" onclick="carDialog.show()"  value="Abondonner"/>
                             </p:fieldset>
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/gR.png" height="300" width="250"/>
+                            <h:graphicImage value="/images/gR.png" height="350" width="220"/>
                         </p:column>
 
                     </p:row>
@@ -157,83 +154,312 @@
         </p:layout>  
 
 
-        <p:dialog  position="970,0" style="font-size: 17px;" header="EXAMEN BACTERIOLOGIQUE DES URINES" widgetVar="carDialog" resizable="false" showEffect="shake" hideEffect="fold" id="carDialog">  
+        <p:dialog width="500" height="590" position="855,0" style="font-size: 16px;" header="EXAMEN BACTERIOLOGIQUE DES- URINES" widgetVar="carDialog" resizable="true" showEffect="shake" hideEffect="fold" id="carDialog">  
 
-        <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Nomenclature" style="text-align: center;width: 42%; height: 50%; font-size: 15px;">  
-                                <p:panel header="" style=" font-size: 15px;color: #ff96c8;">
+            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Nature du prélèvement : Examen cyto bactériologique des urines" style="text-align: center; height: 87%; font-size: 15px;">  
+                <p:panel header="" style="font-size: 15px;color: #ff96c8;">
 
-                                    <p:panelGrid style="width:1000px; border: black;">  
-                                        <p:row>
+                    <h:panelGrid  columns="1"  style="text-align: justify; border: dodgerblue;">  
 
-                                            <p:column>
-                                                <h:outputText style="color: #00ff00" value="Analyse " /> 
-                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
-                                                <p:inputText value="#{resultatManagedbean.resultatECBU.leucocytes}" />  
-                                            </p:column>
+                        <p:row>
+                            <h:outputText style="font-size: 18px;color: #00ff00;text-decoration: underline" value="Cytologie " /> 
+                        </p:row>
 
-                                            <p:column>
-                                                <h:outputText value="Abréviation " />  
-                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
-                                                <p:inputText value="#{resultatManagedbean.resultatECBU.hematies}" />  
-                                            </p:column>
+                        <p:row>
+                            <h:outputText  value="Leucocytes " /> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:spacer width="74" height="1"/>
+                            <p:inputText style="background-attachment: inherit" value="#{resultatManagedbean.resultatECBU.leucocytes}" />  
+                            <h:outputText style="color: red;font-size: 16px" value=" /ml"/>   
+                        </p:row>
 
+                        <p:row>
 
-                                            <p:column>
-                                                <h:outputLabel value="Valeur "></h:outputLabel>
-                                                <h:outputLabel style="color: red" value="APB "></h:outputLabel>
-                                                <h:outputText style="color: #ff96c8;font-size: 20px" value=" :"/>   
-                                                <p:inputText value="#{resultatManagedbean.resultatECBU.cellieH}"> </p:inputText>                                              
-                                            </p:column>
-
-                                            <p:column>
-                                                <h:outputLabel value="Valeur "></h:outputLabel>   
-                                                <h:outputLabel style="color: red" value="B "></h:outputLabel>
-                                                <h:outputText style="color: #ffffff;font-size: 20px" value=" :"/>   
-                                                <p:inputText value="#{resultatManagedbean.resultatECBU.culture}"></p:inputText>                                                
-                                            </p:column>
-
-                                        </p:row>
+                            <h:outputText value="Hématies " />  
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:spacer width="79" height="1"/>
+                            <p:inputText value="#{resultatManagedbean.resultatECBU.hematies}" /> 
+                            <h:outputText style="color: red;font-size: 16px" value=" /ml"/>   
+                        </p:row>
 
 
-                                        <p:row>
+                        <p:row>
+                            <h:outputLabel value="Cellules "/>
+                            <h:outputLabel style="color: #ffffff" value="&Eacute;pithéliales "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>
+                            <p:spacer width="14" height="1"/>
+                            <p:inputText value="#{resultatManagedbean.resultatECBU.cellieH}"/>                                       
+                        </p:row>
+
+                        <p:row>
+
+                            <h:outputLabel style="text-decoration: underline;color: #00ff00;font-size: 18px" value="Examen Direct "/>
+                        </p:row>
 
 
-                                            <p:column>
-                                                <h:outputText value="Code "/> 
-                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
-                                                <p:inputText value="#{resultatManagedbean.resultatECBU.gerIsole}"/>  
-                                            </p:column>
 
-                                            <p:column>
-                                                <h:outputLabel value="Type De Prélèvement "></h:outputLabel>
-                                                <h:outputText style="color: red;font-size: 20px" value=" :"/>   
-                                                <p:inputText value="#{resultatManagedbean.resultatECBU.denombrement}"></p:inputText>  
-                                            </p:column>
+                        <p:row>
+                            <h:outputLabel value="Culture "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:spacer width="94" height="1"/>
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.culture}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Positif" itemValue="Positif" />  
+                                <f:selectItem itemLabel="Négatif" itemValue="Negatif" />  
+                            </p:selectOneMenu> 
+                        </p:row>
 
-                                              
 
-                                        </p:row>
 
-                                  
 
-                                    </p:panelGrid>  
+                        <p:row>
+                            <h:outputText value="Germe Isolé "/> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/> 
+                            <p:spacer width="60" height="1"/>
+                            <p:inputText value="#{resultatManagedbean.resultatECBU.gerIsole}"/>  
+                        </p:row>
 
-                                    <f:facet name="footer"> 
-                                        <p:spacer width="30" height="20" />
-                                        <p:commandButton style="color: yellow; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.showPartie()}" ajax="false" value="Valider"/>
-                                        <p:commandButton style="color: #ff96c8; font-size:14px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                        <p:commandButton style="color: greenyellow; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.showPartie()}" value="Abondonner"/>
-                                    </f:facet>
+                        <p:row>
+                            <h:outputLabel value="Dénombrement "></h:outputLabel>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/> 
+                            <p:spacer width="35" height="1"/>
+                            <p:inputText value="#{resultatManagedbean.resultatECBU.denombrement}"/>  
+                        </p:row>
 
-                                </p:panel>  
 
-                            </p:fieldset>
 
-            <p:effect type="shake" event="click" />  
+                    </h:panelGrid>  
+
+                    <f:facet name="footer"> 
+                        <p:spacer width="10" height="20" />
+                        <p:commandButton style="color: yellow; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.showPartie()}" ajax="false" value="Valider"/>
+                        <p:commandButton style="color: #ff96c8; font-size:14px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                        <p:commandButton style="color: greenyellow; font-size:14px " icon="ui-icon-circle-plus" onclick="carDialogo.show()" oncomplete="carDialog.hide()" value="Abondonner"/>
+                    </f:facet>
+
+                </p:panel>  
+
+            </p:fieldset>
+
+
 
         </p:dialog>  
 
 
+        <p:dialog width="1200" onHide="carDialog.hide()"  position="0,0" style="text-align: center;font-size: 18px;" widgetVar="carDialogo" resizable="false" showEffect="shake" hideEffect="fold" id="carDialogo">  
+
+          
+                <p:panel header="ANTIBIOGRAMME" style="width: 60%;text-align: justify; font-size: 16px;color: #ff96c8;">
+
+                    <p:panelGrid columns="4"  style="width:890px; border: black;">  
+
+                        <p:row>
+                            <h:outputText style="color: #00ff00" value="AMOXICILLINE (Amoxil-Hiconcil) " /> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res1}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputText value="AMOXICILLINE +AC CLAVULANIQUE " />  
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res2}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+                        </p:row>
+
+
+                        <p:row>
+                            <h:outputLabel value="PIPERACILLINE "/>
+                            <h:outputText style="color: #ff96c8;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res3}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+                        </p:row>
+
+                        <p:row>
+                            <h:outputLabel value="CEFALOTINE "/>  
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res4}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+
+
+
+                        <p:row>
+                            <h:outputText value="CEFUROXIME "/> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res5}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputLabel value="CEFALO 3è GEN orale CEFIXIME "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res6}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputText value="CEFTRIAXONE "/> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res7}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputLabel value="AMIKACINE "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res8}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputText value="NETELMICINE "/> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res9}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputLabel value="GENTAMICINE "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res10}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputText value="ACIDE NALIDIXIQUE "/> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res11}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputLabel value="NORFLOXACINE "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res12}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputText value="CIPROFLOXACINE "/> 
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res13}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+                        <p:row>
+                            <h:outputLabel value="NITROFURANES "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res14}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+
+                        <p:row>
+                            <h:outputLabel value="TRIMETHOPRIME+SULFAMETHOXAZOLE "/>
+                            <h:outputText style="color: red;font-size: 20px" value=" :"/>   
+                            <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res15}">  
+                                <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                <f:selectItem itemLabel="Sensible" itemValue="S" />  
+                                <f:selectItem itemLabel="Résistant" itemValue="R" />  
+                                <f:selectItem itemLabel="Intermédiaire" itemValue="I" />  
+                                <f:selectItem itemLabel="Limité" itemValue="L" />  
+                            </p:selectOneMenu> 
+
+                        </p:row>
+
+
+
+                    </p:panelGrid>  
+
+
+                </p:panel>  
+            <p:effect type="shake" event="click" />  
+
+        </p:dialog>  
 
         <p:confirmDialog  id="confirmDialog" message="Are you sure about this Exam Value?"  
                           header="Initiating update process" severity="alert" widgetVar="confirmation">  
