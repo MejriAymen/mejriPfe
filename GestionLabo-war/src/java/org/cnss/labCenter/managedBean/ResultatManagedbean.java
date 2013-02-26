@@ -105,7 +105,8 @@ public class ResultatManagedbean implements Serializable {
             visites.get(0).getResultat().setResultatECBU(resultatECBU);
             resultatECBU.setResultat(iVisite.VisiteConverter(visites.get(0).getIdVisite()).getResultat());
             iResultatECBU.ajouterResultat(resultatECBU);
-
+            i++;
+            resultatECBU = new ResultatECBU();
         }
 
     }
@@ -114,9 +115,14 @@ public class ResultatManagedbean implements Serializable {
 
         i++;
         converstionVisualisation();
+        i++;
+        converstionVisualisation();
+
+        
 
         for (Visite visite : visites) {
             iVisite.modifierVisite(visite);
+
         }
 
         if (i == y) {
@@ -256,4 +262,6 @@ public class ResultatManagedbean implements Serializable {
     public void setResultatECBU(ResultatECBU resultatECBU) {
         this.resultatECBU = resultatECBU;
     }
+
+    
 }
