@@ -31,15 +31,14 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
-                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                            <p:tabMenu style="font-size: 18px" activeIndex="2" >  
+                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterAssure.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" url="modificationAssure.xhtml"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerAssure.xhtml" icon="ui-icon-trash"/>  
                                 <p:menuitem  value="lister" url="listeAssure.xhtml"  icon="ui-icon-document"/>  
                                 <p:menuitem  value="Gestion Malade" url="/gestionMalade/authentificationMalades.xhtml"   icon="ui-icon-folder-open"/>  
                                 <p:menuitem  value="Gestion Convention" url="/gestionConvention/authentficationrConventions.xhtml"  icon="ui-icon-folder-collapsed"/> 
-
 
 
                             </p:tabMenu> 
@@ -51,24 +50,37 @@
 
                     <p:row>
 
-                        <p:column style="width: 60%;background-color: #ffffff;border: hidden">
-                            <p:fieldset id="lo" toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Des Assurés" style="width: 42%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 17px;">  
-                                <p:panel header="" style="width: 900px; font-size: 15px;color: #ff96c8;">
-                                    <h:outputLabel style="color: lightsteelblue;font-size: 19px" value="Matricule De L'Assuré "/>
-                                     <h:outputLabel style="color:  red"  value=" : "/>
-                                    <p:inputText style="width: 390px;" value="#{assureManagedbean.assure.matriculeAssure}"/>
-                                    <f:facet name="footer">
-                                        <p:spacer width="280" height="10"/>
-                                        <p:commandButton style="color: navy; font-size:15px " actionListener="#{assureManagedbean.doAjouterAssure()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Médecins" style="text-align: left;width: 42%; height: 50%; font-size: 18px;">  
+
+                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
+                                                                                              
+                                                
+                                    <p:sheet id="basicPojo"  style=" font-size: 18px;font-family:serif;font-style: italic" value="#{assureManagedbean.assureMod}" var="l" scrollHeight="150">  
+
+
+                                                                <p:column  
+                                                                    style="width:200px; color: deepskyblue"  headerText="Matricule Assuré"  sortBy="#{l.matriculeAssure}">  
+
+                                                                    <h:inputText style="width:180px;" value="#{l.matriculeAssure}" />  
+                                                                </p:column>  
+
+                                                            </p:sheet>  
+                   
+                                    <f:facet name="footer">  
+                                        <p:spacer width="270" height="20" />
+                                        <p:commandButton style="cursor: wait;color: navy; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{assureManagedbean.doModifierAssure()}"  oncomplete="handleUpdateRequest(xhr, status, args)" value="Valider"/>
                                         <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                         <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
                                     </f:facet>
                                 </p:panel>  
+
                             </p:fieldset>
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/gab.png" height="390" width="300"/>
+                            <h:graphicImage value="/images/gM.png" height="340" width="260"/>
                         </p:column>
 
                     </p:row>
@@ -77,7 +89,15 @@
             </p:layoutUnit>  
 
         </p:layout>  
-
+      
+             <script type="text/javascript" >
+              function handleUpdateRequest(xhr, status, args) {  
+                                     $ = jQuery;
+                        $('body').append('<embed src="../sounds/transferofdatacomplete.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+              }  
+        </script>  
+        
+    
     </h:form>
 
 </html>

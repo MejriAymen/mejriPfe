@@ -34,8 +34,10 @@ import org.primefaces.context.RequestContext;
 @SessionScoped
 public class UtulisateurManagedbean implements Serializable {
 
+
     private Utilisateurs cs;
     int i;
+   
     private List<Utilisateurs> utilisateurses;
     private String pass;
     private Secretaire secretaire;
@@ -46,6 +48,19 @@ public class UtulisateurManagedbean implements Serializable {
     private List<Biologiste> biologistes;
     private List<ChefService> chefServices;
     private List<SousChefService> sousChefServices;
+    
+      private List<Secretaire> secretairesM;
+    private List<Biologiste> biologistesM;
+    private List<ChefService> chefServicesM;
+    private List<SousChefService> sousChefServicesM;
+    
+    
+      private List<Secretaire> secretairesS;
+    private List<Biologiste> biologistesS;
+    private List<ChefService> chefServicesS;
+    private List<SousChefService> sousChefServicesS;
+    
+    
     @EJB
     IUtilisateur iProgramme;
     @EJB
@@ -98,7 +113,24 @@ public class UtulisateurManagedbean implements Serializable {
     public List<ChefService> doListerChefService() {
         return iChefService.listeChefService();
     }
+    
+    
+    public void doSupprimerChefService(){
+    iChefService.supprimerChefService(chefService);
+    }
+    
+    public void doSupprimerSousChefServie(){
+    iSousChefService.supprimerSousChefService(sousChefService);
+    }
+    
+    public void doSupprimerBiologiste(){
+    iBiologiste.supprimerBiologiste(biologiste);
+    }
 
+    public void doSupprimerSecretaire(){
+    iSecretaire.supprimerSecretaire(secretaire);
+    }
+    
     public void utilisateursCourant() {
         utilisateurses = this.doListerUtilisateurs();
     }
@@ -129,6 +161,8 @@ public class UtulisateurManagedbean implements Serializable {
             sousChefService=new SousChefService();
         }
     }
+
+   
 
     public void doAjouterChefService() {
         if (chefService != null) {
@@ -173,11 +207,12 @@ public class UtulisateurManagedbean implements Serializable {
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "programme bloqué", "pour des raisons de sécurité");
                log = false;
-        }
+        }    
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("loggedIn", loggedIn);
         context.addCallbackParam("log", log);
+    
     }
 
     public IUtilisateur getiProgramme() {
@@ -208,32 +243,36 @@ public class UtulisateurManagedbean implements Serializable {
         return iSecretaire;
     }
 
-    public void setiSecretaire(ISecretaire iSecretaire) {
-        this.iSecretaire = iSecretaire;
+    public Biologiste getBiologiste() {
+        return biologiste;
     }
 
-    public ISousChefService getiSousChefService() {
-        return iSousChefService;
+    public void setBiologiste(Biologiste biologiste) {
+        this.biologiste = biologiste;
     }
 
-    public void setiSousChefService(ISousChefService iSousChefService) {
-        this.iSousChefService = iSousChefService;
+    public List<Biologiste> getBiologistes() {
+        return biologistes;
     }
 
-    public String getPass() {
-        return pass;
+    public void setBiologistes(List<Biologiste> biologistes) {
+        this.biologistes = biologistes;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public ChefService getChefService() {
+        return chefService;
     }
 
-    public List<Utilisateurs> getUtilisateurses() {
-        return utilisateurses;
+    public void setChefService(ChefService chefService) {
+        this.chefService = chefService;
     }
 
-    public void setUtilisateurses(List<Utilisateurs> utilisateurses) {
-        this.utilisateurses = utilisateurses;
+    public List<ChefService> getChefServices() {
+        return chefServices;
+    }
+
+    public void setChefServices(List<ChefService> chefServices) {
+        this.chefServices = chefServices;
     }
 
     public Utilisateurs getCs() {
@@ -252,20 +291,20 @@ public class UtulisateurManagedbean implements Serializable {
         this.i = i;
     }
 
-    public Biologiste getBiologiste() {
-        return biologiste;
+    public ISousChefService getiSousChefService() {
+        return iSousChefService;
     }
 
-    public void setBiologiste(Biologiste biologiste) {
-        this.biologiste = biologiste;
+    public void setiSousChefService(ISousChefService iSousChefService) {
+        this.iSousChefService = iSousChefService;
     }
 
-    public ChefService getChefService() {
-        return chefService;
+    public String getPass() {
+        return pass;
     }
 
-    public void setChefService(ChefService chefService) {
-        this.chefService = chefService;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public Secretaire getSecretaire() {
@@ -276,36 +315,20 @@ public class UtulisateurManagedbean implements Serializable {
         this.secretaire = secretaire;
     }
 
-    public SousChefService getSousChefService() {
-        return sousChefService;
-    }
-
-    public void setSousChefService(SousChefService sousChefService) {
-        this.sousChefService = sousChefService;
-    }
-
-    public List<Biologiste> getBiologistes() {
-        return biologistes;
-    }
-
-    public void setBiologistes(List<Biologiste> biologistes) {
-        this.biologistes = biologistes;
-    }
-
-    public List<ChefService> getChefServices() {
-        return chefServices;
-    }
-
-    public void setChefServices(List<ChefService> chefServices) {
-        this.chefServices = chefServices;
-    }
-
     public List<Secretaire> getSecretaires() {
         return secretaires;
     }
 
     public void setSecretaires(List<Secretaire> secretaires) {
         this.secretaires = secretaires;
+    }
+
+    public SousChefService getSousChefService() {
+        return sousChefService;
+    }
+
+    public void setSousChefService(SousChefService sousChefService) {
+        this.sousChefService = sousChefService;
     }
 
     public List<SousChefService> getSousChefServices() {
@@ -315,4 +338,16 @@ public class UtulisateurManagedbean implements Serializable {
     public void setSousChefServices(List<SousChefService> sousChefServices) {
         this.sousChefServices = sousChefServices;
     }
-}
+
+    public List<Utilisateurs> getUtilisateurses() {
+        return utilisateurses;
+    }
+
+    public void setUtilisateurses(List<Utilisateurs> utilisateurses) {
+        this.utilisateurses = utilisateurses;
+    }
+
+    
+    
+    }
+

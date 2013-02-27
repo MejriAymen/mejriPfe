@@ -26,17 +26,18 @@
 
             <p:layoutUnit position="center" style=" text-align: center" header="">  
 
-                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black;font-weight: bold;font-variant: small-caps; font-size: 19px;">
                     <p:row>
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
+                            <p:tabMenu style="font-size: 19px;font-weight: bold;font-variant: small-caps;" activeIndex="0" >  
                                 <p:menuitem  value="Accueil" url="/accueilS.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterSousChefService.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
                                 <p:menuitem  value="lister" url="listeSousChefService.xhtml" icon="ui-icon-document"/>  
+                           
                             </p:tabMenu> 
 
                         </p:column>
@@ -48,7 +49,7 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Password Management" style="width: 70%; height: 50%; font-size: 17px;">  
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Password Management" style="width: 70%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 18px;">  
 
 
 
@@ -65,6 +66,7 @@
             </p:layoutUnit>  
 
         </p:layout>  
+        
     <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
@@ -85,6 +87,10 @@
         </p:dialog>  
 
 
+
+        
+
+    
         <script type="text/javascript" >
             function handleLoginRequest(xhr, status, args) {  
                 if(args.validationFailed){
@@ -109,7 +115,6 @@
                 }  
             }  
         </script>  
-    
     </h:form>
 
 </html>

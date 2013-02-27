@@ -14,6 +14,7 @@
 
         <h:form id="form">
             <p:growl id="growl" showDetail="true" life="5000"/>  
+
             <p:layout fullPage="true">
 
                 <p:layoutUnit  footer="" header="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 18px" position="north" size="40">  
@@ -137,21 +138,24 @@
                     </p:dialog>  
 
 
-                    <script type="text/javascript" >
-                        function handleLoginRequest(xhr, status, args) {  
-                            if(args.validationFailed){
-                                  $ = jQuery;
-                                  $('body').append('<embed src="sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
-                            }
-                            else if(!args.loggedIn) { 
-                                 $ = jQuery;
-                                 $('body').append('<embed src="sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
-                                 $('body').append('<embed src="sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
-                                 $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
-                                 $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
-                                 $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
-                                 $('#form\\:password').removeAttr('value');
-                            } else {  
+                   
+
+            <script type="text/javascript" >
+                function handleLoginRequest(xhr, status, args) {  
+                    if(args.validationFailed){
+                           $ = jQuery;
+                          $('body').append('<embed src="sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                    }
+                    else if(!args.loggedIn) { 
+                            $ = jQuery;
+                          $('body').append('<embed src="sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                             $('body').append('<embed src="sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
+                         $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                          $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                      $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                       $('#form\\:password').removeAttr('value');
+                    } else {  
+
                    
                                  $('body').append('<embed src="sounds/COMPUTER-Authorization Acknowledged.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
                                  dlg.hide(); 

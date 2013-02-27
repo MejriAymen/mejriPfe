@@ -17,5 +17,9 @@ public interface IBiologiste {
 
     public void ajouterBiologiste(Biologiste u);
 
+    public void supprimerBiologiste(Biologiste biologiste);
+
+    public void modifierBiologiste(Biologiste biologiste);
+
     public List<Biologiste> listeBiologiste();
 }

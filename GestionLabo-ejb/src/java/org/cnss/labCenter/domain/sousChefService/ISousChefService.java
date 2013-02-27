@@ -6,7 +6,6 @@ package org.cnss.labCenter.domain.sousChefService;
 
 import java.util.List;
 import javax.ejb.Local;
-
 import org.cnss.labCenter.entities.SousChefService;
 
 /**
@@ -16,7 +15,11 @@ import org.cnss.labCenter.entities.SousChefService;
 @Local
 public interface ISousChefService {
 
-    public void ajouterSousChefService(SousChefService u);
+    public void ajouterSousChefService(SousChefService sousChefService);
+
+    public void supprimerSousChefService(SousChefService sousChefService);
+
+    public void modifierSousChefService(SousChefService sousChefService);
 
     public List<SousChefService> listeSousChefService();
 }

@@ -33,4 +33,15 @@ public class ChefServiceServices implements IChefService, Serializable {
         return entityManager.createQuery("select c from ChefService c").getResultList();
     }
 
+    @Override
+    public void supprimerChefService(ChefService chefService) {
+        
+       entityManager.remove(entityManager.find(ChefService.class, chefService.getIdutilisateur()));
+    }
+
+    @Override
+    public void modifierChefService(ChefService chefService) {
+        entityManager.merge(chefService);
+    }
+
 }

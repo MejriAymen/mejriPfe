@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true"  life="5000" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="3" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterAssure.xhtml"  icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier" url="modificationAssure.xhtml"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire" url="supprimerAssure.xhtml" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="lister" url="listeAssure.xhtml"  icon="ui-icon-document"/>  
+                                <p:menuitem  value="Gestion Malade" url="/gestionMalade/authentificationMalades.xhtml"   icon="ui-icon-folder-open"/>  
+                                <p:menuitem  value="Gestion Convention" url="/gestionConvention/authentficationrConventions.xhtml"  icon="ui-icon-folder-collapsed"/> 
+
+
+                            </p:tabMenu> 
+
+                        </p:column>
+
+                    </p:row>
+
+                    <p:row>
+                        <p:column style="width: 40%;background-color: #ffffff;border: hidden">
+                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Visites" style="width: 42%; height: 50%; font-size: 15px;">  
+
+
+                                <p:panel  header="" style="text-align: center;width: 1000px; font-size: 15px; color: #ff96c8 ">
+                                    <p:contextMenu for="visite">  
+
+                                        <p:menuitem id="showDialogButton" value="Détruire" update="visite" icon="ui-icon-close"  onclick="confirmation.show()" oncomplete="handDeleteConfirmDialogRequest(xhr, status, args)"/>  
+                                    </p:contextMenu>  
+                                    <p:dataTable rowStyleClass="#{visite.matriculeAssure}" id="visite" var="visite" value="#{assureManagedbean.assures}" rowKey="#{visite.idAssure}"  
+                                                 selection="#{assureManagedbean.doSupprimerAssure()}" selectionMode="single" 
+                                                 paginator="true" rows="5"  
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                                 rowsPerPageTemplate="5,7,9">  
+
+                                        <p:column headerText="Matricule Assure" filterBy="#{visite.matriculeAssure}"   footerText="Matricule Assure"  >  
+                                            #{visite.matriculeAssure}  
+
+                                        </p:column>  
+
+
+                                    </p:dataTable>   
+
+
+                                </p:panel>
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gV.png" height="370" width="250"/>
+                        </p:column>
+
+                    </p:row>
+                </p:panelGrid>  
+            </p:layoutUnit>  
+        </p:layout>  
+
+        <p:confirmDialog  id="confirmDialog" message="Are you sure about destroying this Exam?"  
+                          header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+
+            <p:spacer height="1" width="50"/> 
+            <p:commandButton id="confirm" value="Yes Sure" update="growl" oncomplete="handDeleteRequest(xhr, status, args)" onclick="confirmation.hide()"  
+                             actionListener="#{assureManagedbean.doSupprimerAssure()}" />  
+            <p:spacer height="1" width="50"/>
+            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+        </p:confirmDialog>  
+
+        <script type="text/javascript" >
+                  function handDeleteConfirmDialogRequest(xhr, status, args) {  
+               
+                              $ = jQuery;
+                            $('body').append('<embed src="../sounds/transporter_beep.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                              $('body').append('<embed src="../sounds/authorisationrequired_ep.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                        }
+                    
+                    
+                         function handDeleteRequest(xhr, status, args) {  
+               
+                              $ = jQuery;
+                            $('body').append('<embed src="../sounds/COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                              $('body').append('<embed src="../sounds/delete.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                        }
+                          function handViewRequest(xhr, status, args) {  
+               
+                              $ = jQuery;
+                            $('body').append('<embed src="../sounds/computerbeep_31.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                        }
+        </script> 
+    </h:form>
+</html>
+

@@ -13,7 +13,7 @@ import org.cnss.labCenter.entities.SousChefService;
 
 /**
  *
- * @author Administrateur
+ * @author Mejri Aymen
  */
 @Stateful
 public class SousCheServieServices implements ISousChefService, Serializable {
@@ -29,5 +29,15 @@ public class SousCheServieServices implements ISousChefService, Serializable {
     @Override
      public List<SousChefService> listeSousChefService() {
         return entityManager.createQuery("select c from SousChefService c").getResultList();
+    }
+
+    @Override
+    public void supprimerSousChefService(SousChefService sousChefService) {
+        entityManager.remove(entityManager.find(SousChefService.class, sousChefService));
+    }
+
+    @Override
+    public void modifierSousChefService(SousChefService sousChefService) {
+        entityManager.merge(sousChefService);
     }
 }

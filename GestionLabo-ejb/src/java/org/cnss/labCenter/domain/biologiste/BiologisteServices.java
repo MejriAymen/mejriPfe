@@ -5,6 +5,7 @@
 package org.cnss.labCenter.domain.biologiste;
 
 import java.io.Serializable;
+
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -30,5 +31,15 @@ public class BiologisteServices implements IBiologiste, Serializable {
     @Override
     public List<Biologiste> listeBiologiste() {
         return entityManager.createQuery("select c from Biologiste c").getResultList();
+    }
+
+    @Override
+    public void supprimerBiologiste(Biologiste biologiste) {
+        entityManager.remove(entityManager.find(Biologiste.class,biologiste.getIdutilisateur()));
+    }
+
+    @Override
+    public void modifierBiologiste(Biologiste biologiste) {
+        entityManager.merge(biologiste);
     }
 }

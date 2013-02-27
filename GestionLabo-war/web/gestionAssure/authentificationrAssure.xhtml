@@ -32,14 +32,14 @@
                         <p:column  colspan="2">
 
                             <p:tabMenu style="font-size: 18px" activeIndex="0" >  
-                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                  <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterAssure.xhtml"  icon="ui-icon-circle-plus"/>  
-                                <p:menuitem  value="Modifier"   icon="ui-icon-pencil"/>  
-                                <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
-                                <p:menuitem  value="lister"   icon="ui-icon-document"/>  
+                                <p:menuitem  value="Modifier" url="modificationAssure.xhtml"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire" url="supprimerAssure.xhtml" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="lister" url="listeAssure.xhtml"  icon="ui-icon-document"/>  
                                 <p:menuitem  value="Gestion Malade" url="/gestionMalade/authentificationMalades.xhtml"   icon="ui-icon-folder-open"/>  
                                 <p:menuitem  value="Gestion Convention" url="/gestionConvention/authentficationrConventions.xhtml"  icon="ui-icon-folder-collapsed"/> 
+
 
 
 
@@ -53,7 +53,11 @@
                     <p:row>
 
                         <p:column style="width: 60%;background-color: #ffffff;border: hidden">
-                            <p:fieldset id="lo" legend="Gestion Des Assurés" style="width: 42%; height: 50%; font-size: 15px;font-weight: bold;font-variant: small-caps; font-size: 18px;">  
+
+                            
+
+                            <p:fieldset id="lo" toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Des Assurés" style="width: 42%; height: 50%; font-size: 15px;font-weight: bold;font-variant: small-caps; font-size: 17px;">  
+
                             
                             </p:fieldset>
                         </p:column>

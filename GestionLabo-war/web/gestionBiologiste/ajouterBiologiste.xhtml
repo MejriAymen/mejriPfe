@@ -31,13 +31,12 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                            <p:tabMenu style="font-weight: bold;font-variant: small-caps; font-size: 19px;" activeIndex="1" >  
                                 <p:menuitem  value="Accueil" url="/accueilS.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterBiologiste.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
-                                <p:menuitem  value="lister" url="listeBiologiste.xhtml" icon="ui-icon-document"/>  
-
+                                <p:menuitem  value="lister" url="listeBiologiste.xhtml" icon="ui-icon-document"/> 
                             </p:tabMenu> 
 
                         </p:column>
@@ -49,11 +48,11 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion De Mot De Passe" style="width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion De Mot De Passe" style="width: 42%; height: 50%; font-weight: bold;font-variant: small-caps; font-size: 18px;">  
 
-                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
+                                <p:panel header="" style="width: 1000px; ">
 
-                                    <p:panelGrid style="border: black">  
+                                    <p:panelGrid style="border: black;font-weight: bold;font-variant: small-caps; font-size: 17px;">  
 
 
 
@@ -92,10 +91,10 @@
                                     </p:panelGrid> 
                                     <f:facet name="footer">  
                                         <p:spacer width="270" height="20" />
-                                        <p:commandButton style="cursor: wait;color: navy; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{utulisateurManagedbean.doAjouterBiologiste()}"  ajax="false" value="Valider"/>
-                                           <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
+                                        <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{utulisateurManagedbean.doAjouterBiologiste()}"  ajax="false" value="Valider"/>
+                                        <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
                                         <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                     
+
                                     </f:facet>
                                 </p:panel>  
 

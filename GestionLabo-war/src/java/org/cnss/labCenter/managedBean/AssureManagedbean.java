@@ -13,7 +13,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.PrePersist;
 import org.cnss.labCenter.domain.assure.IAssure;
 import org.cnss.labCenter.entities.Assure;
 
@@ -50,17 +49,13 @@ public class AssureManagedbean implements Serializable {
         assures = this.doListerAssure();
     }
     
-    @PrePersist
-    public void preInit(){
-    assureL = this.doListerAssure();
-        assureMod = this.doListerAssure();
-        assures = this.doListerAssure();
-    }
+   
 
     public void doAjouterAssure() {
         if (assure != null) {
             iAssure.ajouterAssure(assure);
             ajouterMessageInfo(assure.getMatriculeAssure());
+            init();
             assure = new Assure();
         }
     }
@@ -76,22 +71,18 @@ public class AssureManagedbean implements Serializable {
                 iAssure.modifierAssure(a);
             }
         }
+        init();
     }
 
     public void doSupprimerAssure() {
         iAssure.supprimerAssure(assureS);
-    }
+           }
 
     public List<Assure> doListerAssure() {
         return iAssure.listerAssure();
     }
 
-    public void listeAssureCourant() {
-
-        assureL = this.doListerAssure();
-        assureMod = this.doListerAssure();
-        assures = this.doListerAssure();
-    }
+    
 
     public List<Assure> completerAssure(String query) {
         List<Assure> suggestions = new ArrayList<Assure>();
@@ -160,4 +151,6 @@ public class AssureManagedbean implements Serializable {
     public void setSeledtedAssure(Assure seledtedAssure) {
         this.seledtedAssure = seledtedAssure;
     }
+    
+    
 }

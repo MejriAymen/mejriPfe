@@ -9,7 +9,8 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form>
-        <p:growl id="growl" showDetail="true"  life="5000" />  
+        <p:growl id="growl" showDetail="true"  life="5000" /> 
+    <p:growl id="growl" showDetail="true"  life="5000" />  
         <p:layout fullPage="true">  
 
 
@@ -37,6 +38,7 @@
                                 <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
                                 <p:menuitem  value="lister" url="listeSousChefService.xhtml" icon="ui-icon-document"/> 
+                             
                             </p:tabMenu> 
 
                         </p:column>
@@ -48,15 +50,15 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion De Mot De Passe" style="width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset toggleSpeed="1500"  collapsed="false" toggleable="true" legend="Gestion De Mot De Passe" style="width: 42%; height: 50%; font-weight: bold;font-variant: small-caps; font-size: 18px;">  
 
-                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
-
-
+                                <p:panel header="" footer="" style="width: 1000px">
 
 
 
-                                    <p:dataTable id="basicPojo" style="font-size: 17px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{utulisateurManagedbean.sousChefServices}"
+
+
+                                    <p:dataTable id="basicPojo" style="font-weight: bold;font-variant: small-caps; font-size: 17px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{utulisateurManagedbean.sousChefServices}"
                                                  var="a"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -85,6 +87,38 @@
                                             </f:facet>  
                                         </p:column>  
 
+                                         
+
+                                              
+                                    <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{utulisateurManagedbean.utilisateurses}"
+                         var="a"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                        <p:column filterBy="#{a.nomPre}">    
+
+                    <f:facet name="header">  
+                        Nom &amp; Prénom
+                    </f:facet>  
+                                            <h:outputText value="#{a.nomPre}"  />  
+
+                    <f:facet name="footer">  
+                   Nom &amp; Prénom                                             
+                    </f:facet>  
+                </p:column>  
+
+
+                <p:column filterBy="#{a.code}">    
+
+                    <f:facet name="header">  
+                        Code
+                    </f:facet>  
+                    <h:outputText value="#{a.code}"  />  
+
+                    <f:facet name="footer">  
+                        Code
+                    </f:facet>  
+                </p:column>  
+
 
                                         <p:column filterBy="#{a.motPass}">    
 
@@ -108,7 +142,17 @@
                                         <p:graphicImage value="/images/ajax-loader.gif"/>  
                                     </p:blockUI>                                              
 
+              
 
+
+            </p:dataTable>
+                                         
+                                 <p:blockUI block="basicPojo" trigger="basicPojo">  
+        
+        <p:graphicImage value="/images/ajax-loader.gif"/>  
+    </p:blockUI>                                              
+
+                                    
                                 </p:panel>  
 
                             </p:fieldset>
@@ -125,7 +169,10 @@
 
         </p:layout>  
 
-   
+         
+
+ <p:poll interval="10"   
+         listener="#{utulisateurManagedbean.utilisateursCourant()}" update="basicPojo"/>
     </h:form>
 
 </html>

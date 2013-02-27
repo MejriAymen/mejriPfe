@@ -16,6 +16,10 @@ import org.cnss.labCenter.entities.Secretaire;
 public interface ISecretaire {
 
     public void ajouterSecretaire(Secretaire u);
+    
+    public void supprimerSecretaire(Secretaire secretaire);
+    
+    public void modifierSecretaire(Secretaire  secretaire);
 
     public List<Secretaire> listeSecretaire();
 }

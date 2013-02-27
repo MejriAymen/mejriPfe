@@ -7,3 +7,5 @@
 /build/
 /dist/
 /nbproject/private/
+/GestionLabo-war/web/Highcharts-2.3.5/exporting-server/php/php-phantomjs/.settings/
+/GestionLabo-war/web/Highstock-1.2.5/exporting-server/php/php-phantomjs/.settings/
