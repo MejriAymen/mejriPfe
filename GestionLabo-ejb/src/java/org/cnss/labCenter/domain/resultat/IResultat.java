@@ -21,6 +21,8 @@ public interface IResultat {
     
     public Resultat find(Resultat resultat);
 
+    public void supprimerResultat(int nls);
+
 
   
 }

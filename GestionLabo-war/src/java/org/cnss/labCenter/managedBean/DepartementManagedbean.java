@@ -54,6 +54,9 @@ public class DepartementManagedbean implements Serializable {
     public void doAjouterService() {
         if (service != null) {
             iServiceLab.ajouterService(service);
+            servicesL = doListerService();
+            services= doListerService();
+            serviceMod = doListerService();
             ajouterMessageInfo(service.getNom());
             service = new Departement();
         }

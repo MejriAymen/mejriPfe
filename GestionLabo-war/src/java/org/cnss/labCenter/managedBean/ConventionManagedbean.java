@@ -13,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.PrePersist;
 import org.cnss.labCenter.domain.convention.IConvention;
 import org.cnss.labCenter.entities.Convention;
 
@@ -26,7 +27,7 @@ public class ConventionManagedbean implements Serializable {
 
     Convention convention;
     Convention selectConvention;
-     Convention selectConventionV;
+    Convention selectConventionV;
     List<Convention> conventions;
     List<Convention> conventionsM;
     @EJB
@@ -51,6 +52,8 @@ public class ConventionManagedbean implements Serializable {
     public void doAjouterConvention() {
         if (convention != null) {
             iConvention.ajouterConvention(convention);
+            conventionsM = this.doListerConvention();
+            conventions = this.doListerConvention();
             ajouterMessageInfo("Analyse : " + convention.getOrganisme());
             convention = new Convention();
 
@@ -67,29 +70,30 @@ public class ConventionManagedbean implements Serializable {
         return iConvention.listeConvention();
     }
 
-    public void doSupprimerConvention(){
-    
-    iConvention.supprimerConvention(selectConvention);
-    
+    public void doSupprimerConvention() {
+
+        iConvention.supprimerConvention(selectConvention.getIdConvention());
+
     }
-    
-    
-    
+
     public void doModifierConvention() {
         if (conventionsM != null) {
             for (Convention a : conventionsM) {
                 iConvention.modifierConvention(a);
+
+                conventionsM = this.doListerConvention();
+                conventions = this.doListerConvention();
             }
         }
     }
 
-    public void conventionCourant(){
-    conventions=this.doListerConvention();
-  conventionsM = this.doListerConvention();
-  
-    
+    public void conventionCourant() {
+        conventions = this.doListerConvention();
+        conventionsM = this.doListerConvention();
+
+
     }
-    
+
     public List<Convention> completeConvention(String query) {
         List<Convention> suggestions = new ArrayList<Convention>();
 
@@ -150,6 +154,4 @@ public class ConventionManagedbean implements Serializable {
     public void setSelectConventionV(Convention selectConventionV) {
         this.selectConventionV = selectConventionV;
     }
-    
-    
 }

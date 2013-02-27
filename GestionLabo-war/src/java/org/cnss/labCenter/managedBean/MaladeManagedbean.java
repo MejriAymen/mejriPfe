@@ -67,6 +67,7 @@ public class MaladeManagedbean implements Serializable {
 
             iMalde.ajouterMalade(malade);
             ajouterMessageInfo(malade.getNompre());
+            malades = doListerMalade();
             setectedAssure = new Assure();
             selectedConvention = new Convention();
             dossierMedicale = new DossierMedicale();

@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form>
-        <p:growl id="growl" showDetail="true" life="5000" />  
+        <p:growl id="growl" showDetail="true"  life="5000" />  
         <p:layout fullPage="true">  
 
 
@@ -31,46 +31,42 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="4" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="3" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="AjouterExamen.xhtml" icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
-                                <p:menuitem  value="Détruire" url="supprimerExamen.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" icon="ui-icon-search" />  
+                                <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser" url="visualiserExamen.xhtml" icon="ui-icon-search" />  
                                 <p:menuitem  value="lister"  icon="ui-icon-document"/>  
                             </p:tabMenu> 
 
                         </p:column>
 
-
                     </p:row>
 
                     <p:row>
-
                         <p:column style="width: 40%;background-color: #ffffff;border: hidden">
                             <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Visites" style="width: 42%; height: 50%; font-size: 15px;">  
 
-                                <p:spacer width="20" height="2"/>
-                                <h:outputText  style="font-size: 16px;color: red" value="Médecin Dr  :" />  
+                                <h:outputText  style="font-size: 16px;color: darkorange" value="Médecin Dr "/>  
+                                <h:outputText  style="font-size: 16px;color: red" value=":"/>  
                                 <h:outputText id="med" value="#{visiteManagedbean.visiteSup.medecin.nompre}" style="font-weight:bold"/>  
-
-                                <p:spacer width="20" height="2"/>
-                                <h:outputText style="font-size: 16px;color: red"  value="Type Malade  :" />  
+                                <p:spacer width="10" height="2"/>
+                                <h:outputText style="font-size: 16px;color: #00ff00"  value="Patient  "/>  
+                                <h:outputText  style="font-size: 16px;color: red" value=" :"/>  
+                                <h:outputText id="dos" value="#{visiteManagedbean.visiteSup.dossierMedicale.malade.nompre}" style="font-weight:bold"/>  
+                                <p:spacer width="10" height="2"/>
+                                <h:outputText style="font-size: 16px;color: #00ff00"  value="Rang "/>  
+                                <h:outputText  style="font-size: 16px;color: red" value=" :" />  
                                 <h:outputText id="os" value="#{visiteManagedbean.visiteSup.dossierMedicale.malade.typeMalade}" style="font-weight:bold"/>  
 
-                                <p:spacer width="20" height="2"/>
-                                <h:outputText style="font-size: 16px;color: red"  value="Patient  :" />  
-                                <h:outputText id="dos" value="#{visiteManagedbean.visiteSup.dossierMedicale.malade.nompre}" style="font-weight:bold"/>  
-
-                                <p:panel  header="Information Visite" style="text-align: center;width: 1000px; font-size: 15px; color: #ff96c8 ">
-
-
+                                <p:panel  header="" style="text-align: center;width: 1000px; font-size: 15px; color: #ff96c8 ">
                                     <p:contextMenu for="visite">  
-                                        <p:menuitem value="Visualise" update="display" icon="ui-icon-search" oncomplete="carDialog.show()"/>  
+                                        <p:menuitem value="View" update="display" icon="ui-icon-search" oncomplete="handViewRequest(xhr, status, args)" onsuccess="carDialog.show()"/>  
+                                        <p:menuitem id="showDialogButton" value="Destroy" update="visite" icon="ui-icon-close"  onclick="confirmation.show()" oncomplete="handDeleteConfirmDialogRequest(xhr, status, args)"/>  
                                     </p:contextMenu>  
-
-                                    <p:dataTable id="visite" var="visite" value="#{visiteManagedbean.visites}" rowKey="#{visite.idVisite}"  
-                                                 selection="#{visiteManagedbean.visiteV}" selectionMode="single" 
+                                    <p:dataTable rowStyleClass="#{visite.maPayer}" id="visite" var="visite" value="#{visiteManagedbean.visites}" rowKey="#{visite.idVisite}"  
+                                                 selection="#{visiteManagedbean.visiteSup}" selectionMode="single" 
                                                  paginator="true" rows="5"  
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                                  rowsPerPageTemplate="5,7,9">  
@@ -89,12 +85,9 @@
                                             #{visite.prixB}  
                                         </p:column>  
 
-
-
                                         <p:column headerText="Prix De l'APB"  filterBy="#{visite.prixAPB}"   footerText="Total De l'APB">  
                                             #{visite.prixAPB}  
                                         </p:column>  
-
 
                                         <p:column headerText="Prix Total"  filterBy="#{visite.prixTot}"   footerText="Prix Total">  
                                             #{visite.prixTot}  
@@ -105,48 +98,36 @@
                                         </p:column>  
                                     </p:dataTable>   
 
-                                    <p:dialog position="985,0" style="font-size: 17px;" header="Liste Des Analyses Demandées" widgetVar="carDialog" resizable="false"  
-                                              showEffect="clip" hideEffect="fold" id="dialogo">  
 
 
-
-
-                                        <p:dataTable id="display" style="font-size: 16px" paginator="true" rows="10"   rowsPerPageTemplate="4,6,8"    value="#{visiteManagedbean.visiteSup.nomenclature}"
-                                                     var="a"
-                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
+                                    <p:dialog  position="970,0" style="font-size: 17px;" header="Liste Des Analyses Demandées" widgetVar="carDialog" resizable="false" showEffect="shake" hideEffect="fold" id="dialogo">  
+                                        <p:dataTable  rowStyleClass="#{a.code}" id="display" style="font-size: 16px" paginator="true" rows="12"   rowsPerPageTemplate="4,6,8"    value="#{visiteManagedbean.doListerNomenclature()}"
+                                                      var="a"
+                                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                                             <p:column>    
-
                                                 <f:facet name="header">  
                                                     Analyse
                                                 </f:facet>  
                                                 <h:outputText value="#{a.analyse}"  />  
-
-
                                             </p:column>  
 
-
                                             <p:column>    
-
                                                 <f:facet name="header">  
                                                     Abréviation
                                                 </f:facet>  
                                                 <h:outputText value="#{a.abreviation}"  />  
-
-
                                             </p:column>  
 
                                             <p:column>    
-
                                                 <f:facet name="header">  
                                                     Code
                                                 </f:facet>  
                                                 <h:outputText value="#{a.code}"  />  
-
-
                                             </p:column>  
+
                                         </p:dataTable>
-                                        <p:effect type="shake" event="click" />   
+
+                                        <p:effect type="shake" event="click" />  
 
                                     </p:dialog>  
                                 </p:panel>
@@ -158,30 +139,54 @@
                         </p:column>
 
                     </p:row>
-
                 </p:panelGrid>  
             </p:layoutUnit>  
-
         </p:layout>  
 
-        <p:blockUI block="visite" trigger="visite">  
+        <p:confirmDialog  id="confirmDialog" message="Are you sure about destroying this Exam?"  
+                header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+                  
+            <p:spacer height="1" width="50"/>  <p:commandButton id="confirm" value="Yes Sure" update="growl" oncomplete="handDeleteRequest(xhr, status, args)" onclick="confirmation.hide()"  
+                    actionListener="#{visiteManagedbean.doSupVisite()}" />  
+       <p:spacer height="1" width="50"/> <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+                  
+    </p:confirmDialog>  
+        
+    <script type="text/javascript" >
+              function handDeleteConfirmDialogRequest(xhr, status, args) {  
+               
+                          $ = jQuery;
+                        $('body').append('<embed src="../sounds/transporter_beep.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                          $('body').append('<embed src="../sounds/authorisationrequired_ep.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                    }
+                    
+                    
+                     function handDeleteRequest(xhr, status, args) {  
+               
+                          $ = jQuery;
+                        $('body').append('<embed src="../sounds/COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                          $('body').append('<embed src="../sounds/delete.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                    }
+                      function handViewRequest(xhr, status, args) {  
+               
+                          $ = jQuery;
+                        $('body').append('<embed src="../sounds/computerbeep_31.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                  
+                    }
+        </script>  
+        
+ 
 
-            <p:graphicImage value="/images/ajax-loader.gif"/>  
-        </p:blockUI>  
-
-      
-        <p:poll interval="15"   
+        <p:poll interval="3"   
                 listener="#{visiteManagedbean.visitesCourantes()}" update="visite"/>  
 
         <p:poll interval="1"   
                 listener="#{visiteManagedbean.medecinCourant()}" update="med"/>  
 
         <p:poll interval="1"   
-                listener="#{visiteManagedbean.dossierCourant()}" update="dos"/>  
-
-
-
+                listener="#{visiteManagedbean.dossierCourant()}" update="dos,os"/>  
     </h:form>
-
 </html>
 

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true"  life="5000" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-weight: bold;font-variant: small-caps; font-size: 19px;" activeIndex="4" >  
+                                <p:menuitem  value="Accueil" url="/accueilS.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterSousChefService.xhtml"  icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="lister" url="listeSousChefService.xhtml" icon="ui-icon-document"/> 
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion De Mot De Passe" style="width: 42%; height: 50%; font-size: 15px;">  
+
+                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
+
+
+
+
+
+                                    <p:dataTable id="basicPojo" style="font-size: 17px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{utulisateurManagedbean.sousChefServices}"
+                                                 var="a"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                        <p:column filterBy="#{a.nomPre}">    
+
+                                            <f:facet name="header">  
+                                                Nom &amp; Prénom
+                                            </f:facet>  
+                                            <h:outputText style="color: orange" value="#{a.nomPre}"  />  
+
+                                            <f:facet name="footer">  
+                                                Nom &amp; Prénom                                             
+                                            </f:facet>  
+                                        </p:column>  
+
+
+                                        <p:column filterBy="#{a.code}">    
+
+                                            <f:facet name="header">  
+                                                Code
+                                            </f:facet>  
+                                            <h:outputText value="#{a.code}"  />  
+
+                                            <f:facet name="footer">  
+                                                Code
+                                            </f:facet>  
+                                        </p:column>  
+
+
+                                        <p:column filterBy="#{a.motPass}">    
+
+                                            <f:facet name="header">  
+                                                Mot De Passe
+                                            </f:facet>  
+                                            <h:outputText value="#{a.motPass}"  />  
+
+                                            <f:facet name="footer">  
+                                                Mot De Passe
+                                            </f:facet>  
+                                        </p:column>  
+
+
+
+
+                                    </p:dataTable>
+
+                                    <p:blockUI block="basicPojo" trigger="basicPojo">  
+
+                                        <p:graphicImage value="/images/ajax-loader.gif"/>  
+                                    </p:blockUI>                                              
+
+
+                                </p:panel>  
+
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/lP.png" height="340" width="260"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+   
+    </h:form>
+
+</html>
+

@@ -15,6 +15,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.cnss.labCenter.domain.medecin.IMedecin;
 import org.cnss.labCenter.entities.Medecin;
+import org.cnss.labCenter.entities.Specialite;
 
 /**
  *
@@ -27,6 +28,7 @@ public class MedecinManagedbean implements Serializable {
     private Medecin medecin;
     private Medecin seledtedMedecin;
     private Medecin medecinS;
+    private Specialite selectedSpecialite;
     private List<Medecin> medecinMod;
     private List<Medecin> medecinsL;
     private List<Medecin> medecins;
@@ -36,6 +38,7 @@ public class MedecinManagedbean implements Serializable {
     public MedecinManagedbean() {
         medecin = new Medecin();
         medecinS = new Medecin();
+        selectedSpecialite = new Specialite();
         seledtedMedecin = new Medecin();
         medecinMod = new ArrayList<Medecin>();
         medecins = new ArrayList<Medecin>();
@@ -51,6 +54,8 @@ public class MedecinManagedbean implements Serializable {
 
     public void doAjouterMedecin() {
         if (medecin != null) {
+            System.out.println("lool"+selectedSpecialite.getNomSpecialite());
+            medecin.setSpecialite(selectedSpecialite);
             iMedecin.ajouterMedecin(medecin);
             ajouterMessageInfo(medecin.getNompre());
             medecin = new Medecin();
@@ -150,5 +155,13 @@ public class MedecinManagedbean implements Serializable {
 
     public void setMedecinMod(List<Medecin> medecinMod) {
         this.medecinMod = medecinMod;
+    }
+
+    public Specialite getSelectedSpecialite() {
+        return selectedSpecialite;
+    }
+
+    public void setSelectedSpecialite(Specialite selectedSpecialite) {
+        this.selectedSpecialite = selectedSpecialite;
     }
 }

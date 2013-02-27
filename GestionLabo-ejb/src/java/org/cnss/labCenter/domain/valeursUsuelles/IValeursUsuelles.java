@@ -19,7 +19,7 @@ public interface IValeursUsuelles {
 
     public void modifierValeursUsuelles(ValeursUsuelles valeursUsuelles);
 
-    public void supprimerValeursUsuelles(ValeursUsuelles valeursUsuelles);
+    public void supprimerValeursUsuelles(int nls);
 
     public List<ValeursUsuelles> listerValeursUsuelles();
 

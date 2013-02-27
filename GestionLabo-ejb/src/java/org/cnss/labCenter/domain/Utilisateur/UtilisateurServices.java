@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.cnss.labCenter.entities.Secretaire;
 import org.cnss.labCenter.entities.Utilisateurs;
 
 /**
@@ -51,5 +52,11 @@ public class UtilisateurServices implements IUtilisateur, Serializable {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void supprimerUtilisateur(int nls) {
+        Utilisateurs v = entityManager.find(Utilisateurs.class, nls);
+        entityManager.remove(v);
     }
 }

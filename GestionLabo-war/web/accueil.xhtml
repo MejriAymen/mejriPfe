@@ -14,146 +14,153 @@
 
         <h:form id="form">
             <p:growl id="growl" showDetail="true" life="5000"/>  
+            <p:layout fullPage="true">
 
-            <p:panelGrid id="gv" style=" width: 100%">
-                <p:row>
-                    <p:column   colspan="2">
-                        <p:menubar style="width: 100%" > 
-                            <p:submenu label="Accueil" icon="ui-icon-document">  
-                                <p:separator />  
-                                <p:menuitem value="Gestion Dossiers" url="gestionDossierMedical/authentificationDossiers.xhtml" icon="ui-icon-folder-open"/>  
-                                <p:separator />  
-                                <p:menuitem value="Gestion Examens" url="gestionExamen/authentificationExamen.xhtml"  icon="ui-icon-contact"/>
-                                <p:separator />  
-                                <p:submenu label="Feuille De Paillasse" icon="ui-icon-document-b">  
-                                    <p:separator /> 
-                                    <p:menuitem value="Par Analyse" url="#" /> 
-                                    <p:separator />  
-                                    <p:menuitem value="Par Discipline" url="#" />  
-                                    <p:separator />  
-                                    <p:menuitem value="Par Visite" url="#" />  
-                                    <p:separator />  
-                                    <p:menuitem value="Par Analyse / Periode" url="#" />  
-                                </p:submenu> 
-                            </p:submenu>  
+                <p:layoutUnit  footer="" header="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 18px" position="north" size="40">  
 
+                </p:layoutUnit>  
 
-                            <p:submenu label="Résultas" icon="ui-icon-pencil">  
-                                <p:separator /> 
-                                <p:submenu label="Saisie" icon="ui-icon-search">  
-                                    <p:separator /> 
-                                    <p:menuitem value="Par Visite (Ordonnance)" url="gestionResultat/authentificationRresultat.xhtml" />  
-                                    <p:separator />  
-                                    <p:menuitem value="Par Analyse (Paillaisse)" url="#" />  
-                                </p:submenu> 
-                                <p:separator /> 
-                                <p:menuitem value="Impression"  url="impressionResultat.xhtml" icon="ui-icon-print" /> 
-                                <p:separator />  
-                                <p:menuitem value="Suppression" url="suppressionResultat.xhtml"  icon="ui-icon-trash" /> 
-                                <p:separator />  
-                                <p:menuitem value="Visualisation" url="visualisationResultat.xhtml"  icon="ui-icon-lightbulb" />
-                                <p:separator />  
-                                <p:menuitem value="Date Remise" url="dateRemise.xhtml"  icon="ui-icon-clock" /> 
-                            </p:submenu>  
+                <p:layoutUnit header="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="40">  
+
+                </p:layoutUnit>  
+
+                <p:layoutUnit position="center">  
+                    <p:panelGrid id="gv">
+                        <p:row>
+                            <p:column   style="font-weight: bold;font-variant: small-caps; font-size: 22px;">
+                                <p:menubar  > 
+                                    <p:submenu label="Accueil" icon="ui-icon-document">  
+                                        <p:separator />  
+                                        <p:menuitem value="Gestion Consultations" url="gestionConsultation/authentificationConsultation.xhtml" icon="ui-icon-folder-open"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Gestion Examens" url="gestionExamen/authentificationExamen.xhtml"  icon="ui-icon-contact"/>
+                                        <p:separator />  
+                                        <p:submenu label="Feuille De Paillasse" icon="ui-icon-document-b">  
+                                            <p:separator /> 
+                                            <p:menuitem value="Par Analyse" url="#" /> 
+                                            <p:separator />  
+                                            <p:menuitem value="Par Discipline" url="#" />  
+                                            <p:separator />  
+                                            <p:menuitem value="Par Visite" url="#" />  
+                                            <p:separator />  
+                                            <p:menuitem value="Par Analyse / Periode" url="#" />  
+                                        </p:submenu> 
+                                    </p:submenu>  
 
 
-
-                            <p:submenu label="Base De Données" icon="ui-icon-gear"> 
-                                <p:separator /> 
-                                <p:menuitem value="Gestion Services"  url="gestionService/authentificationServices.xhtml" ajax="false"/>  
-                                <p:separator />
-                                <p:menuitem value="Gestion Assuré"  url="gestionAssure/authentificationrAssure.xhtml" ajax="false"/>  
-                                <p:separator />
-                                <p:menuitem value="Gestion Malades"  url="gestionMalade/authentificationMalades.xhtml" ajax="false"/>  
-                                <p:separator />
-                                <p:menuitem value="Gestion Médecins"  url="gestionMedecin/authentificationMedecin.xhtml" ajax="false"/>  
-                                <p:separator />  
-                                <p:menuitem value="Lexique Vocabulaire" url="lexiqueVocabulaire.xhtml" ajax="false"/>  
-                                <p:separator />  
-                                <p:menuitem value="Gestion Conventions" url="gestionConvention/authentficationrConventions.xhtml" ajax="false"/>  
-                                <p:separator />  
-                                <p:menuitem value="Gestion Antibiotiques" url="gestionAntibiotique/authentificationAntiBiotique.xhtml" ajax="false"/>  
-                                <p:separator />  
-                                <p:menuitem value="Gestion Nomenclature" url="gestionNomenclature/authentificationNomenclature.xhtml"  ajax="false"/>  
-                                <p:separator />  
-                                <p:menuitem value="Gestion Valeurs Usuelles" url="gestionValeurUsuel/autentificationValeursUsuels.xhtml" ajax="false"/>  
-                                <p:separator />  
-                                <p:menuitem value="Gestion Personnalisation"  ajax="false"/>  
-                            </p:submenu>  
-
-                            <p:submenu label="Quit" icon="ui-icon-close">  
-                                <p:separator /> 
-                                <p:menuitem value="Fin De Travail"  ajax="false" icon="ui-icon-power"/>  
-                                <p:separator />  
-                                <p:menuitem value="Autre Menu" url="accueilS.xhtml" icon="ui-icon-extlink" ajax="false"/>  
-                            </p:submenu> 
-
-                        </p:menubar>  
-
-
-                    </p:column>
-
-                </p:row>
-
-                <p:row>
-
-                    <p:column colspan="2">
-                        <h:graphicImage value="/images/accueil.png" height="580" width="1330"/>
-
-                    </p:column>
+                                    <p:submenu label="Résultas" icon="ui-icon-pencil">  
+                                        <p:separator /> 
+                                        <p:submenu label="Saisie" icon="ui-icon-search">  
+                                            <p:separator /> 
+                                            <p:menuitem value="Par Visite (Ordonnance)" url="gestionResultat/authentificationRresultat.xhtml" />  
+                                            <p:separator />  
+                                            <p:menuitem value="Par Analyse (Paillaisse)" url="#" />  
+                                        </p:submenu> 
+                                        <p:separator /> 
+                                        <p:menuitem value="Impression"  url="impressionResultat.xhtml" icon="ui-icon-print" /> 
+                                        <p:separator />  
+                                        <p:menuitem value="Suppression" url="suppressionResultat.xhtml"  icon="ui-icon-trash" /> 
+                                        <p:separator />  
+                                        <p:menuitem value="Visualisation" url="visualisationResultat.xhtml"  icon="ui-icon-lightbulb" />
+                                        <p:separator />  
+                                        <p:menuitem value="Date Remise" url="dateRemise.xhtml"  icon="ui-icon-clock" /> 
+                                    </p:submenu>  
 
 
 
+                                    <p:submenu label="Base De Données" icon="ui-icon-gear"> 
+                                        <p:separator /> 
+                                        <p:menuitem value="Gestion Département"  url="gestionService/authentificationServices.xhtml" ajax="false"/>  
+                                        <p:separator />
+                                        <p:menuitem value="Gestion Assuré"  url="gestionAssure/authentificationrAssure.xhtml" ajax="false"/>  
+                                        <p:separator />
+                                        <p:menuitem value="Gestion Malades"  url="gestionMalade/authentificationMalades.xhtml" ajax="false"/>  
+                                        <p:separator />
+                                        <p:menuitem value="Gestion Médecins"  url="gestionMedecin/authentificationMedecin.xhtml" ajax="false"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Lexique Vocabulaire" url="lexiqueVocabulaire.xhtml" ajax="false"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Gestion Conventions" url="gestionConvention/authentficationrConventions.xhtml" ajax="false"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Gestion Spécialite" url="gestionSpecialite/authentificationSpecialite.xhtml" ajax="false"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Gestion Nomenclature" url="gestionNomenclature/authentificationNomenclature.xhtml"  ajax="false"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Gestion Valeurs Usuelles" url="gestionValeurUsuel/autentificationValeursUsuels.xhtml" ajax="false"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Gestion Personnalisation"  ajax="false"/>  
+                                    </p:submenu>  
 
-                </p:row>
+                                    <p:submenu label="Quit" icon="ui-icon-close">  
+                                        <p:separator /> 
+                                        <p:menuitem value="Fin De Travail"  ajax="false" icon="ui-icon-power"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Autre Menu" url="accueilS.xhtml" icon="ui-icon-extlink" ajax="false"/>  
+                                    </p:submenu> 
 
-            </p:panelGrid>
-
-            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
-
-
-                <h:panelGrid columns="2" cellpadding="5">  
-
-                    <h:outputLabel for="password" value="Mot De Passe :" />  
-                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
-                                   id="password" required="true" requiredMessage="Please Enter Your Password" label="password" />  
-
-                    <f:facet name="footer">  
-                        <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
-                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
-                    </f:facet>  
-                </h:panelGrid>  
-                <p:blockUI block="gv" widgetVar="bui"/>    
-
-            </p:dialog>  
+                                </p:menubar>  
 
 
-            <script type="text/javascript" >
-                function handleLoginRequest(xhr, status, args) {  
-                    if(args.validationFailed){
-                           $ = jQuery;
-                          $('body').append('<embed src="sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
-                    }
-                    else if(!args.loggedIn) { 
-                            $ = jQuery;
-                          $('body').append('<embed src="sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
-                             $('body').append('<embed src="sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
-                         $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
-                          $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
-                      $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
-                       $('#form\\:password').removeAttr('value');
-                    } else {  
+                            </p:column>
+
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <h:graphicImage value="/images/specialites_0.jpg" height="470" width="1336"/>
+
+                            </p:column>
+                        </p:row>
+
+                    </p:panelGrid>
+                </p:layoutUnit>
+
+                   </p:layout>
+                
+                    <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+
+
+                        <h:panelGrid columns="2" cellpadding="5">  
+
+                            <h:outputLabel for="password" value="Mot De Passe :" />  
+                            <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                                           id="password" required="true" requiredMessage="Please Enter Your Password" label="password" />  
+
+                            <f:facet name="footer">  
+                                <p:commandButton id="loginButton" value="Login" update="growl"   
+                                                 actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
+                                                 oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                            </f:facet>  
+                        </h:panelGrid>  
+                        <p:blockUI block="gv" widgetVar="bui"/>    
+
+                    </p:dialog>  
+
+
+                    <script type="text/javascript" >
+                        function handleLoginRequest(xhr, status, args) {  
+                            if(args.validationFailed){
+                                  $ = jQuery;
+                                  $('body').append('<embed src="sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                            }
+                            else if(!args.loggedIn) { 
+                                 $ = jQuery;
+                                 $('body').append('<embed src="sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                                 $('body').append('<embed src="sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
+                                 $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                                 $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                                 $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                                 $('#form\\:password').removeAttr('value');
+                            } else {  
                    
-                         $('body').append('<embed src="sounds/COMPUTER-Authorization Acknowledged.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
-                        
-                              dlg.hide(); 
-                        bui.hide();
-                    }  
-                }  
-            </script>  
-
-
+                                 $('body').append('<embed src="sounds/COMPUTER-Authorization Acknowledged.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                                 dlg.hide(); 
+                                 bui.hide();
+                            }  
+                        }  
+                    </script>  
+            
+         
         </h:form>
     </h:body>
 </html>

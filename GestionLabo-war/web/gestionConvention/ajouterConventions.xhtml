@@ -36,7 +36,6 @@
                                 <p:menuitem   value="Ajouter"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" url="modifierConventions.xhtml"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerConventions.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserConventions.xhtml" icon="ui-icon-search" />  
                                 <p:menuitem  value="lister" url="listeConventions.xhtml"  icon="ui-icon-document"/>  
                                 <p:menuitem  value="Gestion Assuré" url="/gestionAssure/authentificationrAssure.xhtml"   icon="ui-icon-document"/>  
                                 <p:menuitem  value="Gestion Malade" url="/gestionMalade/authentificationMalades.xhtml"   icon="ui-icon-document"/>  
@@ -51,7 +50,7 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset id="fie" toggleSpeed="1500"  collapsed="false" toggleable="true" legend="Gestion Conventions" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset id="fie" toggleSpeed="1500"  collapsed="false" toggleable="true" legend="Gestion Conventions" style="text-align: center;width: 42%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 18px;">  
 
                                 <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
 
@@ -67,22 +66,28 @@
 
 
                                             <p:column  style=" border: hidden">
-                                                <p:fieldset legend="Information Organisme" style="text-align: center;height: 195px; font-size: 17px; ">  
-                                                    <h:panelGrid style="border: black" columns="4" > 
-                                                        <h:outputLabel style="color:  red"  value="Nom De l'organisme :" />
+                                                <p:fieldset legend="Information Organisme" style="text-align: center;height: 195px;font-weight: bold;font-variant: small-caps; font-size: 18px; ">  
+                                                    <h:panelGrid style="border: black;font-weight: bold;font-variant: small-caps; font-size: 16px;" columns="6" > 
+                                                        <h:outputLabel style="color:  red"  value="Nom De l'organisme " />
+                                                         <h:outputLabel style="color:  red"  value=" : "/>
                                                         <p:inputText value="#{conventionManagedbean.convention.organisme}"/>    
-                                                        <h:outputLabel   value="Code :" />  
+                                                        <h:outputLabel   value="Code " />
+                                                         <h:outputLabel style="color:  red"  value=" : "/>
                                                         <p:inputText value="#{conventionManagedbean.convention.code}"/>  
-                                                        <h:outputLabel  value="Téléphone Et Fax :" />
+                                                        <h:outputLabel  value="Téléphone Et Fax " />
+                                                         <h:outputLabel style="color:  red"  value=" : "/>
                                                         <p:inputText value="#{conventionManagedbean.convention.telFax}"/>  
-                                                        <h:outputLabel  value="Adresse :" />
+                                                        <h:outputLabel  value="Adresse " />
+                                                         <h:outputLabel style="color:  red"  value=" : "/>
                                                         <p:inputText value="#{conventionManagedbean.convention.adresse}"/>  
                                                         <f:facet name="footer">  
                                                             <p:spacer width="150" height="20" />
-                                                            <h:outputLabel style=" color: orange"   value="Prix Du B :" />
+                                                            <h:outputLabel style=" color: orange"   value="Prix Du B " />
+                                                             <h:outputLabel style="color:  red"  value=" : "/>
                                                             <p:inputText style="width: 70px; "  value="#{conventionManagedbean.convention.prixB}"/>  
                                                             <p:spacer width="155" height="20" />
-                                                            <h:outputLabel style=" color: orange"  value="Prix Du L'APB :" />
+                                                            <h:outputLabel style=" color: orange"  value="Prix Du L'APB " />
+                                                             <h:outputLabel style="color:  red"  value=" : "/>
                                                             <p:inputText style="width: 70px " value="#{conventionManagedbean.convention.prixAPB}"/>  
                                                         </f:facet>
                                                     </h:panelGrid> 
@@ -93,10 +98,10 @@
                                         </p:row>
                                     </p:panelGrid> 
                                     <f:facet name="footer">  
-                                        <p:spacer width="270" height="20" />
-                                        <p:commandButton style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{conventionManagedbean.doAjouterConvention()}" ajax="false" value="Valider"/>
-                                        <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                        <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                        <p:spacer width="360" height="20" />
+                                        <p:commandButton style="cursor: wait;color: navy; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{conventionManagedbean.doAjouterConvention()}" ajax="false" value="Valider"/>
+                                        <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                        <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                     </f:facet>
                                 </p:panel>  
                             </p:fieldset>

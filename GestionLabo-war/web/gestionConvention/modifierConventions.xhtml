@@ -36,7 +36,6 @@
                                 <p:menuitem   value="Ajouter" url="ajouterConventions.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerConventions.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserConventions.xhtml"  icon="ui-icon-search" />  
                                 <p:menuitem  value="lister"  url="listeConventions.xhtml" icon="ui-icon-document"/>  
 
                             </p:tabMenu> 
@@ -50,16 +49,16 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Conventions" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Conventions" style="text-align: center;width: 42%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 18px;">  
 
                                 <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
 
 
-                                    <p:sheet id="basicPojo"  style=" font-size: 16px;font-family:serif;font-style: italic" value="#{conventionManagedbean.conventionsM}" var="l" scrollHeight="150">  
+                                    <p:sheet id="basicPojo"  style="font-weight: bold;font-variant: small-caps; font-size: 16px;" value="#{conventionManagedbean.conventionsM}" var="l" scrollHeight="150">  
 
 
                                         <p:column  
-                                            style="width:170px; color: deepskyblue"  headerText="Organismes"  sortBy="#{l.organisme}">  
+                                            style="width:170px; color: lightskyblue"  headerText="Organismes"  sortBy="#{l.organisme}">  
 
                                             <h:inputText style="width:170px;" value="#{l.organisme}" />  
                                         </p:column>  

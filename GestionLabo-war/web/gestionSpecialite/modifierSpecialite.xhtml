@@ -22,87 +22,61 @@
 
             </p:layoutUnit>  
 
-
-
             <p:layoutUnit position="center" style=" text-align: center" header="">  
 
                 <p:panelGrid id="gv" style=" width: 100%; border-color:black">
                     <p:row>
-
                         <p:column  colspan="2">
-
                             <p:tabMenu style="font-size: 18px" activeIndex="2" >  
-                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
-                                <p:menuitem   value="Ajouter"  url="ajouterAntiBiotique.xhtml" icon="ui-icon-circle-plus"/>  
-                                <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
+                              <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter"  url="ajouterSpecialite.xhtml" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  url="modifierSpecialite.xhtml" icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="VisualiserAntibiotique.xhtml" icon="ui-icon-search" />  
-                                <p:menuitem  value="lister" url="listerAntiBiotique.xhtml" icon="ui-icon-document"/>  
-
-
-
+                                <p:menuitem  value="lister" url="listerSpecialite.xhtml"  icon="ui-icon-document"/>  
                             </p:tabMenu> 
-
                         </p:column>
-
-
                     </p:row>
 
                     <p:row>
-
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
                             <p:fieldset id="lo" toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Valeurs Usuelles" style="width: 42%; height: 50%; font-size: 15px;">  
                                 <p:panel header="" style="width: 900px; font-size: 15px;color: #ff96c8;">
 
-                                    <p:sheet  id="basicPojo" style=" font-size: 18px;font-family: monospace;font-style: normal"  value="#{antibiotiqueManagedbean.antibiotiquesM}" var="antibiotique" scrollHeight="180">  
-
-
+                                    <p:sheet  id="basicPojo" style=" font-size: 18px;font-family: monospace;font-style: normal"  value="#{specialiteManagedbean.antibiotiquesM}" var="antibiotique" scrollHeight="180">  
                                         <p:column footerText="Antibiotique"  
-                                                  style="width:250px;"  headerText="Antibiotique"  sortBy="#{antibiotique.nomAntibiotique}">  
+                                                  style="width:250px;"  headerText="Nom Specialite"  sortBy="#{antibiotique.nomSpecialite}">  
 
-                                            <h:inputText value="#{antibiotique.nomAntibiotique}" />  
+                                            <h:inputText value="#{antibiotique.nomSpecialite}" />  
                                         </p:column>  
 
-                                        <p:column style="width:250px;"  headerText="Abréviation"  sortBy="#{antibiotique.abreviation}">  
-                                            <h:inputText style="font-size:14px;" value="#{antibiotique.abreviation}"/>  
+                                        <p:column style="width:250px;"  headerText="Lib_Specialite"  sortBy="#{antibiotique.libSpecialite}">  
+                                            <h:inputText style="font-size:14px;" value="#{antibiotique.libSpecialite}"/>  
                                         </p:column>  
                                     </p:sheet>  
 
-
                                     <p:blockUI block="basicPojo" trigger="basicPojo">  
-
-                                        <p:graphicImage value="/images/ajax-loader.gif"/>  
+                                    <p:graphicImage value="/images/ajax-loader.gif"/>  
                                     </p:blockUI>  
                                     <f:facet name="footer">
                                         <p:spacer width="150" height="10" /> 
-                                        <p:commandButton style="color: yellow; font-size:15px "  action="#{antibiotiqueManagedbean.doModifierAntibiotique()}"  ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
+                                        <p:commandButton style="color: yellow; font-size:15px "  action="#{specialiteManagedbean.doModifierAntibiotique()}"  ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
                                         <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                         <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
                                     </f:facet>
-
-
-
-
                                 </p:panel>  
-
                             </p:fieldset>
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
                             <h:graphicImage value="/images/gab.png" height="390" width="300"/>
                         </p:column>
-
                     </p:row>
-
                 </p:panelGrid>  
             </p:layoutUnit>  
-
         </p:layout>  
 
-
-
         <p:poll interval="20"   
-                listener="#{antibiotiqueManagedbean.listeAntibiotiqueCourante()}" update="basicPojo"/>  
+                listener="#{specialiteManagedbean.listeAntibiotiqueCourante()}" update="basicPojo"/>  
     </h:form>
 
 </html>

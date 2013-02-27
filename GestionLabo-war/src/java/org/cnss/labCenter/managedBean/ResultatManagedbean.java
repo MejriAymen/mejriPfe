@@ -204,11 +204,11 @@ public class ResultatManagedbean implements Serializable {
 
     public void retournerNompreCourant() {
         this.setSelectedVisite(this.getSelectedVisite());
-        this.selectedVisite.getDossierMedicale().getMalade().setNompre(selectedVisite.getDossierMedicale().getMalade().getNompre());
+      //  this.selectedVisite.getDossierMedicale().getMalade().setNompre(selectedVisite.getDossierMedicale().getMalade().getNompre());
     }
 
     public void retournerDossierCourant() {
-        this.selectedVisite.getDossierMedicale().setNumDoss(selectedVisite.getDossierMedicale().getNumDoss());
+       // this.selectedVisite.getDossierMedicale().setNumDoss(selectedVisite.getDossierMedicale().getNumDoss());
     }
 
     public Resultat getResult() {

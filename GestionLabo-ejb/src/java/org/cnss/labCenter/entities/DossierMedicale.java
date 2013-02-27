@@ -24,32 +24,32 @@ public class DossierMedicale implements Serializable {
     private static final long serialVersionUID = 1L;
     private int idDoss;
     private String numDoss;
-    private List<Visite> visites;
     private Malade malade;
+    private List<Consultation> consultations;
 
     public DossierMedicale() {
     }
 
-    @OneToOne(mappedBy="dossierMedicale",cascade= CascadeType.ALL)
-    public Malade getMalade() {
-               return malade;
+    @OneToMany(mappedBy = "dossierMedicale")
+    public List<Consultation> getConsultations() {
+        return consultations;
     }
 
-    public void MaladeAdddossierMedical(){
-         malade.setDossierMedicale(this);
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations = consultations;
     }
-    
+
+    @OneToOne(mappedBy = "dossierMedicale", cascade = CascadeType.ALL)
+    public Malade getMalade() {
+        return malade;
+    }
+
+    public void MaladeAdddossierMedical() {
+        malade.setDossierMedicale(this);
+    }
+
     public void setMalade(Malade malade) {
         this.malade = malade;
-    }
-
-    @OneToMany(mappedBy = "dossierMedicale")
-    public List<Visite> getVisites() {
-        return visites;
-    }
-
-    public void setVisites(List<Visite> visites) {
-        this.visites = visites;
     }
 
     @Id

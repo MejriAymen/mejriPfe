@@ -48,9 +48,9 @@
                     <p:row >
 
                         <p:column  style="width: 40%;background-color: #ffffff;border: hidden">
-                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Result Management" style="text-align: left;width: 100%; height: 50%; font-size: 15px;">  
-
-                                <h:outputText style="color: red"  value="N° Visite "/>  
+                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Résultats" style="text-align: left;width: 100%; height: 50%; font-size: 17px;">  
+                                <p:spacer width="25" height="2"/>
+                                <h:outputText style="color: lightskyblue"  value="N° Visite "/>  
                                 <p:autoComplete  id="rio"  value="#{resultatManagedbean.selectedVisite}"   
                                                  completeMethod="#{visiteManagedbean.completeVisite}"  
                                                  var="p" itemLabel="#{p.numVis}" itemValue="#{p}" converter="visite" forceSelection="true">  
@@ -63,15 +63,15 @@
 
                                 </p:autoComplete>
                                 <p:spacer width="25" height="2"/>
-                                <h:outputText  style="color: #00ff00"  value="Nom&amp;Prénom :"/>  
-                                <h:outputLabel id="a" style="width: 100px; color: cornflowerblue"   value="#{resultatManagedbean.selectedVisite.dossierMedicale.malade.nompre}"/> 
+                                <h:outputText  style="color: lightskyblue"  value="Nom&amp;Prénom :"/>  
+                                <h:outputLabel id="a" style="width: 100px; color: cornflowerblue"   value="#{resultatManagedbean.selectedVisite.consultation.dossierMedicale.malade.nompre}"/> 
 
                                 <p:spacer width="25" height="2"/>
-                                <h:outputText style="color: #00ff00" value="N° Dossier : "/>  
-                                <h:outputLabel id="b" style="width: 100px;color: cornflowerblue" value="#{resultatManagedbean.selectedVisite.dossierMedicale.numDoss}"/>  
+                                <h:outputText style="color: lightskyblue" value="N° Dossier : "/>  
+                                <h:outputLabel id="b" style="width: 100px;color: cornflowerblue" value="#{resultatManagedbean.selectedVisite.consultation.dossierMedicale.numDoss}"/>  
                                 <p:spacer width="25" height="2"/>
 
-                                <h:outputText value="Date Prélèvement : "/>  
+                                <h:outputText style="color: lightskyblue" value="Date Prélèvement : "/>  
                                 <h:outputLabel id="ac" style="width: 100px;color: blue" value="#"/>  
 
 
@@ -132,9 +132,10 @@
                                 </p:panel> 
 
                                 <p:spacer width="320" height="1"/>
-                                <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisiteVerification}" oncomplete="handAddResultConfirmDialogRequest(xhr, status, args)"  update="growl" widgetVar="valider" id="valider" value="Valider"/>
-                                <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus" onclick="carDialog.show()"  value="Abondonner"/>
+                                <p:commandButton  style="cursor: wait;color: navy; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.doModifierVisiteVerification}" oncomplete="handAddResultConfirmDialogRequest(xhr, status, args)"  update="growl" widgetVar="valider" id="valider" value="Valider"/>
+                                <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus" onclick="carDialog.show()"  value="Abondonner"/>
+                                <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+
 
                             </p:fieldset>
 
@@ -160,7 +161,7 @@
                     <h:panelGrid  columns="1"  style="text-align: justify; border: dodgerblue;">  
 
                         <p:row>
-                            <h:outputText style="font-size: 18px;color: #00ff00;text-decoration: underline" value="Cytologie " /> 
+                            <h:outputText style="font-size: 18px;color: lightsteelblue;text-decoration: underline" value="Cytologie " /> 
                         </p:row>
 
                         <p:row>
@@ -191,7 +192,7 @@
 
                         <p:row>
 
-                            <h:outputLabel style="text-decoration: underline;color: #00ff00;font-size: 18px" value="Examen Direct "/>
+                            <h:outputLabel style="text-decoration: underline;color: lightsteelblue;font-size: 18px" value="Examen Direct "/>
                         </p:row>
 
 
@@ -230,9 +231,9 @@
 
                     <f:facet name="footer"> 
                         <p:spacer width="10" height="20" />
-                        <p:commandButton style="color: yellow; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.showPartie()}" ajax="false" value="Valider"/>
-                        <p:commandButton style="color: #ff96c8; font-size:14px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                        <p:commandButton style="color: greenyellow; font-size:14px " icon="ui-icon-circle-plus" onclick="carDialogo.show()" oncomplete="carDialog.hide()" value="Abondonner"/>
+                        <p:commandButton style="cursor: wait;color: navy; font-size:14px " icon="ui-icon-circle-plus" actionListener="#{resultatManagedbean.showPartie()}" ajax="false" value="Valider"/>
+                        <p:commandButton style="color: navy; font-size:14px " icon="ui-icon-circle-plus" onclick="carDialogo.show()" oncomplete="carDialog.hide()" value="Abondonner"/>
+                        <p:commandButton style="color: navy; font-size:14px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                     </f:facet>
 
                 </p:panel>  
@@ -244,7 +245,7 @@
         </p:dialog>  
 
 
-        <p:dialog width="935" showHeader="false" onHide="carDialog.hide()"  position="0,0" style="text-align: center;font-size: 18px;" widgetVar="carDialogo" resizable="false" showEffect="shake" hideEffect="fold" id="carDialogo">  
+        <p:dialog width="935" showHeader="true" onHide="carDialog.hide()"  position="0,0" style="text-align: center;font-size: 18px;" widgetVar="carDialogo" resizable="false" showEffect="shake" hideEffect="fold" id="carDialogo">  
 
 
             <p:panel header="ANTIBIOGRAMME" style="width: 22%;text-align: justify; font-size: 15px;color: #ff96c8;height: 340px">
@@ -376,7 +377,7 @@
 
                     <p:row>
                         <h:outputLabel value="PIPERACILLINE "/>
-                        <h:outputText style="color: #ff96c8;font-size: 20px" value=" :"/>   
+                        <h:outputText style="color: red;font-size: 20px" value=" :"/>   
                         <p:selectOneMenu  value="#{resultatManagedbean.resultatECBU.res3}">  
                             <f:selectItem itemLabel="sélectionner un" itemValue="" />  
                             <f:selectItem itemLabel="Sensible" itemValue="S" />  

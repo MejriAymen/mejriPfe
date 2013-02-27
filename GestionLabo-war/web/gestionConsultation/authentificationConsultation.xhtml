@@ -31,9 +31,9 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
-                                <p:menuitem   value="Ajouter" url="ajouterDossiers.xhtml" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterConsultation.xhtml" icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
                                 <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
@@ -58,7 +58,7 @@
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/aD.png" height="390" width="300"/>
+                            <h:graphicImage value="/images/gCo.jpg" height="390" width="300"/>
                         </p:column>
 
                     </p:row>
@@ -79,7 +79,7 @@
 
                     <f:facet name="footer">  
                         <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
+                                         actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                          oncomplete="handleLoginRequest(xhr, status, args)"/>  
                     </f:facet>  
                 </h:panelGrid>  

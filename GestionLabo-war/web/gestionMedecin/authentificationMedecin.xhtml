@@ -29,29 +29,22 @@
 
                 <p:panelGrid id="gv" style=" width: 100%; border-color:black">
                     <p:row>
-
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterMedecin.xhtml" icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" url="modificationMedecins.xhtml" icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserMedecin.xhtml"  icon="ui-icon-search" />  
                                 <p:menuitem  value="lister" url="listeMedecin.xhtml" icon="ui-icon-document"/>  
                             </p:tabMenu> 
 
                         </p:column>
-
-
                     </p:row>
 
                     <p:row>
-
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
-
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Management Doctor" style="text-align: left;width: 55%; height: 50%; font-size: 17px;">  
-
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Des Médecins" style="text-align: left;width: 55%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 17px;">  
                             </p:fieldset>
                         </p:column>
 
@@ -65,7 +58,7 @@
             </p:layoutUnit>  
 
         </p:layout>  
-  <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
             <h:panelGrid columns="2" cellpadding="5">  
@@ -76,7 +69,7 @@
 
                 <f:facet name="footer">  
                     <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                      oncomplete="handleLoginRequest(xhr, status, args)"/>  
                 </f:facet>  
             </h:panelGrid>  

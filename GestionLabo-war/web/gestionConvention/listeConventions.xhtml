@@ -31,12 +31,11 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="5" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="4" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterConventions.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier"  url="modifierConventions.xhtml"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerConventions.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserConventions.xhtml"  icon="ui-icon-search" />  
                                 <p:menuitem  value="lister"  icon="ui-icon-document"/>  
 
                             </p:tabMenu> 
@@ -50,16 +49,16 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Conventions" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Conventions" style="text-align: center;width: 42%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 18px;">  
 
-                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
+                                <p:panel header="" style="width: 1000px;color: #ff96c8;font-weight: bold;font-variant: small-caps; font-size: 17px; ">
 
                                  
 
 
 
                                               
-            <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{conventionManagedbean.conventions}"
+            <p:dataTable id="basicPojo" style="width: 100%;font-weight: bold;font-variant: small-caps; font-size: 16px;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{conventionManagedbean.conventions}"
                          var="a"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -68,7 +67,7 @@
                     <f:facet name="header">  
                         Organisme
                     </f:facet>  
-                    <h:outputText value="#{a.organisme}"  />  
+                    <h:outputText style="color: orange" value="#{a.organisme}"  />  
 
                     <f:facet name="footer">  
                         Organisme                                               
@@ -161,8 +160,7 @@
         
           
 
-         <p:poll interval="10"   
-                 listener="#{conventionManagedbean.conventionCourant()}" update="basicPojo"/>  
+        
 
     </h:form>
 </html>

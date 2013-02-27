@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true"  life="5000" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter"  url="ajouterSpecialite.xhtml" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  url="modifierSpecialite.xhtml" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
+                                <p:menuitem  value="lister" url="listerSpecialite.xhtml"  icon="ui-icon-document"/>  
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+                            <p:fieldset id="los" toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Spécialité" style="width: 36%; height: 50%; font-weight: bold;font-variant: small-caps; font-size: 18px;">  
+                               
+                                    <p:fieldset id="lo" toggleSpeed="1500"   legend="Information  Spécialité" style="width:990px; height: 50%; font-weight: bold;font-variant: small-caps; font-size: 18px;">  
+                                        <h:panelGrid style="border:black" columns="6" cellpadding="5">  
+
+                                            <h:outputLabel style="color: lightskyblue" value="Nom Specialite "/>
+                                            <h:outputLabel style="color: red" value=" : "/>
+                                            <p:inputText style="width: 360px;" value="#{specialiteManagedbean.antibiotique.nomSpecialite}"/>
+                                            <h:outputLabel style="color: lightskyblue" value="Lib_Specialite "/>
+                                            <h:outputLabel style="color: red" value=" : "/>
+                                            <p:inputText  value="#{specialiteManagedbean.antibiotique.libSpecialite}"/>
+
+                                            <f:facet name="footer">                                              
+                                                <p:commandButton style="cursor: wait;color: navy; font-size:15px " actionListener="#{specialiteManagedbean.doAjouterAntibiotique()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"/>
+                                                <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                                <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
+                                            </f:facet>
+                                        </h:panelGrid>  
+                                    </p:fieldset>
+                              
+                            </p:fieldset>
+                        </p:column>
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/OC126P.jpg" height="390" width="240"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>  
+            </p:layoutUnit>  
+        </p:layout>  
+    </h:form>
+</html>
+

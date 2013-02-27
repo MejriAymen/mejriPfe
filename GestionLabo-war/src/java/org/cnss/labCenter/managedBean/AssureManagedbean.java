@@ -13,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.PrePersist;
 import org.cnss.labCenter.domain.assure.IAssure;
 import org.cnss.labCenter.entities.Assure;
 
@@ -45,6 +46,13 @@ public class AssureManagedbean implements Serializable {
     @PostConstruct
     public void init() {
         assureL = this.doListerAssure();
+        assureMod = this.doListerAssure();
+        assures = this.doListerAssure();
+    }
+    
+    @PrePersist
+    public void preInit(){
+    assureL = this.doListerAssure();
         assureMod = this.doListerAssure();
         assures = this.doListerAssure();
     }

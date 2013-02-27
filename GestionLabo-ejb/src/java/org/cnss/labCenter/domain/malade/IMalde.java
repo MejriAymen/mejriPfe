@@ -25,4 +25,6 @@ public interface IMalde {
     public List<Malade> listerMalade();
 
     public Malade MaladeConverter(int i);
+
+    public void supprimerMalade(int nls);
 }

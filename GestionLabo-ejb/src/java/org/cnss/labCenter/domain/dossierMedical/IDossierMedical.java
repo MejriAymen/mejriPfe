@@ -22,4 +22,6 @@ public interface IDossierMedical {
     public DossierMedicale DossierMedicaleConverter(int number);
 
     public List<DossierMedicale> listeDossierMedicale();
+
+    public void supprimerDossierMedical(int nls);
 }

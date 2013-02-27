@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true"  life="5000" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="5" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterConsultation.xhtml"  icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Médecins" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+
+                                <p:dataTable id="basicPojo" style="font-size: 16px;width: 1000px" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{consultationlManagedbean.consultations}"
+                                             var="a"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                    <p:column filterBy="#{a.dateConsultation}">    
+                                        <f:facet name="header">  
+                                            Date de Consultation
+                                        </f:facet>  
+                                        <h:outputText style="color: red" value="#{a.dateConsultation}">
+                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+                                        </h:outputText>
+                                        <f:facet name="footer">  
+                                            Date de Consultation
+                                        </f:facet>  
+                                    </p:column>  
+
+                                    <p:column filterBy="#{a.dossierMedicale.numDoss}">    
+
+                                        <f:facet name="header">  
+                                            Dossier Médicale
+                                        </f:facet>  
+                                        <h:outputText value="#{a.dossierMedicale.numDoss}"  />  
+
+                                        <f:facet name="footer">  
+                                            Dossier Médicale
+                                        </f:facet>  
+                                    </p:column>
+
+
+                                    <p:column filterBy="#{a.dossierMedicale.malade.nompre}">    
+
+                                        <f:facet name="header">  
+                                            Nom &amp; Prénom
+                                        </f:facet>  
+                                        <h:outputText value="#{a.dossierMedicale.malade.nompre}"  />  
+
+                                        <f:facet name="footer">  
+                                            Nom &amp; Prénom
+                                        </f:facet>  
+                                    </p:column> 
+
+                                    <p:column filterBy="#{a.dossierMedicale.malade.assure.matriculeAssure}">    
+
+                                        <f:facet name="header">  
+                                            Assuré
+                                        </f:facet>  
+                                        <h:outputText value="#{a.dossierMedicale.malade.assure.matriculeAssure}"  />  
+
+                                        <f:facet name="footer">  
+                                            Assuré
+                                        </f:facet>  
+                                    </p:column> 
+
+
+                                    <p:column filterBy="#{a.medecin.nompre}">    
+
+                                        <f:facet name="header">  
+                                            Médecin
+                                        </f:facet>  
+                                        <h:outputText value=" Dr :#{a.medecin.nompre}"  />  
+
+                                        <f:facet name="footer">  
+                                            Médecin
+                                        </f:facet>  
+                                    </p:column>  
+                                </p:dataTable>               
+
+                            </p:fieldset>
+
+                            <p:blockUI block="basicPojo" trigger="basicPojo">  
+
+                                <p:graphicImage value="/images/ajax-loader.gif"/>  
+                            </p:blockUI>  
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gCo.jpg" height="340" width="260"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+    </h:form>
+
+</html>
+

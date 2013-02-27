@@ -32,7 +32,7 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="AjouterExamen.xhtml" icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
@@ -78,7 +78,7 @@
 
                 <f:facet name="footer">  
                     <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                      oncomplete="handleLoginRequest(xhr, status, args)"/>  
                 </f:facet>  
             </h:panelGrid>  

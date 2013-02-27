@@ -31,7 +31,7 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="AjouterResultat.xhtml" icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
@@ -48,13 +48,7 @@
                     <p:row >
 
                         <p:column  style="width: 40%;background-color: #ffffff;border: hidden">
-                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend=" Result Management: according to visits" style="text-align: left;width: 75%; height: 50%; font-size: 17px;">  
-
-
-                               
-
-
-                            </p:fieldset>
+                            <p:fieldset   legend="Gestion Résultat : Par Visite" style="text-align: left;width: 55%; height: 50%; font-size: 18px;">                           </p:fieldset>
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
@@ -79,7 +73,7 @@
 
                 <f:facet name="footer">  
                     <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                      oncomplete="handleLoginRequest(xhr, status, args)"/>  
                 </f:facet>  
             </h:panelGrid>  

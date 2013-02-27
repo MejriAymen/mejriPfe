@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -31,34 +32,30 @@ public class Visite implements Serializable {
     private float totAPB;
     private float prixTot;
     private float MaPayer;
-    private Medecin medecin;
-    private Utilisateurs utilisateur;
-    private DossierMedicale dossierMedicale;
     private Nomenclature nomenclature;
     private Resultat resultat;
+    private Consultation consultation;
+    private Secretaire secretaire;
 
     public Visite() {
     }
 
-
-
-    
-    @ManyToOne
-    public Utilisateurs getUtilisateur() {
-        return utilisateur;
+    @OneToOne
+    public Consultation getConsultation() {
+        return consultation;
     }
 
-    public void setUtilisateur(Utilisateurs utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setConsultation(Consultation consultation) {
+        this.consultation = consultation;
     }
 
     @ManyToOne
-    public DossierMedicale getDossierMedicale() {
-        return dossierMedicale;
+    public Secretaire getSecretaire() {
+        return secretaire;
     }
 
-    public void setDossierMedicale(DossierMedicale dossierMedicale) {
-        this.dossierMedicale = dossierMedicale;
+    public void setSecretaire(Secretaire secretaire) {
+        this.secretaire = secretaire;
     }
 
     @Id
@@ -71,16 +68,7 @@ public class Visite implements Serializable {
         this.idVisite = idVisite;
     }
 
-    @ManyToOne
-    public Medecin getMedecin() {
-        return medecin;
-    }
-
-    public void setMedecin(Medecin medecin) {
-        this.medecin = medecin;
-    }
-
-    @ManyToOne(fetch= FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "Visite_Nomenclature",
     joinColumns =
     @JoinColumn(name = "VisiteId"),
@@ -94,8 +82,8 @@ public class Visite implements Serializable {
         this.nomenclature = nomenclature;
     }
 
-    @ManyToOne(fetch= FetchType.EAGER,cascade= CascadeType.ALL)
-     @JoinTable(name = "Visite_Resultat",
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "Visite_Resultat",
     joinColumns =
     @JoinColumn(name = "VisiteId"),
     inverseJoinColumns =
@@ -163,5 +151,4 @@ public class Visite implements Serializable {
     public void setMaPayer(float MaPayer) {
         this.MaPayer = MaPayer;
     }
-    
 }

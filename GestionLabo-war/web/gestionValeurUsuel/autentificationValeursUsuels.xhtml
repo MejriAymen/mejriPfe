@@ -54,7 +54,7 @@
 
                             <p:column style="width: 40%;background-color: #ffffff;">
 
-                                <p:fieldset id="fie" legend="Usual Value Management"  toggleSpeed="1500" widgetVar="f" collapsed="false" toggleable="true" style="width: 55%;font-size: 17px;border: hidden">  
+                                <p:fieldset id="fie" legend="Usual Value Management"  widgetVar="f"  style="width: 55%;font-size: 17px;border: hidden">  
 
 
 
@@ -90,7 +90,7 @@
 
                 <f:facet name="footer">  
                     <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                      oncomplete="handleLoginRequest(xhr, status, args)"/>  
                 </f:facet>  
             </h:panelGrid>  

@@ -50,9 +50,9 @@
 
                     <p:row>
 
-                        <p:column style="width: 50%;background-color: #ffffff;border: hidden">
+                        <p:column style="width: 60%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Malade" style="text-align:center;width: 30%; height: 50%; font-size: 15px;">  
+                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Des Malades" style="text-align:center;width: 30%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 15px;">  
 
 
                                 <p:dataTable id="basicPojo" style="font-size: 14px;width: 1050px" paginator="true" rows="2"   rowsPerPageTemplate="4,6,8"    value="#{maladeManagedbean.malades}"
@@ -64,7 +64,7 @@
                                         <f:facet name="header">  
                                             Nom &amp; Prénom
                                         </f:facet>  
-                                        <h:outputText value="#{a.nompre}"  />  
+                                        <h:outputText style="color: lightskyblue;font-size: 17px" value="#{a.nompre}"  />  
 
                                         <f:facet name="footer">  
                                             Nom &amp; Prénom
@@ -193,7 +193,7 @@
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/lM.jpg" height="330" width="230"/>
+                            <h:graphicImage value="/images/lM.jpg" height="340" width="230"/>
                         </p:column>
 
                     </p:row>
@@ -202,10 +202,6 @@
             </p:layoutUnit>  
 
         </p:layout>  
-
-        <p:poll interval="10"   
-                listener="#{maladeManagedbean.listeMaladeCourant()}" update="basicPojo"/>  
-
     </h:form>
 
 </html>

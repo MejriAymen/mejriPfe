@@ -95,6 +95,7 @@ public class NomenclatureManagedbean implements Serializable {
 
             iNomenclature.ajouterNomenclature(nomenclature);
             ajouterMessageInfo("Analyse Ajouté: ", "" + nomenclature.getAnalyse());
+            init();
             nomenclature = new Nomenclature();
             selectedDept = new Departement();
         }

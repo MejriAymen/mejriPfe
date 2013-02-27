@@ -25,4 +25,6 @@ public interface IDepartement {
     public List<Departement> listerService();
 
     public Departement serviceConverter(int i);
+
+    public void supprimerDepartement(int nls);
 }

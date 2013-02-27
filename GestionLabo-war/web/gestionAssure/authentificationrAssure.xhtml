@@ -8,7 +8,7 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:form>
+    <h:form id="form">
         <p:growl id="growl" showDetail="true"  life="5000" />  
         <p:layout fullPage="true">  
 
@@ -26,12 +26,12 @@
 
             <p:layoutUnit position="center" style=" text-align: center" header="">  
 
-                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black;font-weight: bold;font-variant: small-caps; font-size: 18px; ">
                     <p:row>
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterAssure.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier"   icon="ui-icon-pencil"/>  
@@ -53,7 +53,7 @@
                     <p:row>
 
                         <p:column style="width: 60%;background-color: #ffffff;border: hidden">
-                            <p:fieldset id="lo" toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Assuré" style="width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset id="lo" legend="Gestion Des Assurés" style="width: 42%; height: 50%; font-size: 15px;font-weight: bold;font-variant: small-caps; font-size: 18px;">  
                             
                             </p:fieldset>
                         </p:column>
@@ -81,7 +81,7 @@
 
                     <f:facet name="footer">  
                         <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
+                                         actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                          oncomplete="handleLoginRequest(xhr, status, args)"/>  
                     </f:facet>  
                 </h:panelGrid>  
@@ -92,7 +92,7 @@
     
         <script type="text/javascript" >
             function handleLoginRequest(xhr, status, args) {  
-                if(args.validationFailed){
+                 if(args.validationFailed){
                        $ = jQuery;
                       $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
                 }
@@ -107,7 +107,7 @@
                      
                 } else {  
                    
-                      $('body').append('<embed src="../sounds/Computer - Identification confirmed.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                        $('body').append('<embed src="../sounds/Computer - Identification confirmed.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
                         
                           dlg.hide(); 
                     bui.hide();

@@ -79,6 +79,14 @@
                                                         <h:outputLabel for="pwd2" value="Mot De Passe : *" />  
                                                         <p:password id="pwd2" value="#{utulisateurManagedbean.utulisateur.motPass}" label="Password 2"  />  
 
+                                                        <h:outputLabel  value=" Rôle : " />  
+                                                        <p:selectOneMenu  value="#{utulisateurManagedbean.utulisateur.roleUtilisateur}">  
+                                                            <f:selectItem itemLabel="sélectionner un" itemValue="" />  
+                                                            <f:selectItem itemLabel="Chef Service" itemValue="cs" />  
+                                                            <f:selectItem itemLabel="Sous Chef Service" itemValue="scs" />  
+                                                            <f:selectItem itemLabel="Biologiste" itemValue="b" />  
+                                                            <f:selectItem itemLabel="Secrétaire" itemValue="s" />  
+                                                        </p:selectOneMenu> 
                                                         <f:facet name="footer">  
 
 
@@ -118,7 +126,7 @@
 
         </p:layout>  
 
-    
+
 
     </h:form>
 

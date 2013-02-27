@@ -50,23 +50,27 @@
                     <p:row >
 
                         <p:column  style="width: 40%;background-color: #ffffff;border: hidden">
-                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Visites" style="width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset  toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Des Examens Biologique" style="text-align: inherit;width: 46%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 17px;">  
 
                                 <p:spacer width="20" height="2"/>
-                                <h:outputLabel style="width: 100px;" value="Total B "/>
-                                 <h:outputLabel style="width: 100px; font-size: 20; color: red" value=" : "/>
-                                <h:outputText id="B" style=" width: 100px;"  value="#{visiteManagedbean.sommeB}"/>
+                                <h:outputText  style="color: lightsteelblue"  value="Nom&amp;Prénom"/> 
+                                <h:outputText style="color: red" value=" : "/>  
+                                <h:outputText id="s"  style="width: 100px;"   value="#{visiteManagedbean.consultation.dossierMedicale.malade.nompre}"/> 
+
                                 <p:spacer width="20" height="2"/>
-                                <h:outputLabel value="Total APB "></h:outputLabel>
-                                <h:outputText id="APB"  style=" width: 100px"  value="#{visiteManagedbean.sommeAPB}"/>
-                                <p:panel  header="Information Visite" style="width: 1000px; font-size: 15px;">
+                                <h:outputText style="color: lightsteelblue" value="N° Assuré"/>  
+                                <h:outputText style="color: red" value=" : "/>  
+                                <h:outputLabel id="ac"  value="#{visiteManagedbean.consultation.dossierMedicale.malade.assure.matriculeAssure}"/>  
 
-                                    <h:panelGrid style="border: black;width: 100%"  columns="6">  
+                                <p:panel  header="Information Visite" style="width: 1000px; font-size: 16px;">
 
-                                        <h:outputText style="color: red"   value="N° Dossier "/>  
-                                        <p:autoComplete id="bang" label="bang" requiredMessage="Define Medical File" required="true"  value="#{visiteManagedbean.dossierMedicaleS}"   
-                                                        completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
-                                                        var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
+                                    <h:panelGrid style="border: black;width: 100%;font-weight: bold;font-variant: small-caps"  columns="9">  
+
+                                        <h:outputText  style="color: lightsteelblue"   value="N° Dossier "/>  
+                                        <h:outputText style="color: red" value=" : "/>  
+                                        <p:autoComplete  minQueryLength="2" size="7"  widgetVar="filo" id="filo" requiredMessage="Define Medical File" required="true"  value="#{visiteManagedbean.dossierMedicaleS}"   
+                                                         completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
+                                                         var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
                                             <f:facet name="itemtip">  
                                                 <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
                                                     <h:outputText style="color: black" value="Nom &amp; Prénom " />                                                              
@@ -76,145 +80,94 @@
 
                                         </p:autoComplete>
 
-                                        <h:outputText  style="color: red"  value="Nom&amp;Prénom :"/>  
-                                        <h:outputText id="S"  style="width: 100px;"   value="#{visiteManagedbean.dossierMedicaleS.malade.nompre}"/> 
-                                        <h:outputText value="N° Visite : "/>  
-                                        <p:inputText id="lio" requiredMessage="Define Visit Number" style="width: 100px;color: blue" value="#{visiteManagedbean.visite.numVis}"  required="true"/>  
-                                        <h:outputText value="N° Assuré : "/>  
-                                        <h:outputLabel id="ac" style="width: 100px;color: darkorange" value="#{visiteManagedbean.dossierMedicaleS.malade.assure.matriculeAssure}"/>  
-                                        <h:outputLabel value="Service "></h:outputLabel>
-                                        <p:inputText style="width: 100px;color: blue"   value="#"/>
-                                        <h:outputLabel value="Organisme :"></h:outputLabel>
-                                        <p:outputLabel id="c"  style="width: 100px;color: blue"  value="#{visiteManagedbean.dossierMedicaleS.malade.convention.organisme}"/>
-                                        <h:outputLabel value="Médecin Dr :"/>
-                                        <p:autoComplete requiredMessage="Define Doctor" required="true" value="#{visiteManagedbean.seledtedMedecin}" id="basicPojose" label="basicPojose" 
-                                                        completeMethod="#{medecinManagedbean.completerMedecin}"  
-                                                        var="p" itemLabel="#{p.nompre}" itemValue="#{p}" 
-                                                        converter="medecin" forceSelection="true">  
-                                            <f:facet  name="itemtip">
-                                                <h:panelGrid  columns="2" cellpadding="5">
-                                                    <h:outputText style="font-size: 18px;color: mediumblue"  value="Nom &amp; Prenom :"/> 
-                                                    <h:outputText value="#{p.nompre}"/>  
-                                                    <h:outputText style="font-size: 18px;color: mediumblue"  value="Code :"/> 
-                                                    <h:outputText value="#{p.codeMed}"/>  
-                                                    <h:outputText style="font-size: 18px;color: mediumblue"  value="Téléphone : "/> 
-                                                    <h:outputText  value="#{p.telephone}"/>  
-                                                    <h:outputText style="font-size: 18px;color: mediumblue"  value="Adresse : "/> 
-                                                    <h:outputText value="#{p.adresse}"/>  
-                                                </h:panelGrid>
-                                            </f:facet>
+                                        <h:outputText style="color: lightsteelblue" value="N° Visite"/>  
+                                        <h:outputText style="color: red" value=" : "/>  
+                                        <p:inputText size="5" id="lio" requiredMessage="Define Visit Number" value="#{visiteManagedbean.visite.numVis}"  required="true"/>  
 
-                                        </p:autoComplete>  
+                                        <h:outputText style="color: lightsteelblue" value="Date Consultation"/>  
+                                        <h:outputText style="color: red" value=" : "/>  
+                                        <h:outputLabel id="LIJO"  value="#{visiteManagedbean.consultation.dateConsultation}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />  
+                                        </h:outputLabel>
 
-                                        <h:outputLabel value="Prix B "/>
-                                        <h:outputText id="prixb" style=" width: 100px"  value="#{visiteManagedbean.prixB}"/>
-                                        <h:outputLabel value="Prix APB "></h:outputLabel>
-                                        <h:outputText id="prixapb" style=" width: 100px"  value="#{visiteManagedbean.prixAPB}"/>
+                                        <h:outputLabel style="color: lightsteelblue" value="Organisme"/>
+                                        <h:outputText style="color: red" value=" : "/>  
+                                        <p:outputLabel id="c"  style="width: 100px;"  value="#{visiteManagedbean.consultation.dossierMedicale.malade.convention.organisme}"/>
+                                        <h:outputLabel style="color: lightsteelblue" value="Médecin Dr"/>
+                                        <h:outputText style="color: red" value=" : "/>  
+                                        <h:outputLabel id="apo" value="#{visiteManagedbean.consultation.medecin.nompre}"/>
+
+
+                                        <h:outputLabel style="color: lightsteelblue" value="Total B "/>
+                                        <h:outputLabel style=" font-size: 20px; color: red" value=" : "/>
+                                        <h:outputText id="B" style=" width: 100px;"  value="#{visiteManagedbean.sommeB}"/>
+                                        <h:outputLabel style="color: lightsteelblue"  value="Total APB "/>
+                                        <h:outputLabel style="font-size: 20px; color: red" value=" : "/>
+                                        <h:outputText id="APB"  style=" width: 100px"  value="#{visiteManagedbean.sommeAPB}"/>
+                                        <h:outputLabel style="color: lightsteelblue" value="Prix B"/>
+                                        <h:outputText style="color: red" value=" : "/>  
+                                        <h:outputText id="prixb"  value="#{visiteManagedbean.prixB}"/>
+                                        <h:outputLabel style="color: lightsteelblue" value="Prix APB"/>
+                                        <h:outputText style="color: red" value=" : "/>  
+                                        <h:outputText id="prixapb"  value="#{visiteManagedbean.prixAPB}"/>
 
                                         <f:facet name="footer">  
                                             <p:spacer width="200" height="1"/>                       
-                                            <p:commandButton  style="color: yellow; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{visiteManagedbean.doAjouterVisite}" update="growl"   oncomplete="handleLoginRequest(xhr, status, args)" value="Valider"/>
-                                            <p:button style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus" readonly="AjouterExamen.xhtml"  value="Abondonner"/>
-                                            <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                            <p:spacer width="20" height="2"/>
-                                            <h:outputLabel value="Prix Total"></h:outputLabel>
-                                            <h:outputText id="totalprix" style=" width: 100px"  value="#{visiteManagedbean.totalprix}"/>
-                                            <p:spacer width="80" height="1"/>
-                                            <h:outputLabel value="Montant à Payer"></h:outputLabel>
-                                            <h:outputText style=" width: 100px"  value="#"/>
+                                            <p:commandButton  style="cursor: progress; font-size:15px;color: navy" icon="ui-icon-circle-plus" actionListener="#{visiteManagedbean.doAjouterVisite()}" ajax="false" update="growl"  value="Valider"/>
+                                            <p:button style="color: navy;font-size:15px " icon="ui-icon-circle-plus" readonly="AjouterExamen.xhtml"  value="Abondonner"/>
+                                            <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                            <p:spacer width="18" height="2"/>
+                                            <h:outputLabel style="color: lightsteelblue" value="Prix Total"/>
+                                            <h:outputText style="color: red" value=" : "/>  
+                                            <h:outputText id="totalprix" style=" width: 100px;"  value="#{visiteManagedbean.totalprix}"/>
+                                            <p:spacer width="20" height="1"/>
+                                            <h:outputLabel style="color: lightsteelblue" value="Montant à Payer"/>
+                                            <h:outputText style="color: red" value=" : "/>  
+                                            <h:outputText style=" width: 100px;"  value="#100"/>
                                         </f:facet>
                                     </h:panelGrid>  
                                 </p:panel> 
 
-                                <h:outputLabel style="color: yellow;font-size: 16px" value="Analyses"></h:outputLabel>
+                                <h:outputLabel style="color: tan;font-size: 18px" value="Examens Demandés"/>
 
-                                <p:autoComplete requiredMessage="Define analysis" required="true" label="basicPojo" size="45"  style="width: 50%" value="#{visiteManagedbean.selectnomenclature}"   
-                                                id="basicPojo" completeMethod="#{nomenclatureManagedbean.completeNomenclature}"  
-                                                var="p" itemLabel="#{p.analyse}" itemValue="#{p}" converter="nomenclature" multiple="true">  
+                                <p:autoComplete  style="width: 70%" requiredMessage="Define analysis" required="true" label="basicPojo" size="70" value="#{visiteManagedbean.selectnomenclature}"   
+                                                 id="basicPojo" widgetVar="basicPojo" completeMethod="#{nomenclatureManagedbean.completeNomenclature}"  
+                                                 var="p" itemLabel="#{p.analyse}" itemValue="#{p}" converter="nomenclature" multiple="true">  
                                     <p:ajax disabled="true" event="itemUnselect" listener="#{nomenclatureManagedbean.handleUnselect}"  update="growl"/>  
-                                    <f:facet name="itemtip">  
-                                        <h:panelGrid  style="font-size: 17px; volume:100 " columns="2">  
-
-
+                                    <f:facet  name="itemtip">  
+                                        <h:panelGrid  style="font-size: 17px; volume:100 ;color: red" columns="2">  
                                             <h:outputText style=" font-size: 19px; color: blue" value="Analse :" />  
                                             <h:outputText style=" font-size: 17px; color: black" value="#{p.analyse}" />  
-
                                             <h:outputText style=" font-size: 19px; color: blue" value="Abréviation :" />  
                                             <h:outputText style=" font-size: 17px; color: black" value="#{p.abreviation}" />  
-
-
                                         </h:panelGrid>  
                                     </f:facet>  
-
                                 </p:autoComplete>
-
                             </p:fieldset>
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
                             <h:graphicImage value="/images/gV.png" height="370" width="250"/>
                         </p:column>
-
                     </p:row>
-
                 </p:panelGrid>  
             </p:layoutUnit>  
-
         </p:layout>  
-
-        <script type="text/javascript" >
-              function handleLoginRequest(xhr, status, args) {  
-                  if(args.validationFailed || !args.loggedIn) { 
-                          $ = jQuery;
-                        $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
-                  
-                    
-                     
-                  } else {  
-                   
-                       $('body').append('<embed src="../sounds/COMPUTER-Affirmative.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
-                          $('#form\\:lio').removeAttr('value');
-                            $('#form\\:B').fadeOut().removeAttr('value');
-                           $('#form\\:APB').fadeOut().removeAttr('value');
-                           $('#form\\:bang').fadeOut();
-                            $('#form\\:basicPojose').fadeOut();
-                            $('#form\\:basicPojo').fadeOut();
-                            
-                            
-                           
-                     
-                  }  
-              }  
-        </script>  
 
         <p:poll interval="1"   
                 listener="#{visiteManagedbean.totalB}" update="B"/>  
         <p:poll interval="1"   
                 listener="#{visiteManagedbean.totalAPB()}" update="APB"/>  
         <p:poll interval="1"   
-                listener="#{visiteManagedbean.retournerDossierCourant()}"/>  
-        <p:poll interval="1"   
                 listener="#{visiteManagedbean.retournerAnalyseqCourant()}" update="B,APB"/>  
-
-        <p:poll interval="1"   
-                listener="#{visiteManagedbean.returnConvention()}" update="c"/>  
-        <p:poll interval="1"   
-                listener="#{visiteManagedbean.returnNomPre()}" update="S"/> 
-
         <p:poll interval="1"   
                 listener="#{visiteManagedbean.prixB()}" update="prixb"/> 
-
         <p:poll interval="1"   
                 listener="#{visiteManagedbean.prixAPB()}" update="prixapb"/> 
-
         <p:poll interval="1"   
                 listener="#{visiteManagedbean.totalPrix()}" update="totalprix"/> 
-
         <p:poll interval="1"   
-                listener="#{visiteManagedbean.maladeCourant()}" update="mc"/> 
-
-        <p:poll interval="1"   
-                listener="#{visiteManagedbean.AssureCourant()}" update="ac"/> 
+                listener="#{visiteManagedbean.returnConsultation()}" update="apo,s,ac,c,LIJO"/> 
 
     </h:form>
 

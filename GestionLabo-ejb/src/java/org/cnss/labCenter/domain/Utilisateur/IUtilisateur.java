@@ -7,6 +7,7 @@ package org.cnss.labCenter.domain.Utilisateur;
 import java.util.List;
 import javax.ejb.Local;
 
+import org.cnss.labCenter.entities.Secretaire;
 import org.cnss.labCenter.entities.Utilisateurs;
 
 /**
@@ -25,4 +26,6 @@ public interface IUtilisateur {
     public List<Utilisateurs> listeProgramme();
 
     public Utilisateurs rechercherUtilisateur(String pass);
+
+    public void supprimerUtilisateur(int nls);
 }

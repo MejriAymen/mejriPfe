@@ -25,4 +25,6 @@ public interface INomenclature {
     public List<Nomenclature> listeNomenclature();
 
     public List<Nomenclature> listeNomenclatureSansValeurUsuelle();
+
+    public void supprimerNomenclature(int nls);
 }

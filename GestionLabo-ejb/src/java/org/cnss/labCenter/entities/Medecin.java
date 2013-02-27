@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -23,15 +24,25 @@ public class Medecin implements Serializable {
     private int idMed;
     private String codeMed;
     private String nompre;
-    private String specialite;
     private boolean valable;
     private String telephone;
-    private List<Visite> visites;
+    private Specialite specialite;
+    private List<Consultation> consultations;
 
     public Medecin() {
+     
     }
-    
-    
+
+    @OneToMany(mappedBy = "medecin")
+    public List<Consultation> getConsultations() {
+        return consultations;
+    }
+
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations = consultations;
+    }
+
+   
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -43,11 +54,12 @@ public class Medecin implements Serializable {
         this.idMed = idMed;
     }
 
-    public String getSpecialite() {
+    @ManyToOne
+    public Specialite getSpecialite() {
         return specialite;
     }
 
-    public void setSpecialite(String specialite) {
+    public void setSpecialite(Specialite specialite) {
         this.specialite = specialite;
     }
 
@@ -58,8 +70,6 @@ public class Medecin implements Serializable {
     public void setValable(boolean valable) {
         this.valable = valable;
     }
-
-  
 
     public String getCodeMed() {
         return codeMed;
@@ -77,8 +87,6 @@ public class Medecin implements Serializable {
         this.nompre = nompre;
     }
 
-   
-
     public String getTelephone() {
         return telephone;
     }
@@ -87,12 +95,4 @@ public class Medecin implements Serializable {
         this.telephone = telephone;
     }
 
-    @OneToMany(mappedBy = "medecin")
-    public List<Visite> getVisites() {
-        return visites;
-    }
-
-    public void setVisites(List<Visite> visites) {
-        this.visites = visites;
-    }
 }

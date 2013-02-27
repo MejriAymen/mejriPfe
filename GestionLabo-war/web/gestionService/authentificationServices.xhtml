@@ -31,12 +31,11 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem  value="Ajouter" url="ajouterServices.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" url="modifierServices.xhtml"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerServices.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserServices.xhtml"  icon="ui-icon-search" />  
                                 <p:menuitem  value="lister" url="listerServices.xhtml"  icon="ui-icon-document"/>  
 
                             </p:tabMenu> 
@@ -50,9 +49,9 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Services" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Des Départements" style="text-align: left;width: 60%; height: 50%; font-weight: bold;font-variant: small-caps; font-size: 17px;">  
 
-                           
+
 
                             </p:fieldset>
                         </p:column>
@@ -68,7 +67,7 @@
 
         </p:layout>  
 
-       <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+        <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
             <h:panelGrid columns="2" cellpadding="5">  
@@ -79,7 +78,7 @@
 
                 <f:facet name="footer">  
                     <p:commandButton id="loginButton" value="Login" update="growl"   
-                                     actionListener="#{utulisateurManagedbean.login}"   
+                                     actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                      oncomplete="handleLoginRequest(xhr, status, args)"/>  
                 </f:facet>  
             </h:panelGrid>  
@@ -113,9 +112,9 @@
         </script>  
 
 
-           
 
-    
+
+
     </h:form>
 
 </html>

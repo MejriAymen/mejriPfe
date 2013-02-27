@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true"  life="5000"/>  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black;font-weight: bold;font-variant: small-caps; font-size: 19px;">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="0" >  
+                                <p:menuitem  value="Accueil" url="/accueilS.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterChefService.xhtml"   icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="lister" url="listeChefService.xhtml" icon="ui-icon-document"/>  
+                            </p:tabMenu> 
+                        </p:column>
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+
+                            <p:fieldset legend="Gestion Chef Service" style="width: 70%; height: 50%; font-weight: bold;font-variant: small-caps; font-size: 17px;">  
+
+                            
+
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/lock_icon.gif" height="340" width="260"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+            <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
+
+
+                <h:panelGrid columns="2" cellpadding="5">  
+
+                    <h:outputLabel for="password" value="Mot De Passe :" />  
+                    <h:inputSecret value="#{utulisateurManagedbean.pass}"   
+                                   id="password" required="true" label="password" />  
+
+                    <f:facet name="footer">  
+                        <p:commandButton id="loginButton" value="Login" update="growl"   
+                                         actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
+                                         oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                    </f:facet>  
+                </h:panelGrid>  
+                <p:blockUI block="gv" widgetVar="bui"/>    
+
+            </p:dialog>  
+
+    
+        <script type="text/javascript" >
+            function handleLoginRequest(xhr, status, args) {  
+                if(args.validationFailed){
+                       $ = jQuery;
+                      $('body').append('<embed src="../sounds/Computer - Define parameters of program.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                }
+                else if(!args.loggedIn) { 
+                        $ = jQuery;
+                      $('body').append('<embed src="../sounds/97744^ALARM.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');
+                         $('body').append('<embed src="../sounds/Computer - Access denied.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');    
+                     $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                      $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                  $('#form\\:dialog').fadeIn(900).fadeOut(900).fadeIn(900).fadeOut(900).fadeIn();  
+                     
+                     
+                } else {  
+                   
+                    $('body').append('<embed src="../sounds/Computer - Identification confirmed.wav" autostart="true" width="1" height="1" id="LegacySound" enablejavascript="true"/>');     
+                        
+                          dlg.hide(); 
+                    bui.hide();
+                }  
+            }  
+        </script>  
+
+    </h:form>
+
+</html>
+

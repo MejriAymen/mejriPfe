@@ -80,9 +80,6 @@ public class VisiteServices implements IVisite, Serializable {
     @Override
     public void supprimerVisite(int nls) {
         Visite v = entityManager.find(Visite.class, nls);
-
-
         entityManager.remove(v);
-
     }
 }

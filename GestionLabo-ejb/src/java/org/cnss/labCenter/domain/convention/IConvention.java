@@ -23,5 +23,5 @@ public interface IConvention {
 
     public List<Convention> listeConvention();
     
-    public void supprimerConvention(Convention convention);
+    public void supprimerConvention(int nls);
 }
