@@ -26,7 +26,6 @@ public class SecretaireServices implements ISecretaire, Serializable {
         entityManager.persist(u);
     }
     
-    
     @Override
     public List<Secretaire> listeSecretaire() {
         return entityManager.createQuery("select c from Secretaire c").getResultList();

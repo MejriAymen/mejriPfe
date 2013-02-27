@@ -68,7 +68,11 @@
 
                                         <h:outputText  style="color: lightsteelblue"   value="N° Dossier "/>  
                                         <h:outputText style="color: red" value=" : "/>  
-                                        <p:autoComplete  minQueryLength="2" size="7"  widgetVar="filo" id="filo" requiredMessage="Define Medical File" required="true"  value="#{visiteManagedbean.dossierMedicaleS}"   
+
+                                       
+
+                                        <p:autoComplete  minQueryLength="2" size="5"  widgetVar="filo" id="filo" requiredMessage="Define Medical File" required="true"  value="#{visiteManagedbean.dossierMedicaleS}"   
+
                                                          completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
                                                          var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
                                             <f:facet name="itemtip">  

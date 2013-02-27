@@ -44,7 +44,7 @@ public class UtilisateurServices implements IUtilisateur, Serializable {
 
     @Override
     public Utilisateurs rechercherUtilisateur(String pass) {
-        List<Utilisateurs> utilisateurs = entityManager.createQuery("select r from Utilisateurs r where  r.motPass='" + pass + "'  ").getResultList();
+        List<Utilisateurs> utilisateurs = entityManager.createQuery("select r from Utilisateurs  r where  r.motPass='" + pass + "'  ").getResultList();
         if (utilisateurs.isEmpty()) {
             return null;
         } else if (utilisateurs.size() == 1) {

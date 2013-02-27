@@ -37,6 +37,7 @@
                                 <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
                                 <p:menuitem  value="lister" url="listeSousChefService.xhtml" icon="ui-icon-document"/>  
+                           
                             </p:tabMenu> 
 
                         </p:column>
@@ -65,6 +66,7 @@
             </p:layoutUnit>  
 
         </p:layout>  
+        
     <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
@@ -85,6 +87,10 @@
         </p:dialog>  
 
 
+
+        
+
+    
         <script type="text/javascript" >
             function handleLoginRequest(xhr, status, args) {  
                 if(args.validationFailed){
@@ -109,7 +115,6 @@
                 }  
             }  
         </script>  
-    
     </h:form>
 
 </html>

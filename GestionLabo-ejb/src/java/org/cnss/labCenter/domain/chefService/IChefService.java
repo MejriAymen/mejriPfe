@@ -19,9 +19,5 @@ public interface IChefService {
     public void ajouterChefService(ChefService u);
 
     public List<ChefService> listeChefService();
-
-  
-
-
   
 }

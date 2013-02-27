@@ -13,7 +13,6 @@
         <p:layout fullPage="true">  
 
 
-
             <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
 
             </p:layoutUnit>  
@@ -81,6 +80,10 @@
                                             </f:facet>  
                                         </p:column>  
 
+                           
+                                         
+
+
 
                                         <p:column filterBy="#{a.motPass}">    
 
@@ -105,6 +108,17 @@
                                     </p:blockUI>                                              
 
 
+                    <f:facet name="header">  
+                      Mot De Passe
+                    </f:facet>  
+                                            <h:outputText value="#{a.motPass}"  />  
+
+                    <f:facet name="footer">  
+            Mot De Passe
+                    </f:facet> 
+                                                
+
+                                    
                                 </p:panel>  
 
                             </p:fieldset>
@@ -123,8 +137,8 @@
 
 
 
-        <p:poll interval="10"   
-                listener="#{utulisateurManagedbean.utilisateursCourant()}" update="basicPojo"/>
+ <p:poll interval="10"   
+         listener="#{utulisateurManagedbean.utilisateursCourant()}" update="basicPojo"/>
     </h:form>
 
 </html>

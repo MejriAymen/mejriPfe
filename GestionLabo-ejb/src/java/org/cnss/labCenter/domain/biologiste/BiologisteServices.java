@@ -5,6 +5,7 @@
 package org.cnss.labCenter.domain.biologiste;
 
 import java.io.Serializable;
+
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
