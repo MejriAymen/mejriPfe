@@ -9,7 +9,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:form>
-    <p:growl id="growl" showDetail="true"  life="5000" />  
+        <p:growl id="growl" showDetail="true"  life="5000" />  
         <p:layout fullPage="true">  
 
 
@@ -32,7 +32,7 @@
                         <p:column  colspan="2">
 
                             <p:tabMenu style="font-weight: bold;font-variant: small-caps; font-size: 19px;" activeIndex="4" >  
-                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter" url="ajouterAssure.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" url="modificationAssure.xhtml"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerAssure.xhtml" icon="ui-icon-trash"/>  
@@ -46,7 +46,7 @@
 
 
 
-                             
+
                             </p:tabMenu> 
 
                         </p:column>
@@ -63,62 +63,38 @@
                                 <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
 
 
-                                         
-
-                                              
-                                    <p:dataTable id="basicPojo" style="font-weight: bold;font-variant: small-caps; font-size: 17px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{utulisateurManagedbean.biologistes}"
-                         var="a"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-                                        <p:column filterBy="#{a.nomPre}">    
-
-                    <f:facet name="header">  
-                        Nom &amp; Prénom
-                    </f:facet>  
-                                            <h:outputText style="color: orange" value="#{a.nomPre}"  />  
-
-                    <f:facet name="footer">  
-                   Nom &amp; Prénom                                             
-                    </f:facet>  
-                </p:column>  
 
 
-                <p:column filterBy="#{a.code}">    
 
-                    <f:facet name="header">  
-                        Code
-                    </f:facet>  
-                    <h:outputText value="#{a.code}"  />  
+                                    <p:dataTable id="basicPojo" style="font-weight: bold;font-variant: small-caps; font-size: 17px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{assureManagedbean.assures}"
+                                                 var="a"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-                    <f:facet name="footer">  
-                        Code
-                    </f:facet>  
-                </p:column>  
+                                        <p:column filterBy="#{a.matriculeAssure}">    
 
+                                            <f:facet name="header">  
+                                                Matricule Assuré
+                                            </f:facet>  
+                                            <h:outputText style="color: orange" value="#{a.matriculeAssure}"  />  
 
-                                        <p:column filterBy="#{a.motPass}">    
-
-                    <f:facet name="header">  
-                      Mot De Passe
-                    </f:facet>  
-                                            <h:outputText value="#{a.motPass}"  />  
-
-                    <f:facet name="footer">  
-            Mot De Passe
-                    </f:facet>  
-                </p:column>  
+                                            <f:facet name="footer">  
+                                                Matricule Assuré                                           
+                                            </f:facet>  
+                                        </p:column>  
 
 
 
 
-            </p:dataTable>
-                                         
-                                 <p:blockUI block="basicPojo" trigger="basicPojo">  
-        
-        <p:graphicImage value="/images/ajax-loader.gif"/>  
-    </p:blockUI>                                              
 
-                                    
+
+                                    </p:dataTable>
+
+                                    <p:blockUI block="basicPojo" trigger="basicPojo">  
+
+                                        <p:graphicImage value="/images/ajax-loader.gif"/>  
+                                    </p:blockUI>                                              
+
+
                                 </p:panel>  
 
                             </p:fieldset>
@@ -135,9 +111,9 @@
 
         </p:layout>  
 
-          
- <p:poll interval="10"   
-         listener="#{utulisateurManagedbean.utilisateursCourant()}" update="basicPojo"/>
+
+        <p:poll interval="10"   
+                listener="#{utulisateurManagedbean.utilisateursCourant()}" update="basicPojo"/>
     </h:form>
 
 </html>

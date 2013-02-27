@@ -76,6 +76,7 @@ public class AssureManagedbean implements Serializable {
 
     public void doSupprimerAssure() {
         iAssure.supprimerAssure(assureS);
+        init();
            }
 
     public List<Assure> doListerAssure() {

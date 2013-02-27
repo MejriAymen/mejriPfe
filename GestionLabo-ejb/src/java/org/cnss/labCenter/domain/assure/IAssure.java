@@ -25,5 +25,5 @@ public interface IAssure {
 
     public Assure AssureConverter(int i);
 
-    public void supprimerAssure(int nls);
+   
 }

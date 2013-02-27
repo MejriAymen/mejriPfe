@@ -34,14 +34,12 @@ public class AssureServices implements IAssure, Serializable {
 
     @Override
     public void supprimerAssure(Assure assure) {
-        entityManager.remove(assure);
+        entityManager.remove(entityManager.find(Assure.class, assure.getIdAssure()));
     }
 
     @Override
     public List<Assure> listerAssure() {
-        List<Assure> assures;
-        assures = entityManager.createQuery("select c from Assure c").getResultList();
-        return assures;
+       return entityManager.createQuery("select c from Assure c").getResultList();
 
     }
 
@@ -50,9 +48,5 @@ public class AssureServices implements IAssure, Serializable {
         return entityManager.find(Assure.class, i);
     }
 
-    @Override
-    public void supprimerAssure(int nls) {
-        Assure v = entityManager.find(Assure.class, nls);
-        entityManager.remove(v);
-    }
+   
 }
