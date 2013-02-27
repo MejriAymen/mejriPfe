@@ -31,13 +31,12 @@
 
                         <p:column  colspan="2">
 
-                            <p:tabMenu style="font-size: 18px" activeIndex="5" >  
+                            <p:tabMenu style="font-size: 18px" activeIndex="4" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem  value="Ajouter" url="ajouterServices.xhtml"  icon="ui-icon-circle-plus"/>  
                                 <p:menuitem  value="Modifier" url="modifierServices.xhtml"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerServices.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserServices.xhtml"  icon="ui-icon-search" />  
-                                <p:menuitem  value="lister"  icon="ui-icon-document"/>  
+                                <p:menuitem  value="lister" url="listerServices.xhtml"  icon="ui-icon-document"/>  
 
 
                             </p:tabMenu> 
@@ -51,23 +50,23 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Services" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Services" style="text-align: left;width: 42%; height: 50%; font-size: 15px;text-align: inherit;width: 46%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 17px;">  
 
                                 <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
 
-                                    <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{departementManagedbean.servicesL}"
+                                    <p:dataTable id="basicPojo" style="font-size: 17px;width: 100%" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{departementManagedbean.servicesL}"
                                                  var="a"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
                                         <p:column filterBy="#{a.nom}">    
 
                                             <f:facet name="header">  
-                                                Nom Service
+                                                Nom De Département
                                             </f:facet>  
-                                            <h:outputText value="#{a.nom}"  />  
+                                            <h:outputText style="font-size: 18px;color: orange" value="#{a.nom}"  />  
 
                                             <f:facet name="footer">  
-                                                Nom Service
+                                                Nom De Département
                                             </f:facet>  
                                         </p:column>  
 
@@ -109,10 +108,7 @@
                                             </f:facet>  
                                         </p:column>  
                                     </p:dataTable>               
-
-
                                 </p:panel>  
-
                             </p:fieldset>
                             <p:blockUI block="basicPojo" trigger="basicPojo">  
 
@@ -123,18 +119,10 @@
                         <p:column  style="background-color: #ffffff;border: hidden"> 
                             <h:graphicImage value="/images/gS.png" height="340" width="260"/>
                         </p:column>
-
                     </p:row>
-
                 </p:panelGrid>  
             </p:layoutUnit>  
-
         </p:layout>  
-
-    
-
-        <p:poll interval="1"   
-                listener="#{departementManagedbean.listeServicesCourant()}" update="basicPojo"/>  
     </h:form>
 
 </html>

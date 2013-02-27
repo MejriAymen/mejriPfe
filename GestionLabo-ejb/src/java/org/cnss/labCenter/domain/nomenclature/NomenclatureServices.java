@@ -39,20 +39,24 @@ public class NomenclatureServices implements INomenclature, Serializable {
 
     @Override
     public List<Nomenclature> listeNomenclature() {
-        List<Nomenclature> nomenclatures;
-        nomenclatures = entityManager.createQuery("select c from Nomenclature c").getResultList();
-        return nomenclatures;
+        return entityManager.createQuery("select c from Nomenclature c").getResultList();
     }
 
     @Override
     public List<Nomenclature> listeNomenclatureSansValeurUsuelle() {
         List<Nomenclature> nomenclatures = listeNomenclature();
-          List<Nomenclature> nos= new ArrayList<Nomenclature>();
+        List<Nomenclature> nos = new ArrayList<Nomenclature>();
         for (Nomenclature nomenclature : nomenclatures) {
             if (nomenclature.getValeursUsuelles() == null) {
                 nos.add(nomenclature);
             }
         }
         return nos;
+    }
+
+    @Override
+    public void supprimerNomenclature(int nls) {
+        Nomenclature v = entityManager.find(Nomenclature.class, nls);
+        entityManager.remove(v);
     }
 }

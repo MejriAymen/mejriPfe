@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.cnss.labCenter.entities.Secretaire;
 import org.cnss.labCenter.entities.Utilisateurs;
 
 /**
@@ -42,8 +43,8 @@ public class UtilisateurServices implements IUtilisateur, Serializable {
     }
 
     @Override
-    public Utilisateurs rechercherUtilisateur(String pass) {
-        List<Utilisateurs> utilisateurs = entityManager.createQuery("select r from Utilisateurs r where  r.motPass='" + pass + "'  ").getResultList();
+    public Secretaire rechercherUtilisateur(String pass) {
+        List<Secretaire> utilisateurs = entityManager.createQuery("select r from Secretaire r where  r.motPass='" + pass + "'  ").getResultList();
         if (utilisateurs.isEmpty()) {
             return null;
         } else if (utilisateurs.size() == 1) {
@@ -51,5 +52,11 @@ public class UtilisateurServices implements IUtilisateur, Serializable {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void supprimerUtilisateur(int nls) {
+        Utilisateurs v = entityManager.find(Utilisateurs.class, nls);
+        entityManager.remove(v);
     }
 }

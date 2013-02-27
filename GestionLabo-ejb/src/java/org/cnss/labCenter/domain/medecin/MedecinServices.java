@@ -24,9 +24,6 @@ public class MedecinServices implements IMedecin, Serializable {
     @Override
     public void ajouterMedecin(Medecin medecin) {
         entityManager.persist(medecin);
-        entityManager.flush();
-        medecin = entityManager.find(Medecin.class, medecin.getIdMed());
-        entityManager.refresh(medecin);
     }
 
     @Override
@@ -42,12 +39,15 @@ public class MedecinServices implements IMedecin, Serializable {
     @Override
     public List<Medecin> listerMedecin() {
         return entityManager.createQuery("select c from Medecin c").getResultList();
-
-
     }
 
     @Override
     public Medecin medecinConverter(int i) {
         return entityManager.find(Medecin.class, i);
+    }
+    
+        public void supprimerMedecin(int nls) {
+        Medecin v = entityManager.find(Medecin.class, nls);
+        entityManager.remove(v);
     }
 }

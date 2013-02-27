@@ -32,15 +32,13 @@
                         <p:column  colspan="2">
 
                             <p:tabMenu style="font-size: 18px" activeIndex="5" >  
-                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
-                                <p:menuitem   value="Ajouter"  url="ajouterAntiBiotique.xhtml"  icon="ui-icon-circle-plus"/>  
-                                <p:menuitem  value="Modifier" url="modifierAntibiotique.xhtml" icon="ui-icon-pencil"/>  
-                                <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="VisualiserAntibiotique.xhtml" icon="ui-icon-search" />  
+                                <p:menuitem  value="Accueil" url="/accueilS.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter" url="ajouterMotPasse.xhtml" icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier"  icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
                                 <p:menuitem  value="lister" icon="ui-icon-document"/>  
-
-
-
+                             
                             </p:tabMenu> 
 
                         </p:column>
@@ -51,64 +49,75 @@
                     <p:row>
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
-                            <p:fieldset id="lo" toggleSpeed="1500" collapsed="false" toggleable="true" legend="Liste D'Antibiotiques" style="width: 42%; height: 50%; font-size: 15px;">  
 
-                                <p:panel header="" style="width: 900px; font-size: 15px;color: #ff96c8;">
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion De Mot De Passe" style="width: 42%; height: 50%; font-size: 15px;">  
 
-                                    <h:panelGrid style="border: black;width: 100%" cellpadding="5">  
-
-                                        <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{antibiotiqueManagedbean.antibiotiqueL}"
-                                                     var="a"
-                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-                                            <p:column filterBy="#{a.nomAntibiotique}">    
-
-                                                <f:facet name="header">  
-                                                    Nom Antibiotique
-                                                </f:facet>  
-                                                <h:outputText value="#{a.nomAntibiotique}"  />  
-
-                                                <f:facet name="footer">  
-                                                    Nom Antibiotique
-                                                </f:facet>  
-                                            </p:column>  
+                                <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
 
 
-                                            <p:column filterBy="#{a.abreviation}">    
-
-                                                <f:facet name="header">  
-                                                    Abréviation
-                                                </f:facet>  
-                                                <h:outputText value="#{a.abreviation}"  />  
-
-                                                <f:facet name="footer">  
-                                                    Abréviation
-                                                </f:facet>  
-                                            </p:column>  
-
-                                        </p:dataTable>
-
-                                        <f:facet name="footer">
                                          
-                                        </f:facet>
+
+                                              
+                                    <p:dataTable id="basicPojo" style="font-size: 16px;width: 100%;" paginator="true" rows="4"   rowsPerPageTemplate="4,6,8"    value="#{utulisateurManagedbean.utilisateurses}"
+                         var="a"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                        <p:column filterBy="#{a.nomPre}">    
+
+                    <f:facet name="header">  
+                        Nom &amp; Prénom
+                    </f:facet>  
+                                            <h:outputText value="#{a.nomPre}"  />  
+
+                    <f:facet name="footer">  
+                   Nom &amp; Prénom                                             
+                    </f:facet>  
+                </p:column>  
+
+
+                <p:column filterBy="#{a.code}">    
+
+                    <f:facet name="header">  
+                        Code
+                    </f:facet>  
+                    <h:outputText value="#{a.code}"  />  
+
+                    <f:facet name="footer">  
+                        Code
+                    </f:facet>  
+                </p:column>  
+
+
+                                        <p:column filterBy="#{a.motPass}">    
+
+                    <f:facet name="header">  
+                      Mot De Passe
+                    </f:facet>  
+                                            <h:outputText value="#{a.motPass}"  />  
+
+                    <f:facet name="footer">  
+            Mot De Passe
+                    </f:facet>  
+                </p:column>  
 
 
 
-                                    </h:panelGrid>  
-                                </p:panel>  
 
-                            </p:fieldset>
-                            
-                            
+            </p:dataTable>
+                                         
                                  <p:blockUI block="basicPojo" trigger="basicPojo">  
         
         <p:graphicImage value="/images/ajax-loader.gif"/>  
-    </p:blockUI>  
-        
+    </p:blockUI>                                              
+
+                                    
+                                </p:panel>  
+
+                            </p:fieldset>
                         </p:column>
 
                         <p:column  style="background-color: #ffffff;border: hidden"> 
-                            <h:graphicImage value="/images/gab.png" height="390" width="300"/>
+                            <h:graphicImage value="/images/lP.png" height="340" width="260"/>
                         </p:column>
 
                     </p:row>
@@ -118,8 +127,6 @@
 
         </p:layout>  
 
-    
-    
             <p:dialog id="dialog" style="text-align: center"  onShow="bui.show()" visible="true" header="&weierp;Authentification" widgetVar="dlg">  
 
 
@@ -150,9 +157,8 @@
                 }  
             </script>  
 
-
-  <p:poll interval="10"   
-          listener="#{antibiotiqueManagedbean.listeAntibiotiqueCourante()}" update="basicPojo"/>  
+ <p:poll interval="10"   
+         listener="#{utulisateurManagedbean.utilisateursCourant()}" update="basicPojo"/>
     </h:form>
 
 </html>

@@ -49,4 +49,10 @@ public class DepartementServices implements IDepartement, Serializable {
     public Departement serviceConverter(int i) {
         return entityManager.find(Departement.class, i);
     }
+
+    @Override
+    public void supprimerDepartement(int nls) {
+        Departement v = entityManager.find(Departement.class, nls);
+        entityManager.remove(v);
+    }
 }

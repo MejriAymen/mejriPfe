@@ -36,4 +36,10 @@ public class ResultatServices implements IResultat, Serializable {
     public Resultat find(Resultat resultat) {
         return entityManager.find(Resultat.class, resultat.getIdResultat());
     }
+
+    @Override
+    public void supprimerResultat(int nls) {
+        Resultat v = entityManager.find(Resultat.class, nls);
+        entityManager.remove(v);
+    }
 }

@@ -34,11 +34,9 @@
                             <p:tabMenu style="font-size: 18px" activeIndex="2" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem  value="Ajouter" url="ajouterServices.xhtml"  icon="ui-icon-circle-plus"/>  
-                                <p:menuitem  value="Modifier"   icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Modifier" url="modifierServices.xhtml"  icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" url="supprimerServices.xhtml" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="visualiserServices.xhtml"  icon="ui-icon-search" />  
                                 <p:menuitem  value="lister" url="listerServices.xhtml"  icon="ui-icon-document"/>  
-
                             </p:tabMenu> 
 
                         </p:column>
@@ -50,7 +48,7 @@
 
                         <p:column style="width: 30%;background-color: #ffffff;border: hidden">
 
-                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Services" style="text-align: left;width: 42%; height: 50%; font-size: 15px;">  
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Des Départements" style="text-align: left;width: 42%; height: 50%; font-size: 15px;text-align: inherit;width: 46%; height: 50%;font-weight: bold;font-variant: small-caps; font-size: 17px;">  
 
                                 <p:panel header="" style="width: 1000px;font-size: 15px;color: #ff96c8 ">
 
@@ -61,23 +59,14 @@
                                         <p:row>
                                             <p:column style="width: 10%;  border: hidden">
 
-
                                             </p:column>
-
 
                                             <p:column  style=" border: hidden">
 
-
-
-
-
-
-                                                <p:sheet id="basicPojo"  style=" font-size: 18px;font-family:serif;font-style: italic" value="#{departementManagedbean.serviceMod}" var="l" scrollHeight="150">  
-
+                                                <p:sheet id="basicPojo"  style="width: 900px;font-size: 18px;font-family:serif;font-style: italic" value="#{departementManagedbean.serviceMod}" var="l" scrollHeight="150">  
 
                                                     <p:column  
-                                                        style="width:200px; color: deepskyblue"  headerText="Nom Service"  sortBy="#{l.nompre}">  
-
+                                                        style="width:200px; color: lightskyblue"  headerText="Nom De Département"  sortBy="#{l.nom}">  
                                                         <h:inputText style="width:180px;" value="#{l.nom}" />  
                                                     </p:column>  
 
@@ -112,9 +101,9 @@
                                     </p:panelGrid> 
                                     <f:facet name="footer">  
                                         <p:spacer width="270" height="20" />
-                                        <p:commandButton style="color: yellow; font-size:15px " update="growl" actionListener="#{departementManagedbean.doModifierService()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"></p:commandButton>
-                                        <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                        <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"></p:commandButton>
+                                        <p:commandButton style=" cursor: wait;color: navy; font-size:15px " update="growl" actionListener="#{departementManagedbean.doModifierService()}" ajax="false" icon="ui-icon-circle-check"  value="Valider"/>
+                                        <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-cancel"  value="Abondonner"/>
+                                        <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
                                     </f:facet>
                                 </p:panel>  
 
@@ -132,7 +121,7 @@
 
         </p:layout>  
 
-  
+
 
         <p:poll interval="15"   
                 listener="#{departementManagedbean.listeServicesCourant()}" update="basicPojo"/>  

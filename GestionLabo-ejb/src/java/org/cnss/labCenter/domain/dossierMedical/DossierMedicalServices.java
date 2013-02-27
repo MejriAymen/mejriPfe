@@ -38,8 +38,12 @@ public class DossierMedicalServices implements IDossierMedical, Serializable {
 
     @Override
     public List<DossierMedicale> listeDossierMedicale() {
-        List<DossierMedicale> dossierMedicales;
-        dossierMedicales = entityManager.createQuery("select c from DossierMedicale c").getResultList();
-        return dossierMedicales;
+        return entityManager.createQuery("select c from DossierMedicale c").getResultList();
+    }
+
+    @Override
+    public void supprimerDossierMedical(int nls) {
+        DossierMedicale v = entityManager.find(DossierMedicale.class, nls);
+        entityManager.remove(v);
     }
 }

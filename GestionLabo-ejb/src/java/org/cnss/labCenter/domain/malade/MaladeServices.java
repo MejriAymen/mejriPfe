@@ -24,7 +24,7 @@ public class MaladeServices implements IMalde, Serializable {
     @Override
     public void ajouterMalade(Malade malade) {
         entityManager.persist(malade);
-       
+
     }
 
     @Override
@@ -41,14 +41,17 @@ public class MaladeServices implements IMalde, Serializable {
 
     @Override
     public List<Malade> listerMalade() {
-        List<Malade> malades;
-        malades = entityManager.createQuery("select c from Malade c").getResultList();
-        return malades;
-
+        return entityManager.createQuery("select c from Malade c").getResultList();
     }
 
     @Override
     public Malade MaladeConverter(int i) {
         return entityManager.find(Malade.class, i);
+    }
+
+    @Override
+    public void supprimerMalade(int nls) {
+        Malade v = entityManager.find(Malade.class, nls);
+        entityManager.remove(v);
     }
 }

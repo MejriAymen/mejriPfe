@@ -24,4 +24,6 @@ public interface IAssure {
     public List<Assure> listerAssure();
 
     public Assure AssureConverter(int i);
+
+    public void supprimerAssure(int nls);
 }

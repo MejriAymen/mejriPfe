@@ -5,26 +5,24 @@ package org.cnss.labCenter.tools;
  * and open the template in the editor.
  */
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.cnss.labCenter.domain.antibiotique.IAntibiotique;
-import org.cnss.labCenter.entities.Antibiotique;
+import org.cnss.labCenter.domain.specialite.ISpecialite;
+import org.cnss.labCenter.entities.Specialite;
 
 /**
  *
  * @author Mejri Aymen
  */
 @FacesConverter(value = "antibiotique")
-public class AntibiotiqueConverter implements Converter {
+public class SpecialiteConverter implements Converter {
 
-    private Antibiotique antibiotique = null;
-    private List<Antibiotique> antibiotiques;
+    private Specialite antibiotique = null;
+    private List<Specialite> antibiotiques;
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String submittedValue) {
@@ -38,11 +36,11 @@ public class AntibiotiqueConverter implements Converter {
                 int number = Integer.parseInt(submittedValue);
                 initialContext = new InitialContext();
 
-                IAntibiotique iAntibiotique = (IAntibiotique) initialContext.lookup("java:global/LocationVoiture/LocationVoiture-ejb/AntibiotiqueServices");
+                ISpecialite iAntibiotique = (ISpecialite) initialContext.lookup("java:global/GestionLabo/GestionLabo-ejb/SpecialiteServices");
                 antibiotique = iAntibiotique.antibiotiqueConverter(number);
                 antibiotiques = iAntibiotique.listeAntibiotique();
-                for (Antibiotique a : antibiotiques) {
-                    if (a.getId() == number) {
+                for (Specialite a : antibiotiques) {
+                    if (a.getIdSpecialite() == number) {
                         return a;
                     }
                 }
@@ -59,24 +57,24 @@ public class AntibiotiqueConverter implements Converter {
         if (value == null || value.equals("")) {
             return "";
         } else {
-            return String.valueOf(((Antibiotique) value).getId());
+            return String.valueOf(((Specialite) value).getIdSpecialite());
         }
 
     }
 
-    public Antibiotique getAntibiotique() {
+    public Specialite getAntibiotique() {
         return antibiotique;
     }
 
-    public void setAntibiotique(Antibiotique antibiotique) {
+    public void setAntibiotique(Specialite antibiotique) {
         this.antibiotique = antibiotique;
     }
 
-    public List<Antibiotique> getAntibiotiques() {
+    public List<Specialite> getAntibiotiques() {
         return antibiotiques;
     }
 
-    public void setAntibiotiques(List<Antibiotique> antibiotiques) {
+    public void setAntibiotiques(List<Specialite> antibiotiques) {
         this.antibiotiques = antibiotiques;
     }
 }

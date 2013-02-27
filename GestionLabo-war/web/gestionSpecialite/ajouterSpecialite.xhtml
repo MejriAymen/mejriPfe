@@ -34,10 +34,10 @@
                             <p:tabMenu style="font-size: 18px" activeIndex="1" >  
                                 <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
                                 <p:menuitem   value="Ajouter"  icon="ui-icon-circle-plus"/>  
-                                <p:menuitem  value="Modifier"  url="modifierAntibiotique.xhtml" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Modifier"  url="modifierSpecialite.xhtml" icon="ui-icon-pencil"/>  
                                 <p:menuitem  value="Détruire" icon="ui-icon-trash"/>  
-                                <p:menuitem  value="Visualiser" url="VisualiserAntibiotique.xhtml" icon="ui-icon-search" />  
-                                <p:menuitem  value="lister" url="listerAntiBiotique.xhtml"  icon="ui-icon-document"/>  
+                                <p:menuitem  value="Visualiser" url="VisualiserSpecialite.xhtml" icon="ui-icon-search" />  
+                                <p:menuitem  value="lister" url="listerSpecialite.xhtml"  icon="ui-icon-document"/>  
                              
 
 
@@ -56,15 +56,15 @@
 
                                     <h:panelGrid style="border: black" columns="4" cellpadding="5">  
 
-                                        <h:outputLabel style="color: red" value="Antibiotique :"></h:outputLabel>
-                                        <p:inputText style="width: 390px;" value="#{antibiotiqueManagedbean.antibiotique.nomAntibiotique}"></p:inputText>
-                                        <h:outputLabel style="color: red" value="Abréviation :"></h:outputLabel>
-                                        <p:inputText  value="#{antibiotiqueManagedbean.antibiotique.abreviation}"></p:inputText>
+                                        <h:outputLabel style="color: red" value="Nom Specialite :"/>
+                                        <p:inputText style="width: 360px;" value="#{specialiteManagedbean.antibiotique.nomSpecialite}"/>
+                                        <h:outputLabel style="color: red" value="Lib_Specialite :"/>
+                                        <p:inputText  value="#{specialiteManagedbean.antibiotique.libSpecialite}"/>
 
                                         <f:facet name="footer">                                              
-                                            <p:commandButton style="color: yellow; font-size:15px " actionListener="#{antibiotiqueManagedbean.doAjouterAntibiotique()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"/>
-                                            <p:commandButton style="color: #ff96c8; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
-                                            <p:commandButton style="color: greenyellow; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
+                                            <p:commandButton style="color: aqua; font-size:15px " actionListener="#{specialiteManagedbean.doAjouterAntibiotique()}" ajax="false" icon="ui-icon-circle-plus"  value="Valider"/>
+                                            <p:commandButton style="color: aqua; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                            <p:commandButton style="color: aqua; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
                                         </f:facet>
                                     </h:panelGrid>  
                                 </p:panel>  

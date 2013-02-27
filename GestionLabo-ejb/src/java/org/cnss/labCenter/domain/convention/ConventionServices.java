@@ -43,9 +43,12 @@ public class ConventionServices implements IConvention, Serializable {
         return conventions;
     }
 
+  
     @Override
-    public void supprimerConvention(Convention convention) {
-        Convention a = entityManager.find(Convention.class, convention.getIdConvention());
-        entityManager.remove(a);
+    public void supprimerConvention(int nls) {
+     
+        Convention v = entityManager.find(Convention.class, nls);
+        entityManager.remove(v);
     }
+  
 }

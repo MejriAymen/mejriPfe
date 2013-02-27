@@ -69,7 +69,7 @@ public class ConventionManagedbean implements Serializable {
 
     public void doSupprimerConvention(){
     
-    iConvention.supprimerConvention(selectConvention);
+    iConvention.supprimerConvention(selectConvention.getIdConvention());
     
     }
     

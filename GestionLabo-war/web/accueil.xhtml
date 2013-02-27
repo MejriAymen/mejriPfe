@@ -21,7 +21,7 @@
                         <p:menubar style="width: 100%" > 
                             <p:submenu label="Accueil" icon="ui-icon-document">  
                                 <p:separator />  
-                                <p:menuitem value="Gestion Dossiers" url="gestionDossierMedical/authentificationDossiers.xhtml" icon="ui-icon-folder-open"/>  
+                                <p:menuitem value="Gestion Consultations" url="gestionConsultation/authentificationConsultation.xhtml" icon="ui-icon-folder-open"/>  
                                 <p:separator />  
                                 <p:menuitem value="Gestion Examens" url="gestionExamen/authentificationExamen.xhtml"  icon="ui-icon-contact"/>
                                 <p:separator />  
@@ -60,7 +60,7 @@
 
                             <p:submenu label="Base De Données" icon="ui-icon-gear"> 
                                 <p:separator /> 
-                                <p:menuitem value="Gestion Services"  url="gestionService/authentificationServices.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Département"  url="gestionService/authentificationServices.xhtml" ajax="false"/>  
                                 <p:separator />
                                 <p:menuitem value="Gestion Assuré"  url="gestionAssure/authentificationrAssure.xhtml" ajax="false"/>  
                                 <p:separator />
@@ -72,7 +72,7 @@
                                 <p:separator />  
                                 <p:menuitem value="Gestion Conventions" url="gestionConvention/authentficationrConventions.xhtml" ajax="false"/>  
                                 <p:separator />  
-                                <p:menuitem value="Gestion Antibiotiques" url="gestionAntibiotique/authentificationAntiBiotique.xhtml" ajax="false"/>  
+                                <p:menuitem value="Gestion Spécialite" url="gestionSpecialite/authentificationSpecialite.xhtml" ajax="false"/>  
                                 <p:separator />  
                                 <p:menuitem value="Gestion Nomenclature" url="gestionNomenclature/authentificationNomenclature.xhtml"  ajax="false"/>  
                                 <p:separator />  
@@ -120,7 +120,7 @@
 
                     <f:facet name="footer">  
                         <p:commandButton id="loginButton" value="Login" update="growl"   
-                                         actionListener="#{utulisateurManagedbean.login}"   
+                                         actionListener="#{utulisateurManagedbean.login(actionEvent)}"   
                                          oncomplete="handleLoginRequest(xhr, status, args)"/>  
                     </f:facet>  
                 </h:panelGrid>  

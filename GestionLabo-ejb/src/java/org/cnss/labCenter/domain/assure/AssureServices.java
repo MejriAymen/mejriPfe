@@ -49,4 +49,10 @@ public class AssureServices implements IAssure, Serializable {
     public Assure AssureConverter(int i) {
         return entityManager.find(Assure.class, i);
     }
+
+    @Override
+    public void supprimerAssure(int nls) {
+        Assure v = entityManager.find(Assure.class, nls);
+        entityManager.remove(v);
+    }
 }

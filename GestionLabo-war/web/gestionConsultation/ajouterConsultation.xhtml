@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:form>
+        <p:growl id="growl" showDetail="true"  life="5000" />  
+        <p:layout fullPage="true">  
+
+
+
+            <p:layoutUnit  footer="Polyclinique El Omrane" style="text-align: right; font-style: italic;font-size: 17px" position="north" size="50"  resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+            <p:layoutUnit footer="Caisse Nationale De Sécurité Sociale " style="font-size: 18px;font-variant:small-caps" position="south" size="50" header="" resizable="true" closable="false" collapsible="false">  
+
+            </p:layoutUnit>  
+
+
+
+            <p:layoutUnit position="center" style=" text-align: center" header="">  
+
+                <p:panelGrid id="gv" style=" width: 100%; border-color:black">
+                    <p:row>
+
+                        <p:column  colspan="2">
+
+                            <p:tabMenu style="font-size: 18px" activeIndex="1" >  
+                                <p:menuitem  value="Accueil" url="/accueil.xhtml" icon="ui-icon-home"/>  
+                                <p:menuitem   value="Ajouter"  icon="ui-icon-circle-plus"/>  
+                                <p:menuitem  value="Modifier" icon="ui-icon-pencil"/>  
+                                <p:menuitem  value="Détruire"  icon="ui-icon-trash"/>  
+                                <p:menuitem  value="Visualiser"  icon="ui-icon-search" />  
+                                <p:menuitem  value="lister" url="listeConsultation.xhtml"  icon="ui-icon-document"/>  
+                                <p:menuitem  value="Gestion visite" url="/gestionExamen/authentificationExamen.xhtml" icon="ui-icon-newwin"/>  
+
+
+                            </p:tabMenu> 
+
+                        </p:column>
+
+
+                    </p:row>
+
+                    <p:row>
+
+                        <p:column style="width: 30%;background-color: #ffffff;border: hidden">
+                            <p:fieldset toggleSpeed="1500" collapsed="false" toggleable="true" legend="Gestion Dossiers" style="width: 45%; height: 50%; font-size: 15px;">  
+                                <p:panel header="Information de la Consultation" style="width: 970px; font-size: 16px;color: #ff96c8 ">
+
+                                    <h:panelGrid style="border: black" columns="6"   id="matchGrid" >  
+
+                                        <h:outputText  value="Date Consultation :" />  
+                                        <p:calendar value="#{consultationlManagedbean.consultation.dateConsultation}" converterMessage="Error" effect="explode" validatorMessage="ture" pattern="MM/dd/yyyy HH:mm" showButtonPanel="true"/>  
+                                        <h:outputText value="N° Dossier Médical :" />  
+                                        <p:autoComplete size="12" requiredMessage="Define Medical File" required="true"  value="#{consultationlManagedbean.dossierMedicaleS}"   
+                                                        completeMethod="#{dossierMedicalManagedbean.completeDossierMedicale}"  
+                                                        var="p" itemLabel="#{p.numDoss}" itemValue="#{p}" converter="dossierMed" forceSelection="true">  
+                                            <f:facet name="itemtip">  
+                                                <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
+                                                    <h:outputText style="color: black" value="Nom &amp; Prénom " />                                                              
+                                                    <h:outputText  id="mc" style="color:  blue" value="#{p.malade.nompre}"/>  
+                                                </h:panelGrid>  
+                                            </f:facet>  
+
+                                        </p:autoComplete>
+                                        <h:outputText value="Médecin Mr :" />  
+                                        <p:autoComplete size="12" style="width: 300px" value="#{consultationlManagedbean.seledtedMedecin}" id="basicPojose" completeMethod="#{medecinManagedbean.completerMedecin}"  
+                                                        var="p" itemLabel="#{p.nompre}" itemValue="#{p}" converter="medecin" forceSelection="true">  
+                                            <f:facet  name="itemtip">
+
+                                                <h:panelGrid  style="font-size: 16px; volume:100; " bgcolor="thistle" columns="2">  
+                                                    <h:outputText style="color: black"  value="Nom &amp; Prénom :"/>  
+                                                    <h:outputText style="color:  blue" value=" #{p.nompre}"/>  
+
+                                                    <h:outputText style="color: black"  value="Code :"/> 
+                                                    <h:outputText style="color:  blue" value="#{p.codeMed}"/>  
+
+                                                    <h:outputText style="color: black"  value="Téléphone : "/> 
+                                                    <h:outputText style="color:  blue" value="#{p.telephone}"/>  
+
+
+                                                </h:panelGrid>
+                                            </f:facet>
+
+                                        </p:autoComplete>  
+
+                                        <f:facet name="footer">  
+                                            <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus" actionListener="#{consultationlManagedbean.doAjouterConsultation()}" ajax="false" value="Valider"/>
+                                            <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-minus" value="Remettre" type="reset" />  
+                                            <p:commandButton style="color: navy; font-size:15px " icon="ui-icon-circle-plus"  value="Abondonner"/>
+
+
+                                        </f:facet>
+                                    </h:panelGrid>  
+                                </p:panel>  
+
+                            </p:fieldset>
+                        </p:column>
+
+                        <p:column  style="background-color: #ffffff;border: hidden"> 
+                            <h:graphicImage value="/images/gCo1.jpg" height="370" width="297"/>
+                        </p:column>
+
+                    </p:row>
+
+                </p:panelGrid>  
+            </p:layoutUnit>  
+
+        </p:layout>  
+
+
+
+    </h:form>
+
+</html>
+
