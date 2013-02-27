@@ -75,7 +75,14 @@ public class ResultatManagedbean implements Serializable {
         FacesMessage msg = null;
         boolean loggedIn = false;
         boolean logo = false;
+        boolean log = false;
 
+
+        if ("ECBU".equals(visites.get(0).getNomenclature().getAbreviation())) {
+            log = false;
+        } else {
+            log = true;
+        }
 
         if (visites.get(0).getResultat().getRes() > visites.get(0).getNomenclature().getValeursUsuelles().getvHMax() || visites.get(0).getResultat().getRes() < visites.get(0).getNomenclature().getValeursUsuelles().getvHMin()) {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Result Must be Between", visites.get(0).getNomenclature().getValeursUsuelles().getvHMin() + " and " + visites.get(0).getNomenclature().getValeursUsuelles().getvHMax());
@@ -83,19 +90,24 @@ public class ResultatManagedbean implements Serializable {
 
         } else {
 
-            this.doModifierVisite();
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Result Added", "");
+            if (!"ECBU".equals(visites.get(0).getNomenclature().getAbreviation())) {
 
-            loggedIn = true;
-            if (i == 0) {
-                logo = false;
-            } else {
-                logo = true;
+
+                this.doModifierVisite();
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Result Added", "");
+
+                loggedIn = true;
+                if (i == 0) {
+                    logo = false;
+                } else {
+                    logo = true;
+                }
             }
         }
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("loggedIn", loggedIn);
         context.addCallbackParam("logo", logo);
+        context.addCallbackParam("log", log);
     }
 
     public void showPartie() {
@@ -106,7 +118,12 @@ public class ResultatManagedbean implements Serializable {
             resultatECBU.setResultat(iVisite.VisiteConverter(visites.get(0).getIdVisite()).getResultat());
             iResultatECBU.ajouterResultat(resultatECBU);
             i++;
+            if (i == y) {
+                i = 0;
+                selectedVisite = new Visite();
+            }
             resultatECBU = new ResultatECBU();
+            visites = new ArrayList<Visite>();
         }
 
     }
@@ -115,14 +132,9 @@ public class ResultatManagedbean implements Serializable {
 
         i++;
         converstionVisualisation();
-        i++;
-        converstionVisualisation();
-
-        
 
         for (Visite visite : visites) {
             iVisite.modifierVisite(visite);
-
         }
 
         if (i == y) {
@@ -262,6 +274,4 @@ public class ResultatManagedbean implements Serializable {
     public void setResultatECBU(ResultatECBU resultatECBU) {
         this.resultatECBU = resultatECBU;
     }
-
-    
 }
