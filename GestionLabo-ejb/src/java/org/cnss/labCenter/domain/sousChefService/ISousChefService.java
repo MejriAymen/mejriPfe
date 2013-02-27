@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package org.cnss.labCenter.domain.sousChefService;
-
 import java.util.List;
 import javax.ejb.Local;
 import org.cnss.labCenter.entities.SousChefService;

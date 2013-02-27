@@ -17,8 +17,10 @@ import org.cnss.labCenter.entities.ChefService;
 public interface IChefService {
 
     public void ajouterChefService(ChefService u);
+
     public void supprimerChefService(ChefService chefService);
+
     public void modifierChefService(ChefService chefService);
+
     public List<ChefService> listeChefService();
-  
 }
