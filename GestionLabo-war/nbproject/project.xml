@@ -10,11 +10,11 @@
                     <file>${reference.GestionLabo-ejb.dist}</file>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.primefaces-3.4.2.jar}</file>
+                    <file>${file.reference.ui-darkness-1.0.9.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.ui-darkness-1.0.9.jar}</file>
+                    <file>${file.reference.primefaces-3.4.2.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
